@@ -11,7 +11,7 @@ h=.25*pi;
 A=1;
 ys=A*sin(w*t+h);
 yn=2*randn(1,N);
-y=yn+ys;  
+y=ys;%+yn;  
 
 fy=fft(y); 
 
@@ -24,6 +24,8 @@ Amp = sqrt(An.^2+Bn.^2);
 Fase = atan2(Bn,An);
 
 k=0:N-1;n=0:N-1;
+
+stop
 
 yr = (1/N)*sum(repmat(Amp,N,1)'.*cos(repmat(Fase,N,1)'+2*pi*(k'*n)/N));  
 
