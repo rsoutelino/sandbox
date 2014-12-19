@@ -1,0 +1,155 @@
+
+\documentclass[12pt,portuguese,a4paper,pdftex]{article}
+%\usepackage{epstopdf}
+\usepackage[pdftex]{hyperref}
+%\documentclass[12pt,a4paper]{article}
+\usepackage[brazil]{babel}
+%\usepackage[latin1]{inputenc} %traduz acentos
+\usepackage{natbib}
+%\usepackage{epsf,psfig}
+\usepackage[dvips]{graphicx}
+%\usepackage[square]{natbib}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{amssymb}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\renewcommand{\baselinestretch}{1.5}
+\hoffset=-1cm %regula a margem esquerda 
+\topmargin -1cm %regula a margem superior
+\textwidth 16cm %largura da pagina
+\textheight 24.5cm %altura da pagina
+
+\begin{document}
+
+
+
+\begin{titlepage}
+
+%\voffset=-90pt
+
+\begin{center}
+{\large \bf UNIVERSIDADE DO ESTADO DO RIO DE JANEIRO\\
+\vspace{-0.3cm}
+CENTRO DE TECNOLOGIA E CI\^ENCIAS\\
+\vspace{-0.3cm}
+INSTITUTO DE GEOCI\^ENCIAS\\
+\vspace{-0.3cm}
+DEPARTAMENTO DE OCEANOGRAFIA\\} 
+\end{center}
+
+\vspace{3cm}
+
+\begin{center}
+{\large \bf Rafael Guarino Soutelino\\} 
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+%\raisebox{0pt}[0pt][0pt]
+
+{\LARGE \bf \sc Caracteriza\c c\~ao da Estrutura Barocl\'inica do Sistema de Correntes de Contorno Oeste 
+ao Largo da Costa Leste Brasileira}\\
+
+\end{center}
+\renewcommand{\baselinestretch}{1.2}
+
+\vspace{2cm}
+
+\hspace{2.5in}
+\parbox[t][2.0in][t]{3.7in}{\small Monografia apresentada $\nearrow{k}$ ao Curso de Oceanografia do Instituto de Geociências
+da Universidade do Estado do Rio de Janeiro, como requisito final para a
+obtenção do grau de Bacharel em Oceanografia.}\\
+
+\vspace{-2cm}
+
+\begin{center}
+{ORIENTADOR:\\
+Prof. Dr. Ilson Carlos Almeida da Silveira}
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+{\small RIO DE JANEIRO, \\
+Dezembro de 2005}
+\end{center}
+\end{titlepage}
+
+
+\newpage
+%\pagestyle{empty}
+%\pagestyle{headings}
+%\pagenumbering{roman}
+\tableofcontents
+
+\newpage
+\pagestyle{plain}
+\addcontentsline{toc}{section}{Lista de Figuras}
+
+\begin{center}
+\section*{Lista de Figuras}
+\end{center}
+\listoffigures
+
+\newpage
+\pagestyle{plain}
+\addcontentsline{toc}{section}{Lista de Tabelas}
+
+\begin{center}
+\section*{Lista de Tabelas}
+\end{center}
+\listoftables
+
+\newpage
+\pagenumbering{arabic}
+\renewcommand{\baselinestretch}{1}
+
+\pagestyle{plain}
+\setcounter{page}{1}
+
+\section{Introdução}
+
+%%%%%%%% EXEMPLO DE INCLUSAO DE FIGURAS
+\vspace{-0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=10cm,keepaspectratio=true]{figuras/streng99_ACAS_nova.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:streng2} \small{Padr\~oes de circula\c c\~ao de larga-escala ao n\'ivel de 200 metros para o Atl\^antico Sul. 
+Adaptado de \cite{stramma_england1999}.}}
+\end{figure}
+
+
+    \subsection{Área de Estudo}
+    \subsection{Objetivos}
+
+\section{Metodologia e Resultados}
+    \subsection{Meteorologia}
+    \subsection{Maré}
+    \subsection{Correntografia}
+    \subsection{Hidrografia}
+\section{Síntese dos Resultados}
+\section{Conclusões}
+
+
+\newpage
+
+%%%%%%%%%% BIBLIOGRAFIA %%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{section}{Referências}
+
+\bibliography{bibliografia}
+
+\bibliographystyle{tese}
+%\bibliographystyle{apalike}
+%\bibliographystyle{abbrvnat}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{refbib.tex} % bibliografia antes do bibtex (antiga)
+
+\end{document}

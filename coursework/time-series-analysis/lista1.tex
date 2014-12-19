@@ -1,0 +1,231 @@
+
+\documentclass[12pt,portuguese,a4paper,pdftex]{article}
+%\usepackage{epstopdf}
+\usepackage[pdftex]{hyperref}
+%\documentclass[12pt,a4paper]{article}
+\usepackage[brazil]{babel}
+%\usepackage[latin1]{inputenc} %traduz acentos
+\usepackage{natbib}
+%\usepackage{epsf,psfig}
+\usepackage[dvips]{graphicx}
+%\usepackage[square]{natbib}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{amssymb}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\renewcommand{\baselinestretch}{1.5}
+\hoffset=-1cm %regula a margem esquerda 
+\topmargin -1cm %regula a margem superior
+\textwidth 16cm %largura da pagina
+\textheight 24.5cm %altura da pagina
+
+\begin{document}
+\pagestyle{empty}
+
+\hspace{-6mm}{\large \sc Mestrado em Oceanografia Física - IOUSP\\
+IOF 850 - Oceanografia Observacional\\
+Lista 1 - Análise de Séries Temporais\\}
+
+
+\vspace{6cm}
+
+\begin{center}
+{\large \bf Diogo Peregrino Corrêa Pereira\\
+Rafael Guarino Soutelino\\} 
+\end{center}
+
+\vspace{5cm}
+
+\begin{center}
+{Professor:\\
+Prof. Dr. Paulo Simmionato Polito}
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+{\small RIO DE JANEIRO, \\
+maio de 2006}
+\end{center}
+
+
+\newpage
+\pagenumbering{arabic}
+\renewcommand{\baselinestretch}{1}
+
+\pagestyle{empty}
+\setcounter{page}{1}
+
+% \section{Introdução}
+%     \subsection{Área de Estudo}
+%     \subsection{Objetivos}
+% 
+% \section{Metodologia e Resultados}
+%     \subsection{Meteorologia}
+%     \subsection{Maré}
+%     \subsection{Correntografia}
+%     \subsection{Hidrografia}
+% \section{Síntese dos Resultados}
+% \section{Conclusões}
+
+{\bf Problema 1}
+
+(a) Nesse filtro, escolhe-se um tipo de função, a função peso, a qual percorre toda a série, realizando uma média ponderada, atribuindo pesos aos dados. O filtro de média móvel, como o próprio nome já diz, consiste na substituição de cada valor que compõe a série por uma média ponderada entre o respectivo valor e uma quantidade N determinada de dados adjacentes. A esta quantidade N dá-se o nome de janela, e a distribuição dos pesos conforme a distância da medida central pode se dar de diversas maneiras. O efeito deste filtro no espetro é a filtragem de frequências dentro do sinal. Quanto maior for a janela, frequências mais baixas estarão sendo filtradas. O resultado do filtro varia bastante conforme o tipo de distribuição de pesos que se aplica, ou seja, o tipo de janela. Existem janelas "quadradas", "triangulares" e gaussianas.
+
+% \vspace{-0.5cm}
+% 
+% \begin{figure}[ht]
+% \begin{center}
+% \includegraphics[width=10cm,keepaspectratio=true]{ex_janelas.pdf}
+% \end{center}
+% \vspace{-0.5cm}
+% \renewcommand{\baselinestretch}{.5}
+% \caption{\label{fig:ex_janelas} \small{Exemplos de janelas triangular e gaussiana com 31 pontos.}}
+% \end{figure}
+
+\vspace{1cm}
+\hspace{-6mm}(b) Solução no manuscrito em anexo.\\
+(c) Solução no manuscrito em anexo.\\
+
+
+{\bf Problema 2}\\
+Solução no manuscrito em anexo.\\
+
+{\bf Problema 3}
+
+Seguindo os procedimentos do roteiro, um programa em MatLab (em anexo) foi construído com o intuito de conduzir uma análise espectral da série temporal dada, através da obtenção do espectro de alguns segmentos da série e posterior cálculo do espectro médio. Após uma primeira análise, sem aplicação de filtros, mostraram-se inicialmente as frequências que se sobressaem na série, tornando possível a escolha mais criteriosa do tamanho do filtro digital utilizado. As frequências que tiveram um destaque significativo no espectro foram 0.006184 Uf, relativa ao pico com maior potência espectral e 0.01512 e 0.01555 Uf, com picos de menor potência. Foi escolhido um filtro que eliminou as frequências mais altas, evidenciando as frequências que se sobressaíram. O filtro escolhido foi do tipo "blackman", de tamanho 59, pois esta era a maior janela possível sem que se filtrasse os sinais de interesse. O tipo "blackman"  foi escolhido por gerar um espectro sem oscilações após a frequência de corte, gerando menor variância do que os demais filtros disponíveis. A Figura \ref{fig:prob_3} sintetiza a análise conduzida. Na Figura \ref{fig:prob_3_sint}, é mostrada a análise feita com a soma de 3 ondas sintéticas de frequência conhecida, mostrando como a análise espectral feita em segmentos da série, com posterior cálculo de um espectro médio, evidencia e "limpa" o sinal das frequências encontradas. O número de segmentos escolhido para o cálculo da média foi 13. Este número de intervalos permitiu uma boa atenuação da potência espectral das demais frequências, sem perda de definição dos picos encontrados. Isto já mostra qualitativamente uma boa significância estatística para os picos, uma vez que ao se calcular um espectro médio, a tendência da parte randômica do sinal é se anular, diminuindo a variância total do espectro. Se os picos se mantêm, significa que o sinal se repete em cada segmento da série com uma variância bem menor. O diferença entre o "espectro + desvio padrão" ($y_n + \sigma$) e o próprio espectro é bastante diminuída no pico (Figura \ref{fig:prob_3_zoom}), exatamente o que se espera de um pico estatisticamente robusto.  A medida numérica da significância estatística de cada pico foi obtida através da comparação entre o desvio padrão no pico e o tamanho do pico, ou seja, quantas vezes "$\sigma_n$" cabe na altura do pico. O cálculo foi na prática realizado da seguinte forma:\\
+
+\begin{equation}
+\frac{(Y_n-Y_{n-1})+(Y_n-Y_{n+1})}{2}\  .\  \frac{1}{(Y_n+\sigma_n)-Y_n} \ = \ \frac{2Y_n-Y_{n-1}-Y{n+1}}{2\sigma_n}
+\end{equation}
+
+\vspace{.25cm}
+
+O valor encontrado para esta expressão em cada pico foram os seguintes:
+
+\begin{table}[ht]
+\begin{center}
+% \caption{\label{par_pom} Exemplos de par\^ametros do POMsec utilizados nas simula\c c\~oes das radiais
+% estudadas.}
+\vspace{.25cm}
+\begin{tabular}{ccc}
+\hline\hline
+\begin{footnotesize} Pico 1 \ \ \  $\rightarrow$ \end{footnotesize} & \begin{footnotesize}3.48\end{footnotesize} & \begin{footnotesize} $\approx \ \ \  99.97\%$ de confiança \end{footnotesize}\\
+
+\begin{footnotesize} Pico 2 \ \ \ $\rightarrow$ \end{footnotesize} & \begin{footnotesize}3.07\end{footnotesize} & \begin{footnotesize} $\approx \ \ \ 99.89\%$ de confiança \end{footnotesize}\\
+
+\begin{footnotesize} Pico 3 \ \ \ $\rightarrow$ \end{footnotesize} & \begin{footnotesize}1.88\end{footnotesize} & \begin{footnotesize} $\approx \ \ \ 96.99\%$ de confiança \end{footnotesize}\\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+
+\vspace{0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{prob_3.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:prob_3} \small{Análise Espectral e os espectros Total Bruto, Total Filtrado e Médio com 13 segmentos.}}
+\end{figure}
+
+\vspace{-0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{prob_3_sint.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:prob_3_sint} \small{Análise espectral de uma série sintética com 3 sinais de frequências conhecidas.}}
+\end{figure}
+
+\vspace{-0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{prob_3_zoom.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:prob_3_zoom} \small{Zoom nos picos.}}
+\end{figure}
+
+{\bf Problema 4}
+
+Para as duas séries propostas no problema 4, foi calculado um epectro cruzado médio usando o mesmo procedimento do problema 3, ou seja, dividindo-se as séries em segmentos com posterior cálculo do espectro médio, assim com a aplicação de um filtro digital, o mesmo utilizado no problema 3, porém com tamanho menor (31), pois as frequências encontradas foram maiores. A análise espectral para cada uma das séries separadamente é apresentada na Figura \ref{fig:prob_4} . As frequências em que as duas séries têm um sinal semelhante são 0.01239 e 0.031 (Figura \ref{fig:prob_4_1}), e a diferença de fase em cada pico é de aproximadamente 90$^\circ$ (Figura \ref{fig:prob_4_2}). Para inferir a significância estatística dessa semelhança, o mesmo procedimento do problema 3 foi aplicado, e na tabela abaixo estão listados para cada pico o percentual de significância:
+
+\begin{table}[ht]
+\begin{center}
+% \caption{\label{par_pom} Exemplos de par\^ametros do POMsec utilizados nas simula\c c\~oes das radiais
+% estudadas.}
+\vspace{.25cm}
+\begin{tabular}{ccc}
+\hline\hline
+\begin{footnotesize} Pico 1 \ \ \  $\rightarrow$ \end{footnotesize} & \begin{footnotesize}3.55\end{footnotesize} & \begin{footnotesize} $\approx \ \ \  99.98\%$ de confiança \end{footnotesize}\\
+\begin{footnotesize} Pico 2 \ \ \ $\rightarrow$ \end{footnotesize} & \begin{footnotesize}3.06\end{footnotesize} & \begin{footnotesize} $\approx \ \ \ 99.89\%$ de confiança \end{footnotesize}\\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+
+\vspace{-0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{prob_4.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:prob_4} \small{Análise espectral para cada série (problema 4).}}
+\end{figure}
+
+
+\vspace{-0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{prob_4_1.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:prob_4_1} \small{}}
+\end{figure}
+
+
+\vspace{-0.5cm}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{prob_4_2.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:prob_4_2} \small{Fase em cada pico.}}
+\end{figure}
+
+\newpage
+
+%%%%%%%%%% BIBLIOGRAFIA %%%%%%%%%%%%%%%%%%%%%%%
+% \addcontentsline{toc}{section}{Referências}
+% 
+% \bibliography{bibliografia}
+% 
+% \bibliographystyle{tese}
+%\bibliographystyle{apalike}
+%\bibliographystyle{abbrvnat}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{refbib.tex} % bibliografia antes do bibtex (antiga)
+
+\end{document}

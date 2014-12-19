@@ -1,0 +1,12 @@
+###################
+# Como Usar o RPM #
+###################
+
+# instala atualiza
+rpm -Uhvv pacote
+
+# pergunta sobre o pacote
+rpm –q pacote
+
+# remove
+rpm -e pacote

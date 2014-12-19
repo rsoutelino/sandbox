@@ -1,0 +1,20 @@
+# procura por 'extreme value', dando o número da linha e ignorando maúscula ou minúscula
+grep -n -i 'extreme value' texto.txt
+
+# apenas no início da linha
+grep '^512' *.dat
+
+# mo fim da linha
+grep '512$' *.dat
+
+# linhas que começam com '508', ou '518', ..., até '598'
+grep '^5[0-9]8' *.dat
+
+# todos menos que começam com 5
+grep -v '^5' *.dat
+
+# pega linhas que começam com da forma 5?8 onde ? não é 1 nem 6
+grep '^5[^1,6]8' *.dat
+
+# linhas que comecem com 52, qq numero de dígitos, depois UE
+grep '^52[0-9]*UE' *.dat

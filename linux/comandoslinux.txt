@@ -1,0 +1,144 @@
+Comandos Linux 
+--------------
+
+Acesso a outra maquina:
+sftp usuario@maquina.io.usp.br 
+
+pegar da maquina acessada
+get
+
+terminar acesso
+bye
+________________________________
+
+descompactar arquivo .tar
+
+tar -xjvf  nome do arquivo
+tar -xzvf  nome do arquivo
+
+agrupar arquivos .tar
+
+tar -cvf nome.tar diretorio
+________________________________
+
+mover arquivos
+
+mv nome'do'arquivo caminho nome'do'aquivo'novo
+obs: se quiser manter o mesmo nome basta colocar um . ao final do caminho
+mesma sintaxe para copiar porem ao inves de mv usar cp
+
+_______________________________
+
+Criar novo diretorio
+
+mkdir nome'do'diretorio
+
+______________________________
+
+conectar-se a outra maquina
+
+ssh nome'da' maquina
+
+_____________________________ 
+
+change password
+
+passwd
+
+_____________________________
+
+compilar .tex
+
+latex nome'do'arquivo .tex
+
+--------
+visualizar .dvi
+
+xdvi nome'do'arquivo .dvi
+
+--------
+passar de .dvi para .ps
+
+dvips -o nomedoarquivo.ps nomedoarquivo.dvi
+
+_______________________________________
+
+Executar *.rpm
+
+rpm -Uvh nome-do-arquivo
+
+________________________________
+
+Executar *.bin ou executaveis
+
+./ nome-do-arquivo
+
+_________________________________
+
+Criar atalho
+
+ln -s caminho/nome-do-arquivo
+
+________________________________
+
+listar processos
+
+ps -x 
+
+_________________________________
+
+lista espaço em cada pasta do diretorio
+
+du -sh
+_________________________________
+
+Permite acesso a pasta
+
+chown -R usuario:grupo diretorio
+
+__________________________________
+
+Situação dos diretórios
+
+df -h 
+
+---------------------------------
+usando o bibtex:
+
+rodar o latex,
+rodar o bibtex:  bibtex 'arquivo'.tex (sem o .tex)
+rodar o latex novamente
+
+-------------------------------------
+montar particao windows
+
+mount /dev/hda1 /mnt/windows -t ntfs -r -o umask=0222
+
+----------------------------------------------------------------
+SINCRONIZANDO DIRETORIOS EM MAQUINAS DIFERENTES:
+
+Ex: do diretorio 'observacional' na maquina de origem para o diretorio 'observacional' da maquina de destino: !!!!repare que nao eh necessario colocar o nome do diretorio na maquina de destino, pois ele mesmo encontra!!!!!! (excelente pra fazer backup do dia trabalhado)
+
+rsync -Cravpe ssh ~/observacional rafaelgs@arpoador.io.usp.br:~/  
+
+-----------------------------------------------------------------
+diretorio do crontab = /etc/crontab
+
+------------------------------------------------------------------
+CRIAR CHAVE PUBLICA 
+
+ssh-keygen -t rsa -f ~/.ssh/id_rsa
+
+INSTALAR
+
+ssh-copy-id  -i  ~/.ssh/id_rsa.pub  root@prainha
+
+-----------------------------------------------------------------
+MUDANDO PROPRIEDADE DE TODA UMA ARVORE DE DIRETORIOS E ARQUIVOS
+
+find . -type f -exec chown rafaelgs:lado {} \;
+find . -type d -exec chown rafaelgs:lado {} \;
+find ./ -name '*.m' -exec chmod -x {} \;
+-----------------------------------------------------------------
+FINDING REGULAR EXPRESSION INSIDE A PARTICULAR FILE TYPE IN A GIVEN DIRECTORY
+find /home/rsoutelino/rsoutelino/prod/congressos/grc2011 -name '*.py' -print | xargs grep 'roms_outputs' /dev/null

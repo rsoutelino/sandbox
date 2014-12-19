@@ -1,0 +1,168 @@
+\hspace{6mm}Esta derivação baseia-se naquela apresentada por \cite{flierl1978}. Logo, escrevemos as 
+equações quase-geostróficas partindo de um conjunto de três equações acopladas para função de corrente 
+geostrófica $\psi$, deslocamento vertical da superfície material (ou isopicnal) $\eta$ e velocidade 
+vertical $w$:\\
+
+\hspace{6mm}$\rightarrow \hspace{3mm}$ \textit{Conservação de Vorticidade Absoluta}
+
+\begin{equation}
+\frac{\partial}{\partial t} \nabla^2 \psi + \mathcal{J} \left ( \psi,\nabla^2 \psi \right ) - f_0 \frac{\partial w}{\partial z} + \beta \frac{\partial \psi}{\partial x} \ = \ 0
+\label{cvabs}
+\vspace{0.5cm}
+\end{equation}
+
+\hspace{6mm}$\rightarrow \hspace{3mm}$ \textit{Equação Hidrostática}
+
+\begin{equation}
+\frac{\partial \psi}{\partial z} \ = \ - \frac{N^2(z)}{f_0} \eta
+\label{hid}
+\vspace{0.5cm}
+\end{equation}
+
+\hspace{6mm}$\rightarrow \hspace{3mm}$ \textit{Conservação de Densidade}
+
+\begin{equation}
+w \ = \ \frac{\partial \eta}{\partial t} + \mathcal{J} \left ( \psi,\eta \right )
+\label{cdens}
+\vspace{0.5cm}
+\end{equation}
+onde $N^2(z)$ é a freq\"uência de Brunt-V\"ais\"al\"a média, $\mathcal{J}$ é o operador Jacobiano e 
+$\nabla^2$ é o Laplaciano horizontal.
+
+O modelo de 2-camadas pode ser derivado diretamente das Equações (\ref{cvabs}-\ref{cdens}) uma vez 
+que $N^2(z)$ é escolhido de forma a se adequar à estratificação do oceano discretizado por camadas. 
+Esta estratificação é dada pela função-degrau (\textit{Heaviside}) onde, para $-H < z < -H_1$ (camada 
+inferior), a densidade é dada por $\rho_0$ e, para $-H_1 < z < 0$ (camada superior), por 
+$\rho_0(1 - \varepsilon)$. Temos que $H_1$ é a espessura da camada superior do oceano de espessura total 
+$H$ e $\varepsilon$ é o salto de densidade entre as camadas dado por:
+
+\begin{equation}
+\varepsilon \ = \ \frac{\Delta \rho}{\rho_0}.
+\label{eps}
+\vspace{0.5cm}
+\end{equation}
+
+Logo, $N^2(z)$ assume a forma:
+
+\begin{equation}
+\tilde{N}^2(z) \ = \ \varepsilon g \delta \left ( z + H_1 \right )
+\label{N2d}
+\vspace{0.5cm}
+\end{equation}
+onde $\delta$ é a função Delta. A Equação (\ref{N2d}) sintetiza a contínua 
+estratificação do oceano real em uma estratificação discreta à duas camadas, que por sua vez 
+é restrita à interface isopicnal entre estas.
+
+Aplicando (\ref{N2d}) em (\ref{hid}), temos que $\psi$ não depende de $z$ no interior das camadas, 
+ou seja, só há dependência vertical em $z = -H_1$. Este fato permite-nos adotar 
+$\tilde{\psi}_1 = \tilde{\psi}_1(x,y,t)$ e $\tilde{\psi}_2 = \tilde{\psi}_2(x,y,t)$ como sendo as 
+funções de corrente geostróficas nas camadas $1$ e $2$, respectivamente. Reescrevendo a Equação 
+(\ref{cvabs}) para ambas as camadas, temos:
+
+\begin{equation}
+\frac{\partial}{\partial t} \nabla^2 \tilde{\psi}_1 + \mathcal{J} \left ( \tilde{\psi}_1,\nabla^2 \tilde{\psi}_1 \right ) - f_0 \frac{\partial \tilde{w}_1}{\partial z} + \beta \frac{\partial \tilde{\psi}_1}{\partial x} \ = \ 0
+\label{cvabs_c1}
+% \vspace{0.5cm}
+\end{equation}
+
+\begin{equation}
+\frac{\partial}{\partial t} \nabla^2 \tilde{\psi}_2 + \mathcal{J} \left ( \tilde{\psi}_2,\nabla^2 \tilde{\psi}_2 \right ) - f_0 \frac{\partial \tilde{w}_2}{\partial z} + \beta \frac{\partial \tilde{\psi}_2}{\partial x} \ = \ 0.
+\label{cvabs_c2}
+\vspace{0.5cm}
+\end{equation}
+
+É fácil ver que, se derivarmos (\ref{cvabs_c1}) e (\ref{cvabs_c2}) em $z$, as velocidades verticais 
+$\tilde{w}_1$ e $\tilde{w}_2$ são funções lineares de $z$ tal que:
+
+\begin{equation}
+\frac{\partial \tilde{w}_1}{\partial z} \ = \ \frac{1}{H_1}\left [ \tilde{w} \left ( 0 \right ) - \tilde{w} \left ( -H_1^{+} \right ) \right ] \ = \ - \frac{1}{H_1} \tilde{w} \left ( -H_1^{+} \right )
+\label{w1}
+% \vspace{0.5cm}
+\end{equation}
+
+\begin{equation}
+\frac{\partial \tilde{w}_2}{\partial z} \ = \ \frac{1}{H - H_1}\left [ \tilde{w} \left ( -H_1^{-} \right ) - \tilde{w} \left ( -H \right ) \right ] \ = \ \frac{1}{H - H_1} \tilde{w} \left ( -H_1^{-} \right ).
+\label{w2}
+\vspace{0.5cm}
+\end{equation}
+
+As velocidades $\tilde{w} \left ( 0 \right )$ e $\tilde{w} \left ( -H \right )$ são nulas uma vez 
+que assumimos as aproximações de tampa rígida e fundo plano. As velocidades 
+$\tilde{w} \left ( -H_1^{+} \right )$ e $\tilde{w} \left ( -H_1^{-} \right )$, logo acima e abaixo da 
+interface entre as camadas, respectivamente, são determinadas pela Equação (\ref{cdens}), 
+aqui reescrita na forma:
+
+\begin{equation}
+\tilde{w} \left ( -H_1^{\pm} \right ) \ = \ \frac{\partial}{\partial t} \eta \left ( -H_1 \right ) + \mathcal{J} \left [ \tilde{\psi}_{1,2},\eta \left ( -H_1 \right ) \right ].
+\label{cdens2}
+\vspace{0.5cm}
+\end{equation}
+
+Como o deslocamento vertical $\eta$ da superfície isopicnal é contínuo acima e abaixo da interface, 
+não é necessário diferenciar $\eta \left ( -H_1 \right )$ em  $\eta \left ( -H_1^{\pm} \right )$. 
+Este deslocamento é determinado via integração vertical da Equação (\ref{hid}), já considerando 
+$\tilde{N}(z)^2$ como dado em (\ref{N2d}), nos limites $-H_1^{+}$ e $-H_1^{-}$:
+
+\begin{equation}
+\int_{-H_1^{-}}^{-H_1^{+}} \frac{\partial \tilde{\psi}_{1,2}}{\partial z} dz = \int_{-H_1^{-}}^{-H_1^{+}} \frac{\varepsilon g \eta}{f_0} \delta \left ( z + H_1 \right ) dz \quad \Rightarrow \quad \eta \left ( -H_1 \right ) = - \frac{f_0}{\varepsilon g} \left ( \tilde{\psi}_1 - \tilde{\psi}_2 \right ).
+\label{eta}
+\vspace{0.5cm}
+\end{equation}
+
+Combinando (\ref{eta}) com (\ref{cdens2}) e (\ref{w1}-\ref{w2}), obtemos:
+
+\begin{equation}
+\frac{\partial \tilde{w}_1}{\partial z} \ = \ \frac{\partial}{\partial t} \left [ \frac{f_0}{\varepsilon g H_1} \left ( \tilde{\psi}_1 - \tilde{\psi}_2 \right ) \right ] + \mathcal{J} \left [ \tilde{\psi}_1, \frac{f_0}{\varepsilon g H_1} \left ( \tilde{\psi}_1 - \tilde{\psi}_2 \right ) \right ]
+\label{w1_2}
+% \vspace{0.5cm}
+\end{equation}
+
+\begin{equation}
+\frac{\partial \tilde{w}_2}{\partial z} \ = \ \frac{\partial}{\partial t} \left [ \frac{f_0}{\varepsilon g \left ( H - H_1 \right ) } \left ( \tilde{\psi}_2 - \tilde{\psi}_1 \right ) \right ] + \mathcal{J} \left [ \tilde{\psi}_2, \frac{f_0}{\varepsilon g \left ( H - H_1 \right ) } \left ( \tilde{\psi}_2 - \tilde{\psi}_1 \right ) \right ].
+\label{w2_2}
+\vspace{0.5cm}
+\end{equation}
+
+Uma vez combinadas as Equações (\ref{hid}) e (\ref{cdens}) na determinação das variações 
+verticais de $\tilde{w}$ em cada camada, podemos escrever suas respectivas equações de conservação de 
+vorticidade potencial quase-geostrófica da combinação de (\ref{w1_2}-\ref{w2_2}) com 
+(\ref{cvabs_c1}-\ref{cvabs_c2}):
+
+\begin{equation}
+\frac{\partial}{\partial t} \left [ \nabla^2 \tilde{\psi}_1 + \frac{f_0^2}{\varepsilon g H_1} \left ( \tilde{\psi_2} - \tilde{\psi_1} \right ) \right ] + \mathcal{J} \left [ \tilde{\psi}_1,\nabla^2 \tilde{\psi}_1 + \frac{f_0^2}{\varepsilon g H_1} \left ( \tilde{\psi}_2 - \tilde{\psi}_1 \right ) \right ] + \beta \frac{\partial \tilde{\psi}_1}{\partial x} = 0 \nonumber
+% \label{cvpot_c1}
+% \vspace{0.5cm}
+\end{equation}
+
+\begin{equation}
+\frac{\partial}{\partial t} \left [ \nabla^2 \tilde{\psi}_2 + \frac{f_0^2}{\varepsilon g \left ( H - H_1 \right ) } \left ( \tilde{\psi}_1 - \tilde{\psi}_2 \right ) \right ] + \mathcal{J} \left [ \tilde{\psi}_2,\nabla^2 \tilde{\psi}_2 + \frac{f_0^2}{\varepsilon g \left ( H - H_1 \right ) } \left ( \tilde{\psi}_1 - \tilde{\psi}_2 \right ) \right ] + \beta \frac{\partial \tilde{\psi}_2}{\partial x} = 0. \nonumber
+% \label{cvpot_c2}
+\vspace{0.5cm}
+\end{equation}
+
+Ainda manipulando:
+
+\begin{equation}
+\frac{\partial \tilde{q}_1}{\partial t} + \mathcal{J} \left ( \tilde{\psi}_1, \tilde{q}_1 \right ) \ = \ 0
+\label{cvpot_c1}
+% \vspace{0.5cm}
+\end{equation}
+
+\begin{equation}
+\frac{\partial \tilde{q}_2}{\partial t} + \mathcal{J} \left ( \tilde{\psi}_2, \tilde{q}_2 \right ) \ = \ 0
+\label{cvpot_c2}
+\vspace{0.5cm}
+\end{equation}
+tal que as vorticidades potenciais quase-geostróficas $q_1$ e $q_2$ nas camadas são dadas por:
+
+\begin{equation}
+\tilde{q}_1 \ = \ \nabla^2 \tilde{\psi}_1 + \frac{f_0^2}{\varepsilon g H_1} \left ( \tilde{\psi}_2 - \tilde{\psi}_1 \right ) + \beta y
+\label{vpqg_c1}
+% \vspace{0.5cm}
+\end{equation}
+
+\begin{equation}
+\tilde{q}_2 \ = \ \nabla^2 \tilde{\psi}_2 + \frac{f_0^2}{\varepsilon g \left ( H - H_1 \right )} \left ( \tilde{\psi}_1 - \tilde{\psi}_2 \right ) + \beta y
+\label{vpqg_c2}
+% \vspace{0.5cm}
+\end{equation}

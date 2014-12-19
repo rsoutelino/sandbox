@@ -1,0 +1,515 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/examples/beamerexample3.tex,v 1.8 2004/10/07 20:53:07 tantau Exp $
+
+\documentclass[pdftex]{beamer}
+
+% \documentclass[12pt,portuguese,a4paper,pdftex]{article}
+%\usepackage{epstopdf}
+% \usepackage[pdftex]{hyperref}
+%\documentclass[12pt,a4paper]{article}
+% \usepackage[brazil]{babel}
+%\usepackage[latin1]{inputenc} %traduz acentos
+% \usepackage{natbib}
+%\usepackage{epsf,psfig}
+% \usepackage[dvips]{graphicx}
+%\usepackage[square]{natbib}
+% \usepackage{subfigure}
+% \usepackage{rotating}
+% \usepackage{palatino}
+\usepackage{amssymb}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+
+
+% Copyright 2003 by Till Tantau <tantau@cs.tu-berlin.de>.
+%
+% This program can be redistributed and/or modified under the terms
+% of the LaTeX Project Public License Distributed from CTAN
+% archives in directory macros/latex/base/lppl.txt.
+
+%
+% The purpose of this example is to show how \part can be used to
+% organize a lecture.
+%
+% \usetheme{Warsaw}
+\usetheme{Frankfurt}
+\usepackage[english]{babel}
+% \usepackage[latin1]{inputenc}
+
+\setbeamercovered{transparent}
+
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.2cm,dp=0.1cm]{footcol}
+    \Tiny\hspace*{4mm}\insertshortauthor\hfill\insertshorttitle\hfill\insertframenumber\hspace{4mm}
+  \end{beamercolorbox}
+}
+
+\logo{\includegraphics[height=1cm]{lado.png}}
+%
+% The following info should normally be given in you main file:
+%
+
+
+\title{Descrição Sinótica da Origem da Corrente do Brasil}
+\author{Rafael Soutelino}
+\institute{Laboratório de Dinâmica Oceânica - IOUSP\\
+Orientador: Ilson Carlos Almeida da Silveira}
+\date{02 de julho de 2007}
+
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section*{Descrição Sinótica da Origem da Corrente do Brasil}
+
+\subsection{Sumário}
+
+\frame{
+  \nameslide{Sumário}
+  \frametitle{Sumário da Apresentação}
+  \tableofcontents[pausesections,part=1]
+}
+
+
+
+
+
+
+\part{Review of Previous Lecture}
+
+\section[Introdução]{Introdução}
+\frame<beamer>{\tableofcontents[current]}
+
+\subsection[Larga Escala]{Padrões de Larga Escala}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{A Circulação de Larga Escala no Atlântico Sul}
+\includegraphics[width=10cm,keepaspectratio=true]{../figuras/brasil_3D_new.pdf}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{A Circulação de Larga Escala no Atlântico Sul}
+\includegraphics[width=10cm,keepaspectratio=true]{../figuras/CB_3D.pdf}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{A Circulação de Larga Escala no Atlântico Sul}
+\includegraphics[width=10cm,keepaspectratio=true]{../figuras/CCI_3D.pdf}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{A Circulação de Larga Escala no Atlântico Sul}
+\includegraphics[width=10cm,keepaspectratio=true]{../figuras/CCP_3D.pdf}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{A Bifurcação da CSE}
+\begin{block}{\textcolor{yellow}{Principais Considerações}}
+\begin{itemize}
+\vspace{0.3cm}
+      \item A bifurcação ocorre de forma \textcolor{red}{estratificada};
+\vspace{0.5cm}
+      \item Pode ter implicações na \textcolor{red}{varibilidade climática global}, pois o sistema 
+            CSE/SNB é o principal condutor para o retorno de águas da MOC;
+\vspace{0.5cm}
+      \item A localização da bifurcação pode prover informações a cerca da quantidade
+            de  água que é exportada para o Atlântico Norte e recircula  no giro subtropical;
+\vspace{0.5cm}
+      \item A latitude precisa da bifurcação ainda é \textcolor{red}{obscura}.
+    \end{itemize}
+\vspace{0.1cm}
+\end{block}
+}
+
+
+\subsection[Circulação Regional]{Circulação Regional - Costa Leste}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{A Costa Leste Brasileira}
+
+\includegraphics[width=10cm,keepaspectratio=true]{../figuras/mapa_leste.png}
+
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Circulação Regional - Sistema SNB/CNB}
+{\small {\it Silveira et al.} (1994) $\rightarrow$ Velocidades baroclínicas relativas a 1000 dbar.}
+\begin{columns}
+  \begin{column}{7cm}
+\vspace{0.5cm} 
+      \hspace{2.5cm} \textcolor{blue}{$\approx$ 10$^\circ$S}
+\vspace{-0.5cm}
+      \begin{flushleft}
+        \includegraphics[width=7cm,keepaspectratio=true]{../figuras/secaoCNB_silveira94.pdf}
+      \end{flushleft}    
+  \end{column}
+  \begin{column}{6cm}
+     \begin{flushright}
+       \hspace{-2cm}\includegraphics[width=7cm,keepaspectratio=true]{../figuras/secaoCNB_silveira94_2.pdf}
+     \end{flushright}
+      \hspace{2.1cm} \textcolor{blue}{$\approx$ 5$^\circ$S}    
+\vspace{1.5cm}
+
+  \end{column}
+\end{columns}
+
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Circulação Regional - Sistema SNB/CNB}
+{\small {\it Stramma et al.} (1995) $\rightarrow$ Velocidades medidas diretamente - ADCP.}
+\vspace{0.5cm}
+\begin{columns}
+  \begin{column}{6cm}
+\vspace{1.5cm} 
+      \textcolor{blue}{$\approx$ 10$^\circ$S}
+\vspace{-2cm}
+      \begin{flushleft}
+        \includegraphics[width=7cm,keepaspectratio=true]{../figuras/secaoCNB_strammaetal95.pdf}
+      \end{flushleft}    
+\vspace{-3cm}
+  \end{column}
+  \begin{column}{5cm}
+     \begin{flushright}
+       \hspace{-2cm}\includegraphics[width=7cm,keepaspectratio=true]{../figuras/secaoCNB_strammaetal95_2.pdf}
+     \end{flushright}
+\vspace{-0.3cm}
+      \hspace{3.5cm} \textcolor{blue}{$\approx$ 5$^\circ$S}    
+\vspace{1.5cm}
+
+  \end{column}
+\end{columns}
+
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Circulação Regional - Sistema CB/CCI}
+\begin{center}
+{\small {\it Soutelino} (2005) $\rightarrow$ Velocidades baroclínicas absolutas (POM) em torno de 
+19$^\circ$S. {\bf \textcolor{red}{Setembro de 2001}}.}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\includegraphics[width=9cm,keepaspectratio=true]{../figuras/vel_pom_rad13.pdf}  
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Circulação Regional - Sistema CB/CCI}
+\begin{center}
+{\small {\it Silveira et al.} (2006) $\rightarrow$ Velocidades baroclínicas relativas a 1000 dbar.
+ {\bf \textcolor{red}{Março de 2005}}.}
+\end{center}
+\vspace{0.5cm}
+\begin{columns}
+  \begin{column}{6cm}
+    \includegraphics[width=6cm,keepaspectratio=true]{../figuras/hor_geopsi_AO_0100m_color.pdf}
+  \end{column}
+  \begin{column}{6cm}
+    \includegraphics[width=6cm,keepaspectratio=true]{../figuras/hor_geopsi_AO_0600m_color.pdf}
+  \end{column}
+\end{columns} 
+}
+
+\section[Objetivos]{Objetivos}
+\frame<beamer>{\tableofcontents[current]}
+
+\frame
+{
+  \frametitle{Objetivos}
+\begin{alertblock}{Objetivo Central}
+Descrição sinótica do sítio de bifurcação CSE e por consequência, sítio de origem da CB.
+\end{alertblock}
+
+\begin{block}{Objetivos Específicos}
+{\small
+\vspace{0.2cm}
+\begin{itemize}
+\item Descrição sinótica da circulação geostrófica regional na área da bifurcação da
+ CSE através da construção de campos de função de corrente em vários níveis;
+\vspace{0.1cm}
+\item Comparação da circulação geostrófica com aquela obtida por medidas diretas de
+ velocidade via ADCP, através da construção dos campos de função de corrente observada em vários níveis.
+\vspace{0.1cm}
+\item Investigar a assinatura geostrófica climatológica da bifurcação da CSE em uma área maior de abrangência.
+\end{itemize}
+}
+\end{block}
+}
+
+\section[Dados]{Conjunto de Dados}
+\frame<beamer>{\tableofcontents[current]}
+
+\subsection[Climatologia]{Hidrografia - Climatologia}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Hidrografia - Cenário Climatológico}
+\begin{center}
+{\bf World Ocean Atlas - resolução de 0,25$^\circ$}
+\end{center}
+\begin{center}
+\includegraphics[width=10cm,keepaspectratio=true]{../figuras/woa_global_temp.png}
+\end{center}
+}
+
+\subsection[Cenário Sinótico]{Hidrografia - Cenário Sinótico}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Hidrografia - Cenário Sinótico}
+\vspace{-0.5cm}
+\begin{columns}
+  \begin{column}{6cm}
+    \begin{center}
+    {\bf Oceano Leste I}\\
+    \textcolor{red}{Setembro de 2001}
+    \includegraphics[width=5.5cm,keepaspectratio=true]{../proc/hidrografia/figuras/grade_leste1.pdf}
+    \end{center}
+  \end{column}
+  \begin{column}{6cm}
+    \begin{center}
+    {\bf Oceano Leste II}\\
+    \textcolor{red}{Março de 2005}
+    \includegraphics[width=5.5cm,keepaspectratio=true]{../proc/hidrografia/figuras/grade_leste2.pdf}
+    \end{center}
+  \end{column}
+\end{columns} 
+}
+
+
+\subsection[ADCP]{Velocidades Diretas - ADCP}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{ADCP - Metodologia de processamento}
+\vspace{0.5cm}
+\begin{columns}
+  \begin{column}{6cm}
+    \begin{block}{Etapas}
+    \begin{enumerate}
+      \item Exportação via ``WinADCP'' - médias longas;
+\vspace{0.5cm}
+      \item Remoção dos dados obtidos com o navio ``parado'';
+\vspace{0.5cm}
+      \item Remoção de spikes;
+    \end{enumerate}
+    \end{block}
+  \end{column}
+  \begin{column}{5cm}
+    \vspace{-1cm}
+    \begin{center}
+    \includegraphics[width=5cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_bruto_1m.pdf}
+    \end{center}
+  \end{column}
+\end{columns} 
+}
+
+\frame
+{
+  \frametitle{ADCP - Metodologia de processamento II}
+
+\begin{block}{\textcolor{yellow}{Remoção do Transporte de Ekman}}
+{\small
+    \begin{itemize}
+      \item Promediação em caixas;
+\vspace{0.2cm}
+      \item Dados de vento oriundos do ``quickscat'';
+\vspace{0.2cm}
+      \item Cálculo do campo médio de velocidades observadas no interior da camada de Ekman ($\vec{V}$). É estimado um valor médio de espessura para o cruzeiro: \textcolor{blue}{$\delta_E \approx$  20 m};
+\vspace{0.2cm}
+      \item Cálculo do Transporte de Ekman, individualmente, para cada dia do cruzeiro: $\vec{V_e} = \frac{\vec{\tau} x \vec{k}}{\rho f}$;
+\vspace{0.2cm}
+      \item Simples subtração vetorial: $\vec{V} - \vec{V_e}$.
+    \end{itemize}
+}
+\end{block}
+}
+
+\frame
+{
+  \frametitle{ADCP - Metodologia de processamento II}
+\begin{center}
+{\bf Velocidades na Camada de Ekman}\\
+\vspace{1cm}
+\includegraphics[width=3.6cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_trat_20m.pdf}
+\includegraphics[width=3.2cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_ek_20m.pdf}
+\includegraphics[width=3.6cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_20m.pdf}
+\end{center}
+}
+
+\frame
+{
+  \frametitle{ADCP - Metodologia de processamento III}
+\begin{center}
+{\bf Função de Corrente Observada - }\textcolor{blue}{Análise Objetiva Vetorial}
+\end{center}
+}
+
+
+\section[Resultados]{Resultados Preliminares}
+\frame<beamer>{\tableofcontents[current]}
+
+
+
+\frame
+{
+  \frametitle{$\Psi$ Observada x $\Psi$ Geostrófica - OEII - \textcolor{yellow}{1-20m}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_AO_20m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_med_20m.pdf}
+\end{center}
+}
+
+
+\frame
+{
+  \frametitle{$\Psi$ Observada \textcolor{yellow}{1-20m} x $\Psi$ Geostrófica \textcolor{yellow}{200m} - OEII}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_AO_20m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_200m.pdf}
+\end{center}
+}
+
+\frame
+{
+  \frametitle{$\Psi$ Climatológica x $\Psi$ Geostrófica - OEII - \textcolor{yellow}{1-20m, lc = 3$^\circ$}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/climatologia/figuras/psi_woa_fev,mar_20m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_20m_3gr.pdf}
+\end{center}
+}
+
+
+\frame
+{
+  \frametitle{$\Psi$ Rel. a 1000 dbar - \textcolor{yellow}{500 / 800 m}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_500m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_800m.pdf}
+\end{center}
+}
+
+
+\frame
+{
+  \frametitle{$\Psi$ Rel. a 1000 dbar x $\Psi$ Rel. a ADCP - \textcolor{yellow}{Superfície}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_1m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/ref_adcp/figuras/psi_ref_adcp_1m.pdf}
+\end{center}
+}
+
+\frame
+{
+  \frametitle{$\Psi$ Rel. a 1000 dbar x $\Psi$ Rel. a ADCP - \textcolor{yellow}{100 m}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_100m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/ref_adcp/figuras/psi_ref_adcp_100m.pdf}
+\end{center}
+}
+
+\frame
+{
+  \frametitle{$\Psi$ Rel. a 1000 dbar x $\Psi$ Rel. a ADCP - \textcolor{yellow}{200 m}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_200m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/ref_adcp/figuras/psi_ref_adcp_200m.pdf}
+\end{center}
+}
+
+\frame
+{
+  \frametitle{$\Psi$ Rel. a 1000 dbar x $\Psi$ Rel. a ADCP - \textcolor{yellow}{500 m}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_500m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/ref_adcp/figuras/psi_ref_adcp_500m.pdf}
+\end{center}
+}
+
+\frame
+{
+  \frametitle{$\Psi$ Rel. a 1000 dbar x $\Psi$ Rel. a ADCP - \textcolor{yellow}{800 m}}
+
+\begin{center}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/hidrografia/figuras/psi_OEII_800m.pdf}
+\includegraphics[width=5.2cm,keepaspectratio=true]{../proc/ref_adcp/figuras/psi_ref_adcp_800m.pdf}
+\end{center}
+}
+
+% \frame
+% {
+%   \frametitle{Seções Verticais - OEII}
+% \begin{center}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec1.pdf}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec5.pdf}\\
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec9.pdf}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec13.pdf}
+% \end{center}
+% }
+% 
+% \frame
+% {
+%   \frametitle{Seções Verticais - OEII}
+% \begin{center}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec17.pdf}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec21.pdf}\\
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec25.pdf}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec29.pdf}
+% \end{center}
+% }
+% 
+% \frame
+% {
+%   \frametitle{Seções Verticais - OEII}
+% \begin{center}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec33.pdf}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec37.pdf}\\
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec41.pdf}
+% \includegraphics[width=5cm,keepaspectratio=true]{../proc/hidrografia/figuras/vgAO_leste2_sec45.pdf}
+% \end{center}
+% }
+% 
+
+
+\end{document}
+
+

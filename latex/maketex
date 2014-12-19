@@ -1,0 +1,7 @@
+
+pdflatex plano_phd.tex
+bibtex plano_phd
+pdflatex plano_phd.tex
+pdflatex plano_phd.tex
+
+rm -rf plano_phd.aux plano_phd.bbl  plano_phd.blg plano_phd.log plano_phd.tex~ plano_phd.lot plano_phd.lof plano_phd.toc plano_phd.out	

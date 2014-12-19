@@ -1,0 +1,525 @@
+\section{Preâmbulo}\label{sec:pre_dados}
+
+\hspace{6mm} Uma vez traçados os objetivos, a busca por atingi-los passa por explorarmos 
+um robusto conjunto de dados que nos permita resolver, adequadamente a nossos propósitos, 
+as estruturas de interesse. Lembramos aqui que temos em mãos um problema de escalas. 
+A investigação sinótica do sítio de origem da CB é diretamente dependente
+da localização de uma estrutura de maior escala, ou seja, a BiCSE.
+
+Portanto, para o caso da investigação da BiCSE, buscamos o conjunto de dados climatológicos 
+{\it World Ocean Atlas 2001} (WOA2001), que foram apresentados recentemente à comunidade científica através
+dos esforços de \cite{boyer_etal2005}. Sempre que nos referirmos aos dados climatológicos, estamos 
+considerando-os como um cenário médio de circulação, ideal para representar a estrutura de larga escala
+da BiCSE. 
+
+Para investigar os padrões de meso-escala associados a origem da CB, é necessário um conjunto de mais alta 
+resolução que abranja uma área mais limitada. Este é o caso da operação Oceano Leste II (OEII),
+realizada pela Marinha do Brasil entre fevereiro e março de 2005.
+
+Adiantamos que exploraremos ambos os conjuntos de dados de modo a construir campos horizontais de velocidade
+horizontalmente não-divergente em vários níveis, 
+baseando-se no conceito e mapeamento de {\bf função de corrente}, que será descrito apropriadamente no Capítulo 
+\ref{cap:funccorr}. Entendemos que a obtenção destes campos consistem na melhor estratégia para conduzir as análises
+pretendidas e nos subsidiarão na busca pelos objetivos traçados. 
+
+\section{World Ocean Atlas 2001}\label{sec:woa2001}
+
+\hspace{6mm} A origem da base de dados WOA2001 é a mesma de climatologias 
+de temperatura e salinidade para os oceanos mundiais já consolidadas, tais como aquelas 
+apresentadas como parte do \textsl{Climatological Atlas of the World Ocean} \citep{levitus1982} 
+e suas atualizações em 1994 e 1998.
+
+Os campos médios climatológicos de temperatura e salinidade da WOA2001 para os períodos anual, 
+sazonal e mensal (com resolução horizontal de 0,25$^\circ$) são calculados com base nos dados do 
+\textsl{World Ocean Database 2001} utilizando técnicas de análise objetiva. WOA2001 \textit{anual} 
+e \textit{sazonal} apresentam campos em profundidades padrões desde a superfície até 5500 m, 
+ao passo que WOA2001 \textit{mensal} atinge somente os primeiros 1500 m de profundidade. 
+
+A resolução de 0,25$^\circ$ é uma melhoria diante daquela de 1$^\circ$ das demais 
+climatologias de 1994 e 1998 citadas. O refinamento da resolução espacial permite que feições termohalinas de menor escala 
+sejam resolvidas e que gradientes horizontais importantes em determinadas áreas sejam melhor 
+preservados, resultando assim, em uma representação mais realista das características médias 
+oceanográficas. A título de exemplo, a Figura \ref{fig:ex_woa} retrata 
+os campos climatológicos anuais de temperatura e salinidade em superfície para o oceano mundial.
+
+\begin{figure}%[hb]
+ \begin{center}
+  \includegraphics[width=14cm,keepaspectratio=true]{../figuras/t_global.png}
+  \includegraphics[width=14cm,keepaspectratio=true]{../figuras/s_global.png}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:ex_woa} \small Campos anuais em superfície da base climatológica WOA2001 
+ \citep{boyer_etal2005}: [superior] temperatura; [inferior] salinidade.}
+\end{figure}
+
+\newpage
+
+\section{Operação Oceano Leste II}\label{sec:oe2}
+
+\hspace{6mm} No escopo do {\it Plano de Coleta de Dados da Marinha do Brasil}, programa 
+este voltado à obtenção de informações ambientais em áreas importantes ao comércio marítimo, 
+à economia e à segurança nacional, a OEII foi conduzida a bordo do N.Oc. Antares no período 
+de 01 de fevereiro de 2005 a 12 de março de 2005. Os dados amostrados de interesse deste
+trabalho, consistem em perfis de temperatura e salinidade desde a superfície até 2500 m,
+obtidos via CTD {\it SeaBird SBE 9Plus}
+e perfilagem contínua de velocidade alcançada com o auxílio de um 
+{\it ADCP RD Instruments Broadband} de 75 kHz. Os perfis termohalinos
+foram distribuídos em 12 radiais normais à costa leste brasileira, entre 10$^\circ$S e 20$^\circ$S,
+totalizando 112 estações oceanográficas (Figura \ref{fig:grade_leste2}). As perfilagens
+de velocidade foram obtidas ao longo de todo o trajeto do navio, enquanto este 
+atendia ao planejamento das estações oceanográficas (Figura \ref{fig:grade_leste2}).
+Tais perfilagens, de acordo com a capacidade de penetração do equipamento, foram realizadas em média
+desde a superfície até 400 m em média. Vale lembrar que a exploração deste
+conjunto de dados é de caráter inédito, e sua grade amostral está localizada em um trecho
+da costa brasileira que permite atender aos objetivos traçados no Capítulo \ref{cap:intro}.
+
+Para proceder ao mapeamento de função de corrente, urge que consideremos dois procedimentos:
+{\bf controle de qualidade e pré-processamento}.
+Levando-se em con\-si\-de\-ra\-ção que os dados termohalinos (CTD) e de velocidade (ADCP) são de 
+natureza diferente, optamos por descrever tais procedimentos em diferentes seções.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=8cm,keepaspectratio=true]{../proc/hidrografia/figuras/grade_leste2.pdf}
+  \includegraphics[width=7.7cm,keepaspectratio=true]{../proc/adcp/figuras/adcp_trechos.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:grade_leste2} \small Painel esquerdo: Distribuição das estações hidrográficas realizadas 
+durante a OEII pela Marinha do Brasil, entre fevereiro e março de 2005. Painel direito: Representação geográfica
+dos trechos onde o ADCP obteve perfis de velocidade.}
+\end{figure}
+
+
+\subsection{Dados Termohalinos - Pré-processamento}\label{sec:CTD}
+
+\hspace{6mm} Em operações de coleta de dados termohalinos extensas como a OEII
+é comum que os sensores de condutividade do CTD apresentem desvios. 
+Estes desvios podem ser sistemáticos
+ou aleatórios. No caso de serem sistemáticos, são passíveis de correção posteriormente. 
+É de praxe, nas operações realizadas
+pela Marinha do Brasil, a coleta de água em garrafas Ninskin, realizada de forma 
+concomitante às perfilagens do CTD. Este procedimento permite medir a salinidade
+posteriormente, pelo método indutivo. Consta no relatório de bordo fornecido gentilmente 
+pela Marinha do Brasil que nenhum desvio do sensor de condutividade foi observado
+ao longo dos dias em que a operação foi conduzida.
+
+Tendo então avaliação da qualidade dos dados pela Marinha do Brasil, prosseguimos com a des\-cri\-ção de três 
+procedimentos básicos necessários para que estes perfis termohalinos possam ser finalmente
+utilizados em nossas análises. 
+
+\subsubsection{Remoção de dados espúrios}\label{sec:spikes}
+
+\hspace{6mm} É comum ocorrerem erros de comunicação entre o CTD e a unidade
+de bordo, que armazena os dados em um arquivo. Estes erros são identificados nos arquivos
+posteriormente através de códigos, que consistem em números notadamente diferentes dos 
+valores de temperatura, condutividade ou pressão, encontrados em qualquer oceano do globo.
+Tais erros de comunicação são conhecidos como {\it spikes}. É então necessária uma etapa
+na qual estes {\it spikes} são reconhecidos e removidos dos arquivos.  
+
+Pode ainda existir outro tipo de {\it spike}, que não está relacionado com falhas
+e\-le\-trô\-ni\-cas e sim com o simples mal funcionamento do sensor em uma amostra isolada. Nesse caso
+o valor de temperatura, condutividade ou pressão apresentam valores espúrios, mas dentro da faixa
+típica para o oceano. Para detectar e eliminar estes {\it spikes}, adotamos um filtro baseado no
+gradiente das propriedades. Como os perfis verticais dessas propriedades já são razoavelmente conhecidos, 
+podemos estabelecer uma taxa máxima de variação das propriedades e eliminar qualquer valor que exceda
+a essa taxa. Para tal, investigamos os perfis em blocos de 10 m desde a superfície até o fundo.
+Em cada bloco referido, foram eliminados os valores que fossem superiores (inferiores) a ele mesmo 
+somado (subtraído) de três vezes o desvio padrão do bloco. 
+
+\subsubsection{Equi-espaçamento vertical}\label{sec:binagem}
+
+\hspace{6mm} O perfilador CTD utilizado na OEII trabalhou com uma 
+freq\"uência amostral de 15 Hz. Considerando que a velocidade de perfilagem do CTD
+foi mantida nos entornos de 1 m s$^{-1}$, entre cada intervalo de 1 m de coluna de água
+foram obtidas em torno de 15 amostras de temperatura e condutividade. Porém, nada nos garante
+que este número é o mesmo em cada camada de 1 m. Em outras palavras, não há como garantir
+um equi-espaçamento vertical entre as amostras no momento da coleta. Com isso, se faz
+necessária a etapa de promediação vertical, conhecida como {\it binagem}. Esta etapa 
+consiste em calcular médias verticais para cada camada de 1 m de coluna de água, 
+resultando em perfis termohalinos equi-espaçados verticalmente. 
+
+\subsubsection{Filtragem por Janela Móvel}\label{sec:janela}
+
+\hspace{6mm} Para finalizar o tratamento básico dos dados de CTD ainda é necessária uma terceira
+etapa, a {\it filtragem por janela móvel}. Este procedimento consiste em recalcular
+os valores de temperatura e condutividade em cada metro de coluna de água. Os valores
+são substituídos por uma média ponderada entre eles mesmos e valores adjacentes. 
+A quantidade de valores adjacentes incluídos nesta média corresponde ao {\it tamanho}
+da janela utilizada, e a distribuição dos pesos em relação ao valor central é determinada
+pelo tipo da janela. Este procedimento é necessário pois os dados de CTD são extremamente ruidosos
+para quem pretende realizar cálculos que envolvam derivadas ou derivadas segundas, 
+que é o caso do presente trabalho, que pretende inferir velocidades geostróficas
+a partir deste conjunto de perfis termohalinos. A eliminação desses ruídos é imprescindível, 
+mas deve ser cautelosa, pois não podemos atenuar os importantes gradientes 
+destas propriedades. Com isso, optamos por filtrar os diferentes perfis com janelas de tamanhos 
+diferentes, dependendo da profundidade local. Para estações mais rasas do que 100 m,
+utilizamos uma janela de 5 m. 
+Para estações de profundidade entre 100 e 500 m, utilizamos
+uma janela de 21 m. No restante das estações aplicamos uma janela de 31 m. Nas três camadas em questão, 
+o tipo de janela utilizada foi {\it hanning}, que promove uma distribuição de 
+pesos de caráter gaussiano, privilegiando a medida central. A Figura \ref{fig:trat_CTD}
+ilustra cada etapa deste pré-processamento, mostrando o exemplo
+de um tratamento efetuado em uma estação hidrográfica em particular.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=15cm,keepaspectratio=true]{../proc/hidrografia/figuras/fig_trat_basico.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:trat_CTD} \small Perfil de temperatura referente aos primeiros 120 m de uma
+estação oceânica da OEII, exemplificando duas etapas do tratamento básico dos dados termohalinos.}
+\end{figure}
+
+Feito este tratamento básico, os dados estão aptos aos cálculos subseq\"uentes, que serão
+devidamente descritos nas próximas seções.   
+
+\subsection{Dados de Velocidade - Pré-processamento}\label{sec:ADCP}
+
+\hspace{6mm} O ADCP é um medidor de correntes que se utiliza de uma peculiaridade da reflexão
+de ondas sonoras contra	 um refletor que detém um movimento relativo ao emissor/receptor,
+chamada de {\it Efeito Doppler}. Um feixe sonoro, que é emitido com uma freq\"uência 
+$\mathcal{F}_1$, ao ser refletido por uma partícula em movimento, retorna com uma
+freq\"uência $\mathcal{F}_2$. O equipamento, então, essencialmente emite um feixe
+sonoro, que é refletido pelas partículas em suspensão na água. Ele é capaz de quantificar
+essa modificação na freq\"uência e associá-la à velocidade e direção de deslocamento
+das partículas e, por conseq\"uência, do fluido em que elas estão imersas passivamente.
+
+O ADCP usado no levantamento disponível para este trabalho, de 75 kHz, é capaz de medir velocidades 
+na coluna de água desde a superfície até aproximadamente 400 m de profundidade. A perfilagem
+vertical da velocidade é dividida em camadas equi-espaçadas pré-configuradas de 8 m. 
+
+Apesar dos perfiladores acústicos de velocidade terem surgido na Oceanografia na década de 80, 
+o processamento de seus dados ainda é motivo de discussão na literatura e no meio científico em geral.
+Com isso, dedicamos esta seção ao detalhamento e justificativa do uso dos procedimentos implementados ao conjunto de dados de ADCP utilizado neste trabalho. Para montar o protocolo de pré-pro\-ces\-sa\-men\-to dos dados de velocidade aqui utilizados, orientamo-nos
+pelos trabalhos do ``{\it Currents Group}'', da Universidade do Havaí, liderado pelo Dr. Eric Firing. Dividiremos o detalhamento dos 
+procedimentos necessários em subitens para favorecer o entendimento e a clareza. 
+
+\subsubsection{Promediação Temporal}\label{sec:lta}
+
+\hspace{6mm} Conforme mencionamos anteriormente, o ADCP mede a velocidade do fluido em função 
+da profundidade na forma de perfis através do {\it Efeito Doppler}. Estes perfis são obtidos através
+de, no mínimo, três emissores e receptores de ondas sonoras denominados transdutores. O conjunto de 
+feixes sonoros emitidos pelos transdutores é denominado {\it ping}, que consiste na forma mais 
+bruta dos dados de ADCP. Cada {\it ping} resulta em um perfil de velocidade desde a superfície
+até a profundidade que os feixes sonoros são capazes de penetrar. O próprio princípio físico 
+envolvido por trás da obtenção das velocidades torna o método bastante ruidoso, fazendo com que
+sejam necessárias etapas de remoção desses ruídos. 
+
+Para o caso da OEII, o intervalo amostral para a emissão dos
+{\it pings} foi de 3 segundos. O software do fabricante, que recebe os {\it pings} diretamente do ADCP ao longo da coleta, dispõe ainda
+de opções de promediação temporal. Em suas con\-fi\-gu\-ra\-ções de geração dos arquivos de saída (que contêm os dados em si), 
+existem diversas opções de promediação. Em síntese, são três os tipos de arquivos gerados: os brutos, contendo
+os {\it pings} inalterados, os de médias curtas (``Short Time Average - STA'') e os de médias
+longas (``Long Time Average - LTA''). Conforme consta nas informações de configuração do ADCP na OEII, os
+arquivos de médias longas estão separados em intervalos de 10 minutos, e optamos então por utilizá-los apenas.
+Livre dos ruídos mais grosseiros, passamos à próxima etapa, que consiste na obtenção dos valores absolutos das correntes, 
+oriundos da remoção da velocidade do navio. 
+
+\subsubsection{Cálculo da Velocidade Absoluta}\label{sec:wtrtrack}
+
+\hspace{6mm} Os dados de velocidade são de natureza consideravelmente diferente dos dados obtidos pelo CTD.
+Em primeiro lugar, consistem em uma grandeza vetorial, enquanto as propriedades medidas
+pelo CTD são grandezas escalares, naturalmente mais fáceis de serem amostradas. 
+A amostragem da velocidade se torna particularmente mais complexa para o caso do ADCP de casco, pois
+o equipamento não se encontra em um referencial
+fixo. Para que seja possível a obtenção da velocidade absoluta do fluido, ou seja, das correntes, é 
+necessário o acoplamento de outros equipamentos ao sistema de aquisição via ADCP.  Para que seja feita uma 
+estimativa razoável do vetor velocidade do navio, é necessária a presença de um sistema de posicionamento 
+por satélite (GPS) e uma agulha giroscópica (GIRO). O GPS fornece as coordenadas geográficas do navio a cada tomada
+de perfil que o ADCP executa. Tendo-se o tempo entre cada medida, é possível calcularmos o vetor 
+velocidade do navio. A GIRO indica a direção em que a proa do navio está apontada em relação ao norte verdadeiro, indicando, 
+se houver, possíveis desvios da mesma em relação a trajetória desenhada pelos pontos obtidos via GPS. 
+Tendo-se uma boa estimativa da velocidade do navio, basta uma simples soma vetorial para que obtenhamos
+a velocidade absoluta das correntes. A Figura \ref{fig:esqvet} ilustra tal soma. Na referida figura,
+$\vec{v_n}$ representa a velocidade do navio, $\vec{v_d}$ representa a velocidade medida pelo ADCP e $\vec{v_f}$
+representa a resultante, ou seja, a velocidade absoluta do fluido. A figura também ilustra esquematicamente 
+o desalinhamento natural que pode ocorrer entre os eixos de orientação da trajetória do navio e sua proa (ao longo 
+do cruzeiro, conforme as condições ambientais) e entre os eixos da proa do navio e dos transdutores do ADCP (dependente da
+instalação do equipamento no casco). 
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=10cm,keepaspectratio=true]{../figuras/esqvet.pdf}
+  \includegraphics[width=10cm,keepaspectratio=true]{../figuras/trim.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:esqvet} \small Aspectos geométricos e trigonométricos do sistema de aquisição de 
+dados via ADCP de casco. Painel superior: plano horizontal. Painel inferior: plano vertical.}
+\end{figure}
+
+O método descrito acima seria simples, se não houvesse certas limitações in\-trín\-se\-cas ao sistema ADCP-GPS-GIRO. 
+A GIRO usualmente apresenta uma resposta mais lenta do que a necessária para a freq\"uência em que se tomam os 
+perfis de velocidade via ADCP. Esta resposta lenta se torna um fator importante em trechos onde o navio 
+executa manobras bruscas, ou seja, onde o navio sofre qualquer tipo de aceleração, seja ela linear ou angular.
+ Em levantamentos hidrográficos, como a OEII, estes trechos são tipicamente as paradas
+para execução de estações hidrográficas e mudanças bruscas de trajetórias associadas aos trechos de navegação 
+entre as radiais. Nestes trechos, a GIRO não se comporta de forma adequada, o que pode acarretar em erros na medição da 
+magnitude e direção da corrente. A Figura \ref{fig:esq_erros} ilustra os tipos de erros e como eles podem ocorrer.
+
+ \begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm,keepaspectratio=true]{../figuras/esq_erro.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:esq_erros} \small Representação esquemática da ocorrência de erros durante a remoção do vetor
+velocidade do navio, provocados por limitações associadas ao funcionamento da GIRO.}
+\end{figure}
+
+Adotamos aqui um procedimento de calibração que visa a eliminação destes desvios associados à GIRO. Este método está 
+descrito em detalhes em \cite{joyce1989} e \cite{pollard_read1989} e exibiremos a seguir seus principais aspectos. Em primeiro lugar, enfatizamos
+que a calibração é feita apenas nos trechos onde seja suspeito o mal funcionamento da GIRO, que são tipicamente os trechos
+citados acima para o caso da OEII. \cite{pollard_read1989} consideram que, no caso de funcionamento inadequado do sistema da GIRO, 
+é possível diagnosticar os desvios resultantes, e que os mesmos têm a tendência de serem constantes para cada sistema
+ADCP-GPS-GIRO em particular. Antes de mais nada, vamos definir os eixos de coordenadas e as variáveis envolvidas
+ no sistema de aquisição de dados via ADCP de casco. 
+
+Como mostramos na Figura \ref{fig:esqvet}, que representa esquematicamente o cenário de levantamento de dados por ADCP de casco,
+ o eixo $(x,y)$ representa o eixo cartesiano de coordenadas locais, sob
+o qual estão orientados os dados referentes ao GPS e à GIRO. O eixo $(x',y')$ refere-se a orientação dos transdutores 
+do ADCP. O ângulo que mede o desvio entre a orientação do ADCP e a proa do navio é denominado $\varphi$, e o ângulo que 
+mede o desvio entre o ADCP e o norte verdadeiro é definido como $\alpha$. O ângulo $\gamma$, comumente referido 
+como ``heading'', determina o desvio entre a proa do navio e sua trajetória, e pode ser ou não diferente de zero.
+Chamemos de $\lambda = \alpha + \varphi$ o ângulo entre a proa do navio e o norte verdadeiro e finalmente de
+$\beta$ o desvio entre a orientação dos transdutores do ADCP e a vertical local (Figura \ref{fig:esqvet}, 
+painel inferior). O desvio $\beta$ sofre variações caso haja aceleração linear do navio e $\lambda$ sofre variações
+ caso haja aceleração angular do mesmo. Os dados de ADCP, segundo \cite{joyce1989}, 
+devem ser multiplicados por um fator $(1+\beta)$, onde $\beta$ geralmente é bem pequeno.
+
+O conhecimento dos ângulos $\lambda$ e $\beta$ é então fundamental para conduzir a soma vetorial que resultará
+na velocidade absoluta do fluido e os mesmos variam ao longo do cruzeiro conforme o navio muda sua trajetória e 
+se submete ao balanço de sentido longitudinal provocado pelas ondas ({\it caturro}).
+Os valores desses ângulos devem ser obtidos experimentalmente, utilizando o próprio conjunto de dados, nos trechos
+mencionados anteriormente. Antes de prosseguirmos com o desenvolvimento matemático que acarretará em expressões para 
+ $\lambda$ e $\beta$, assumimos a seguinte condição: ``{\it o vetor velocidade do fluido ($\vec{V_f}$) não deve variar
+diante de qualquer tipo de manobra do navio''}. Essa é a única limitação deste método de calibração, mas consideramos
+razoável assumir esta condição, levando-se em consideração a natureza do escoamento que pretendemos investigar. Escolhemos
+uma camada específica para que sejam avaliadas as velocidades antes e depois de um evento de manobra brusca, que é denominada
+``Camada de Referência''. Como é selecionada uma camada específica, a referida calibração recebe o nome de 
+``Watertracking'', em analogia à ``Bottomtracking'', comumente utilizada em águas rasas, que usa como referencial fixo 
+o assoalho oceânico. No presente caso, como nos concentramos em correntes oceânicas, que tipicamente fluem sobre
+grandes profundidades, praticamente não existem trechos rasos onde o ADCP consegue trabalhar no modo ``Bottomtracking'', que é 
+naturalmente mais eficiente. A camada de referência escolhida para o caso deste trabalho foi a décima oitava, que
+corresponde a aproximadamente 150 m de profundidade. Tal escolha visa evitar a maior variabilidade espacial das correntes
+em níveis mais rasos e ao mesmo tempo evitar regiões muito profundas, onde o sinal do ADCP tem menor capacidade de penetração. 
+  
+ Passando ao equacionamento do problema, definamos então $(u',v')$ como
+as componentes da velocidade quando orientada no eixo de orientação do ADCP $(x',y')$ e $(u,v)$ as componentes de velocidade
+orientadas no eixo cartesiano local $(x,y)$. Escrevendo na forma de equação a soma vetorial retratada no painel superior da 
+Figura \ref{fig:esqvet}, obtemos: 
+
+\begin{equation}
+ u_f = u_n + u_d 
+ \label{eq:soma}
+\end{equation}
+\begin{equation}
+ v_f = v_n + v_d
+ \label{eq:soma2}
+\end{equation}
+
+Se incluírmos nas Eqs. \ref{eq:soma} e \ref{eq:soma2} as definições de  $\lambda$ e $\beta$, chegamos em 
+
+\begin{eqnarray}
+ u_f = u_n + (1+\beta)[u'_d cos \lambda - v'_d sen \lambda] 
+ \label{eq:soma3}
+\end{eqnarray}
+\begin{eqnarray}
+ v_f = v_n + (1+\beta)[u'_d sen \lambda - v'_d cos \lambda]
+ \label{eq:soma4}
+\end{eqnarray}
+
+Então, se $u_f$ e $v_f$ não sofrem modificações, conforme assumimos anteriormente, definimos como $d\vec{v}$ a diferença entre
+a velocidade após o trecho e a velocidade antes do trecho de calibração e podemos escrever
+
+\begin{eqnarray}
+ du_n = u_n^{(2)} - u_n^{(1)} \ \ \ \ \ ; \ \ \ \ \ dv_n = v_n^{(2)} - v_n^{(1)}
+ \label{eq:dVn}
+\end{eqnarray}
+
+\begin{eqnarray}
+ du_d = u_d^{(2)} - u_d^{(1)} \ \ \ \ \ ; \ \ \ \ \ dv_d = v_d^{(2)} - v_d^{(1)}
+ \label{eq:dVd}
+\end{eqnarray}
+
+\begin{eqnarray}
+ du_f = 0 \ \ \ \ \ ; \ \ \ \ \ dv_f = 0
+ \label{eq:dVf}
+\end{eqnarray}
+
+e usando as definições explicitadas em \ref{eq:dVn}-\ref{eq:dVf} nas Equações \ref{eq:soma3} e \ref{eq:soma4}, temos que 
+
+\begin{eqnarray}
+ du_n + (1+\beta)[du_d cos\lambda - dv_d sen \lambda] = 0
+ \label{eq:du}
+\end{eqnarray}
+
+\begin{eqnarray}
+ dv_n + (1+\beta)[du_d sen\lambda + dv_d cos \lambda] = 0.
+ \label{eq:dv}
+\end{eqnarray}
+
+Finalmente, combinando as Eqs. \ref{eq:du} e \ref{eq:dv}, obtemos as seguintes expressões para $\lambda$ e $\beta$:
+
+\begin{eqnarray}
+ tg \lambda = \frac{dv_d.du_n - du_d.dv_n}{dv_d.dv_n + du_d.du_n};
+ \label{eq:lambda}
+\end{eqnarray}
+
+\begin{eqnarray}
+ 1+\beta = \left[ \frac{du_n^2 + dv_n^2}{du_d^2 + dv_d^2} \right]^\frac{1}{2}
+ \label{eq:beta}
+\end{eqnarray}
+
+
+Conforme dito anteriormente, os parâmetros $\lambda$ e $\beta$ são estimados a partir dos dados em trechos particulares
+da trajetória do navio durante o levantamento hidrográfico/cor\-ren\-to\-grá\-fi\-co. Definamos então, mais precisamente,
+que trechos são esses:
+
+\begin{enumerate}
+
+ \item {\bf Estações Oceanográficas:} é o momento mais interessante de executar os cál\-cu\-los, pois o navio 
+permanece parado durante períodos que variam de 20 minutos até 3 horas. Nesses períodos, assumimos que a 
+velocidade das correntes não pode variar e, adicionalmente, que a velocidade depois da estação
+oceanográfica deve ser equivalente àquela medida antes da parada. Vale lembrar que a manobra de parada na estação
+e retomada da trajetória são momentos onde a GIRO sofre com o problema de resposta lenta.
+
+\item {\bf Guinadas bruscas:} nesse caso, assumimos que antes de uma guinada brusca, a velocidade da corrente deve
+ser a mesma que aquela medida após a guinada. 
+
+\item {\bf Trechos repetidos:} caso o navio coincida de navegar o mesmo trecho por duas ou mais vezes em um curto 
+espaço de tempo, existe também uma boa oportunidade de fazer a calibração.
+
+\end{enumerate}
+
+Para obtermos valores  $\lambda$ e $\beta$ estatisticamente 
+robustos é desejável o maior número pos\-sí\-vel de trechos de calibração.
+Considerando essas três oportunidades de estimar as medidas de $\lambda$, imaginamos que um cruzeiro oceanográfico 
+como o OEII forneça-nos um número razoável de trechos de calibração. A população de potenciais pontos de calibração é apresentada
+na Figura \ref{fig:calib} em termos de sua localização geográfica.
+ Para garantir esta robustez, efetuamos a calibração em todos
+esses pontos possíveis e conduzimos uma análise estatística criteriosa para avaliar a função densidade de probabilidade dos 
+parâmetros estimados. Montamos, então, um histograma usando todos os valores de $\lambda$ estimados e calculamos a média e 
+o desvio padrão do mesmo. A Figura \ref{fig:hist_calib} ilustra tal análise e mostra uma boa qualidade estatística para 
+os cálculos. Com isso, consideramo-nos aptos a aplicar o valor médio dos parâmetros estimados para obter finalmente os 
+vetores corrigidos de velocidade absoluta da corrente. Os valores aplicados aos dados são de
+$\lambda = $ 0,94$^\circ$ e $\beta = $ 0,07$^\circ$.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=10cm,keepaspectratio=true]{../proc/adcp/figuras/calib_codas_OEII.pdf}
+ \end{center}
+ \vspace{-1cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:calib} \small Localização geográfica dos potenciais pontos de calibração ``Watertracking'' encontrados
+ao longo da derrota do navio durante a OEII.}
+\end{figure}
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=15cm,keepaspectratio=true]{../proc/adcp/figuras/cal2.pdf}
+ \end{center}
+ \vspace{-1cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:hist_calib} \small Representação gráfica da função densidade de probabilidade associada 
+a po\-pu\-la\-ção de parâmetros de calibração $\lambda$ estimados ao longo da OEII.}
+\end{figure}
+
+
+\subsubsection{Remoção de perfis espúrios}\label{sec:edit}
+
+\hspace{6mm} Vários são os fatores que podem influenciar a qualidade das medidas efetuadas pelo ADCP:
+estado do mar, transparência da água, formação de bolhas nas proximidades dos transdutores, presença de
+estruturas ou organismos vivos na coluna de água, falhas mecânicas ou eletrônicas, etc. Existem 
+formas de diagnosticar a má qualidade dos dados para a maioria dos problemas exemplificados. Esta etapa
+consistirá na eliminação de perfis espúrios, seja automaticamente, através de parâmetros de diagnóstico, seja
+manualmente, através da inspeção minuciosa dos perfis. 
+
+Dentre os parâmetros disponíveis para o diagnóstico de deficiências na qualidade dos dados, a velocidade vertical
+é o mais utilizado. Assume-se que nos oceanos como um todo a velocidade vertical é muito pequena quando comparada
+com a horizontal, diferindo minimamente em uma ordem de grandeza. Adicionalmente, a velocidade vertical
+também tem valores absolutos típicos que não costumam ultrapassar uma determinada magnitude. Perfis que tiveram valores 
+de velocidade vertical maiores que a horizontal ou apresentaram magnitudes de velocidade vertical maiores que um valor 
+pré-determinado, considerado razoável para os escoamentos naturais, foram eliminados.
+
+As velocidades horizontais são também usadas para diagnosticar problemas na qualidade dos dados. 
+Para o caso do presente trabalho, onde pretendemos estudar escoamentos oceânicos, é razoável assumir que qualquer vetor de 
+velocidade que tenha magnitude maior que 2 m s$^{-1}$ seja espúrio, fazendo com que o perfil seja descartado. 
+A intensidade do sinal sonoro, ou intensidade do eco, é também utilizada como parâmetro para eliminar perfis.
+Caso a intensidade do eco não atinja valores mínimos satisfatórios, o perfil é eliminado do conjunto. 
+
+Por fim, utilizamos o {\it percent good} para eliminar dados espúrios. Conforme dito anteriormente, para que o 
+sistema do ADCP funcione adequadamente, são necessários no mínimo três transdutores. É usual, para os fabricantes,
+incluir um quarto transdutor, que pode ser redundante, mas aumenta a robustez estatística das medidas. O {\it 
+percent good} é um parâmetro de qualidade que consiste no coeficiente de correlação entre as informações
+recolhidas pelos 4 transdutores existentes. Este parâmetro é particularmente importante para detectar
+problemas de qualidade associados ao estado do mar. O critério escolhido aqui é o de descartar os perfis que 
+não atinjam pelo menos 50 \% de {\it percent good}. 
+
+Passando à remoção manual de dados espúrios, lançamos mão de uma ferramenta gráfica, onde podemos 
+visualizar todos os perfis da OEII. Nesta etapa, temos a oportunidade
+de analisar os dados sob uma ótica física, ou oceanográfica, fugindo da abordagem puramente quantitativa.
+A idéia aqui é detectar problemas de qualidade que passaram por todos os outros filtros, sob argumentos puramente 
+associados ao comportamento típico dos escoamentos oceânicos. As correntes oceânicas têm uma forma razoavelmente 
+contínua e suave de variar espacialmente. Procuramos aqui por mudanças bruscas e isoladas na direção e/ou
+magnitude de velocidade em pequenos trechos, ou evidências sérias de descontinuidades no escoamento, como
+grandes divergências ou convergências em áreas limitadas. Esta é a oportunidade de inspecionar os dados de forma 
+crítica e minuciosa, melhorando a qualidade do conjunto final.
+
+
+\subsubsection{Gradeamento Espacial}\label{sec:grid}
+
+\hspace{6mm} Tendo finalmente os dados corrigidos e com garantia de qualidade, acreditamos ser 
+interessante a promediação espacial dos dados, acarretando em um equi-espaçamento horizontal dos mesmos. 
+Dessa forma, transformamos os dados que estão no domínio {\bf $(x,y,t)$} para o domínio {\bf $(x,y)$}. Esta 
+abordagem é a ideal para o presente trabalho, pois pretendemos interpretar os resultados sob o ponto de 
+vista sinótico. Consideraremos que o cenário observado durante OEII tem caráter sinótico
+para as escalas de movimento que estamos interessados. Para sustentar tal afirmação, será necessária, 
+mais adiante, a execução de procedimentos de gradeamento e interpolação que promovam uma filtragem 
+espacial nestes dados. Estes procedimentos serão descritos em detalhe no Capítulo \ref{cap:funccorr}. O importante
+aqui é deixar os dados preparados para tal, e isso consiste nesta promediação horizontal dos perfis em 
+intervalos regulares de latitude e longitude ao longo da derrota do navio. 
+
+Finalmente, após todos estes quatro procedimentos, os dados estão prontos para as etapas subseq\"uentes, de 
+acordo com os objetivos propostos na Seção \ref{sec:obj}. Antes de
+dar prosseguimento às etapas seguintes, acreditamos ser interessante exibir um trecho específico do levantamento
+correntográfico como exemplo para o resultado de todo tratamento conduzido. 
+
+A Figura \ref{fig:ex_calib} retrata mapas horizontais de vetores de velocidade em 80 m de profundidade em
+um trecho peculiar da OEII, onde notamos problemas nos dados associados à referida limitação da
+GIRO. Nesta figura, observamos no painel superior o trecho antes de qualquer calibração ou tratamento. Neste caso, foi 
+apenas calculada a velocidade absoluta da corrente para fins de comparação. O painel inferior consiste nos dados após
+todo o tratamento descrito no decorrer da presente seção. Na Figura \ref{fig:ex_calib}, observamos duas mudanças 
+bruscas de trajetória do navio e algumas 
+oscilações na trajetória correspondentes à realização de estações oceanográficas. Como podemos notar, os vetores brutos
+apresentaram mudanças significativas na direção após cada guinada brusca do navio. Nos dados tratados é evidente 
+a melhoria de qualidade do campo de velocidade,
+fruto da calibração realizada. Vemos aqui que, apesar das limitações e aproximações utilizadas,
+o resultado final se mostra com melhor qualidade do que os dados brutos. 
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=12cm,keepaspectratio=true]{../figuras/ex_calib.pdf}
+  \includegraphics[width=12cm,keepaspectratio=true]{../figuras/ex_calib2.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:ex_calib} \small Comparação qualitativa entre os dados de ADCP brutos (painel superior)
+ e após o pré-processamento (painel inferior).
+Estão representados os vetores de velocidade em aproximadamente 80 m de profundidade. 
+Os círculos amarelos indicam a posição das estações oceanográficas realizadas durante a OEII.}
+\end{figure}
+
+Todos os procedimentos e cálculos efetuados descritos a partir da Seção \ref{sec:wtrtrack} foram conduzidos com o 
+auxílio do ``Common Ocean Data Access System (CODAS)''. O CODAS consiste em um pacote de programas desenvolvidos na 
+Universidade do Havaí com a finalidade de uniformizar os procedimentos de processamento e armazenamento de dados 
+de ADCP de casco e encontra-se disponível para a comunidade científica no website da universidade.
+
+Estando os dados termohalinos e de velocidade prontos para serem trabalhados, prosseguiremos no próximo capítulo
+com a descrição detalhada da metodologia ci\-en\-tí\-fi\-ca aplicada para construir os campos que nos fornecerão 
+subsídios para responder às perguntas formuladas no Capítulo \ref{cap:intro}.
+
+

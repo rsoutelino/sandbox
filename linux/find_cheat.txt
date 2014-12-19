@@ -1,0 +1,24 @@
+
+    # syntax:
+find where-to-look criteria what-to-do
+
+    # find a file
+find /etc -name foo
+    
+    # ommit messages of permission denied in case you are not root
+find / -name foo 2>/dev/null
+
+    # you can search multiple directories
+find /tmp /var/tmp /home -name foo
+
+    # You can use shell-style wildcards in the ‑name search argument:
+find . -name foo\*txt
+
+    # you can pipeline commands to act on the find output
+find / -name core | xargs /bin/rm -f
+find / -name core -delete                 
+
+    # One of my favorite of the find criteria is used to locate files modified less than 10 minutes ago. 
+find / -mmin -10
+
+

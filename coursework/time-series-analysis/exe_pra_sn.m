@@ -1,0 +1,43 @@
+clear all;
+t=0:5:500;
+w1=2*pi/50;
+y=sqrt(2)*sin(w1*t);
+
+figure(1)
+set(gcf,...
+        'Color',[1 1 1],...
+        'InvertHardcopy','on',...
+        'MenuBar','none',...
+        'PaperUnits','inches',...
+        'Units','inches',...
+        'PaperOrientation','landscape',...
+        'PaperPosition',[0 0 11 8.5],...
+        'PaperPositionMode','manual',...
+        'PaperType','a4',...
+        'Position',[1 1 11 8.5],...
+        'Resize','off',...
+        'ShareColors','off',...
+        'Clipping','on');
+
+n=0.1*randn(size(t));
+
+subplot(3,3,1),plot(t,y,'-c');
+axis('tight')
+title('Sinal ideal')
+
+subplot(3,3,2),plot(t,n,'-b');
+axis('tight')
+title('Ruido branco, media=0, std=0.1')
+
+i=2;
+for j=[1 3 9 15 30 45 60]
+  i=i+1;
+  subplot(3,3,i),plot(t,y+(j/3)*(0.1)*randn(size(t)),'-b',t,y,'c');
+  axis('tight')
+  title(['A(ruido)=' num2str(j/3*0.1) '*A(sinal)'])
+end
+
+
+
+
+%print -depsc2 exe_pra_sn.eps

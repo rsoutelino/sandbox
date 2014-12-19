@@ -1,0 +1,12 @@
+pdflatex dissertation.tex
+
+# pdflatex dissertation.tex
+
+bibtex dissertation
+
+pdflatex dissertation.tex
+
+pdflatex dissertation.tex
+
+rm -rf dissertation.aux dissertation.bbl  dissertation.blg dissertation.log dissertation.tex~ dissertation.lot dissertation.lof dissertation.toc dissertation.out
+

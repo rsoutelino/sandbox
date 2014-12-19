@@ -1,0 +1,1 @@
+for i in *.eps; do epstopdf $i `basename $i .eps`; done

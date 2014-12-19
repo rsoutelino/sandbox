@@ -1,0 +1,330 @@
+ispell -d br texto.txt
+M-x migrate-user-init-file
+Impressao frente e verso, primeiro reverse.
+pstoedit -f tgif cb_costa.ps cb_costa.obj
+ find . -type f -exec chmod 644 {} \;
+ find . -type d -exec chmod 755 {} \;
+wget --convert-links -r http://clouds.eos.ubc.ca/~phil/numeric/ -o numeric.log &
+ls -1 image??.ppm > pics.list
+%TRansforma gif to pnm
+%ppm2fli -g 540x720 -fgiftopnm pics.list anim.fli
+ppm2fli -g 578x755 pics.list anim.fli
+xanim -j1000 anim.fli
+netstat -a %portas abertas
+%%%%%%%%%prosper  Latex presentation %%%%%%%%%%%%%
+latex impress.tex
+dvips -Ppdf -G0 impress.dvi -o impress.ps
+ps2pdf -dPDFsettings=/prepress impress.ps impress.pdf 
+M-x iso-accents-mode 
+M-x iso-accents-customize 
+* To decode a MrSID file to a JPG file:
+mrsiddecode -i input.sid -o output.jpg
+* To decode a MrSID file to a GeoTIFF file:
+mrsiddecode -i input.sid -o geotiff.tif -of tifg
+* To decode the upper-left 50x50 pixel scene from a MrSID image:
+mrsiddecode -i input.sid -o output.tif -ulxy 0 0 -wh 50 50
+Try the following:
+
+1. Truncate or delete your ".bash_history" file. Example:
+
+bash> > .bash_history
+
+2. Set the HISTSIZE environment variable to zero or a lower value. Example:
+
+bash> env | grep HIST
+bash> export HISTSIZE=0 
+tcsh> set history=0
+eps2pdf -f *.eps
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+mount -t iso9660 -o ro,loop=/dev/loop1 /home/Dreamgazer/my_iso_file.iso /mnt/my_iso 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+You want to download all the GIFs from a directory on an HTTP server. You tried wget http://www.server.com/dir/*.gif, but that didn't work because HTTP retrieval does not support globbing. In that case, use:        
+wget -r -l1 --no-parent -A.gif http://www.server.com/dir/
+%%%%%%%%%%%%%%%%Fazendo a acentuacao no ferdora %%%%%%%%%%%%%%%%
+edite /etc/sysconfig/i18n
+
+Feito isto, acrescente as seguintes linhas:
+
+LANG="pt_BR.ISO8859-1"
+SUPPORTED="en_US.ISO8859-1:en_US:en:pt_BR.ISO8859-1:pt_BR:pt"
+SYSFONT="latarcyrheb-sun16"
+
+Agora o passo a seguir é para aqueles que possuem o teclado
+US-International (onde é preciso digitar ' + c para resultar em cedilha)
+edite  /etc/profile
+
+E adicionar a seguinte linha:
+
+export GTK_IM_MODULE=xim
+
+Cdrdao can do it.
+
+cdrdao write --device 0,0,0 --speed 8 --eject blah.cue
+
+Assuming your device is at 0,0,0 you can check with cdrecord --scanbus. As long as the cue file has the same name as the bin, it should work fine.
+
+For future reference, when I had to burn the NRG image I used a program called nrg2iso, which just converts the NRG image to an ISO for burning with another program.
+
+
+mkisofs -o MathWorks_R14_1.iso MathWorks_R14_1/
+mount -o loop -t iso9660 -w MathWorks_R14_1.iso /mnt/my_iso
+mkisofs -V MATHWORKS_R14_1 -o MathWorks_R14_1.iso MathWorks_R14_1/
+
+find . -exec grep "www.athabasca" '{}' \; -print
+
+echo http://www.in.gov.br/siteimprensa/pdf_dia/do1_hoje.pdf | mail roberto@dealmeida.net
+ps2ascii do2_hoje.pdf do2_hoje.txt
+
+
+Merge Two or More PDFs into a New Document
+pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+
+or (Using Handles):
+pdftk A=1.pdf B=2.pdf cat A B output 12.pdf
+
+or (Using Wildcards):
+pdftk *.pdf cat output combined.pdf
+
+Split Select Pages from Multiple PDFs into a New Document
+pdftk A=one.pdf B=two.pdf cat A1-7 B1-5 A8 output combined.pdf
+
+Encrypt a PDF using 128-Bit Strength (the Default) and Withhold All Permissions (the Default)
+pdftk mydoc.pdf output mydoc.128.pdf owner_pw foopass
+
+Same as Above, Except a Password is Required to Open the PDF
+pdftk mydoc.pdf output mydoc.128.pdf owner_pw foo user_pw baz
+
+Same as Above, Except Printing is Allowed (after the PDF is Open)
+pdftk mydoc.pdf output mydoc.128.pdf owner_pw foo user_pw baz allow printing
+
+Decrypt a PDF
+pdftk secured.pdf input_pw foopass output unsecured.pdf
+
+Join Two Files, One of Which is Encrypted (the Output is Not Encrypted)
+pdftk A=secured.pdf mydoc.pdf input_pw A=foopass cat output combined.pdf
+
+Uncompress PDF Page Streams for Editing the PDF Code in a Text Editor
+pdftk mydoc.pdf output mydoc.clear.pdf uncompress
+
+Repair a PDF's Corrupted XREF Table and Stream Lengths (If Possible)
+pdftk broken.pdf output fixed.pdf
+
+Burst a Single PDF Document into Single Pages and Report its Data to doc_data.txt
+pdftk mydoc.pdf burst
+
+Report on PDF Document Metadata, Bookmarks and Page Labels
+pdftk mydoc.pdf dump_data output report.txt
+
+
+Na caixa "Device URI", digite:
+
+smb://guest@[Endereço da maquina]/[Nome da impressora].
+
+Exemplo:
+
+smb://guest@192.168.254.30/HP840C 
+
+
+joe /etc/sysconfig/i18n
+
+Substitua o UTF-8 para ISO8859-1, salve o arquivo e depois reinicie o "X" do linux com "Ctrl+Shift+BackSpace"
+
+LANG="pt_BR.ISO8859-1"
+SUPPORTED="en_US.ISO8859-1:en_US:en:pt_BR.ISO8859-1:pt_BR:pt"
+SYSFONT="latarcyrheb-sun16"
+
+##Tar multi Volume
+tar -cvM --file=teste_v1.tar -L50000 Relat04_Vortex
+Prepare volume #2 para `teste_v1.tar' e tecle Enter: n teste_v2.tar
+
+##para extrair
+tar -xvMf teste_v1.tar
+f77 -o stabl stabl.f -L/usr/lib -llapack -lblas
+
+
+###### GMT CPT #####
+You might wish to use gray (or grey) if you wish to drape another colour (geology) over a terrain model.
+
+For the examples below two base palettes were produced with the following command:
+
+makecpt -Cgray -T-1000/1000/100 -V > my-gray-d.cpt
+
+makecpt -Cgray -T-1000/1000/100 -Z -V > my-gray-c.cpt
+
+
+The first makes a palette with fixed colour values for each 100 contour interval 
+from -1000 to +1000. The second makes a palette with varying 
+colour values between the contour intervals. 
+
+%%%% Animacao
+
+animate
+
+
+LANG=pt_BR xemac
+
+
+/etc/sysconfig/desktop
+
+
+
+this is just a thought, as I don't know if it suits you at all, but you
+could do something like:
+
+ssh user@remotehost dd if=/dev/hda1 | mkisofs -stream-media-size \
+2288576 -- | growisofs -Z /dev/hdd=/dev/fd/0
+
+Many things can be changed here. The odd number is 2kB sectors, the capacity 
+of the DVD (actually the DVD I currently have in the drive). If you want 
+to pursue this path further, I can improve this script, e.g. not
+make a backup of a whole partition, but selected files, bzip2, etc...
+
+Para exportar a grumari
+
+/usr/sbin/exportfs -ra
+/etc/init.d/nfs restart
+
+e na maquina remota
+
+/etc/init.d/nfs restart
+mount -a
+
+
+find . -type f -exec chown schmidt:lado {} \;
+find . -type d -exec chown schmidt:lado {} \;
+find . -type f -exec chown schmidt:lado {} \;
+find . -type d -exec chown schmidt:lado {} \;
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
+find . -name '.*' -print -exec rm {} \;
+find . -name '*#' -print -exec rm {} \;
+
+
+ln -s /usr/local/Acrobat5/Browsers/intellinux/nppdf.so .
+
+Na Maquina Host
+ssh-keygen -t rsa
+chmod 600 ~/.ssh/id_rsa
+Para remote host
+ssh itamammbuca 'mkdir .ssh; chmod 600 .ssh
+scp ~/.ssh/id_rsa.pub itamambuca:.ssh/authorized_keys2
+
+
+rsync -avz -e "ssh -i ~/rsync-key" /home/cayo root@itamambuca:/media/backup
+
+
+rsync -avz -e "ssh -i ~/rsync-key" root@itamambuca:/home/cayo/Andre /media/backup
+
+
+
+enscript -2GrE --color -fCourier-Demi8 -o stabl.ps stabl.f
+enscript -GE -MLetter -i3c --color -fCourier-Demi8 -o Readme.peini.ps Readme.peini
+enscript -GE -MLetter --color -fCourier-Demi8 -o Readme.ps Readme.plot
+
+
+
+cd /usr/X11R6/lib/X11/locale/en_US.UTF-8/
+cp -p Compose Compose.backup
+patch < Compose.patch
+
+
+convert -crop 200x200+0+0 will crop an image with an origin of 0,0 of 200 by 200. So, if the image is 900x900
+convert -crop 300x300+0+0 input.jpg out1.jpg
+convert -crop 300x300+300+0 input.jpg out2.jpg
+convert -crop 300x300+600+0 input.jpg out3.jpg
+convert -crop 300x300+0+300 input.jpg out4.jpg
+
+%%%%INSTALL NETCDF %%%%%%%%%%%%%%
+
+            export CC=/usr/bin/gcc
+	    export CPPFLAGS='-DNDEBUG -Df2cFortran'
+	    export CFLAGS=-O
+	    export FC=/usr/bin/g77
+	    export FFLAGS='-O -Wno-globals'
+	    export CXX=/usr/bin/g++
+
+make test
+make install
+
+export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+rpm --erase --allmatches postfix
+
+mencoder -of mpeg -ovc lavc -lavcopts vcodec=mpeg1video -oac copy Private_Greatest_moments.avi -o Private_Greatest_moments.mpg
+%%%EDITOR DE PDF
+flpsed
+%%%%%%%%%% LATEX %%%%%%%%%%%%%%
+\newcommand{\rb}[1]{\raisebox{2.5ex}[0pt]{#1}}
+
+/home1/schmidt/temp/Pos_Doc/Relat04_Vortex
+/home1/schmidt/temp/SPOC_FORMS/Pos_Doc
+
+
+RPM TIPS
+
+rpm -i --prefix /tmp/test <packagefile>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+MATLAB 7 ERROR no AMD64
+*** glibc detected *** malloc(): memory corruption
+Para corrigir:
+
+Open $MATLAB/bin/.matlab7rc.sh with your favorite text editor
+
+Add the following lines to the top of the file:
+
+LD_ASSUME_KERNEL=2.4.1
+export LD_ASSUME_KERNEL
+
+This seems to work for 2.4 and 2.6 kernels.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+pdfnup --nup 2x1 --orient landscape --pages 1,3,5,7 AJP000403.pdf --outfile boo.pdf                              
+
+dvips -o tese_book.ps tese_book
+psbook tese_book.ps out.ps
+pstops "4:2L@.7(21cm,-1cm)+3L@.7(21cm,13.85cm)" out.ps boov.ps
+pstops "4:0L@.7(21cm,-1cm)+1L@.7(21cm,13.85cm)" out.ps boof.ps
+
+pstops "4:0L@.75(22.cm,-1cm)+1L@.75(22.cm,13.85cm)" out.ps tese_bookf.ps
+pstops "4:2L@.75(22.cm,-1cm)+3L@.75(22.cm,13.85cm)" out.ps tese_bookv.ps
+ps2pdf tese_bookv.ps
+
+
+latex tese_book
+dvips -o tese_book.ps tese_book
+dvips -o tese_book.ps tese_book
+psbook tese_book.ps out.ps
+pstops "4:0L@.75(22.cm,-1cm)+1L@.75(22.cm,13.5cm)" out.ps tese_bookf.ps
+pstops "4:2L@.75(22.cm,-1cm)+3L@.75(22.cm,13.5cm)" out.ps tese_bookv.ps
+ps2pdf tese_bookf.ps
+ps2pdf tese_bookv.ps
+acroread tese_bookf.pdf
+acroread tese_bookv.pdf
+
+
+
+find /home1/schmidt -name '*.m' -print | xargs grep 'patch' /dev/null
+It is also possible to change the encoding at an aribtrary point in the document, using the following command:
+
+    \inputencoding{encoding name}
+scp -r schmidt@cyclone:/usr/local/matlab/toolbox/ocean/mexnc ./mexnc
+
+
+convert geology_low_resolution.jpg  -compress zip eps3:geology_low_resolution.eps
+
+GIF-Animationen
+
+ctrans -d sun -res 200x200 gmeta.ncgm > anim.ras       
+convert -adjoin -loop 0 -delay 1 anim.ras anim.gif
+
+MPEG-Animationen
+
+ctrans -d sun -res 200x200 gmeta.ncgm > anim.ras       
+convert anim.ras anim.mpg
+
+find . -name '*.ps' -print -exec gzip {} \;
+

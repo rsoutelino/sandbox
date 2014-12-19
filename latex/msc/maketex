@@ -1,0 +1,12 @@
+pdflatex tese_MSc.tex
+
+# pdflatex tese_MSc.tex
+
+bibtex tese_MSc
+
+pdflatex tese_MSc.tex
+
+pdflatex tese_MSc.tex
+
+rm -rf tese_MSc.aux tese_MSc.bbl  tese_MSc.blg tese_MSc.log tese_MSc.tex~ tese_MSc.lot tese_MSc.lof tese_MSc.toc tese_MSc.out
+

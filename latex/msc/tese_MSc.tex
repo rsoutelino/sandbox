@@ -1,0 +1,122 @@
+\documentclass[12pt,portuguese,a4paper,pdftex]{report}
+
+\usepackage[square]{natbib}
+\usepackage[brazil]{babel}
+\usepackage[pdftex]{hyperref}
+\usepackage{natbib}
+\usepackage[dvips]{graphicx}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{amssymb,amsmath}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{nicefrac}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{palatino}
+\usepackage{color}
+\usepackage{cancel}
+\usepackage{shadow}
+
+\renewcommand{\baselinestretch}{1.5}
+% \hoffset -12.8mm %regula a margem esquerda
+% % \topmargin -0.5in %regula a margem superior
+% \textwidth 160mm %largura da pagina
+% % \textheight 8.5in %altura da pagina
+
+\topmargin -6mm %regula a margem superior
+\hoffset -11mm %regula a margem esquerda
+\textwidth 160mm %largura da pagina
+\textheight 240mm %altura da pagina
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\begin{document}
+
+%%% CAPA %%%
+\input{capa.tex}
+
+%%% ROSTO %%%
+\newpage
+\pagestyle{empty}
+\input{rosto.tex}
+
+\newpage
+\pagestyle{empty}
+\input{epigrafo.tex}
+
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+
+\pagestyle{fancy}
+\fancyhead{}
+\cfoot{\thepage}
+
+\newpage
+\chapter*{Agradecimentos}
+\addcontentsline{toc}{chapter}{Agradecimentos}
+\input{agradecimentos.tex}
+
+\newpage
+\chapter*{Resumo}
+\addcontentsline{toc}{chapter}{Resumo}
+\input{resumo.tex}
+
+\newpage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\input{abstract.tex}
+
+\newpage
+% \chapter*{Lista de Figuras}
+\listoffigures
+\addcontentsline{toc}{chapter}{Lista de Figuras}
+
+\newpage
+% \chapter*{Lista de Tabelas}
+\listoftables
+\addcontentsline{toc}{chapter}{Lista de Tabelas}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\lhead{\small\sl \leftmark}
+\rhead{\thepage}
+\fancyfoot{}
+
+\chapter{Introdução}\label{cap:intro}
+\input{introducao.tex}
+% A é {\it \&} porra!!
+
+\newpage
+\chapter{Conjunto de Dados}\label{cap:dados}
+\input{dados.tex}
+
+\newpage
+\chapter{Construção dos Campos de Função de Corrente}\label{cap:funccorr}
+\input{funccorr.tex}
+
+\newpage
+\chapter{Resultados e  Discussão}\label{cap:resultados}
+\input{resultados.tex}
+
+\newpage
+\chapter{Considerações Finais}\label{cap:consideracoes}
+\input{consideracoes.tex}
+
+% \newpage
+% \appendix
+% % \addcontentsline{toc}{chapter}{Apêndices}
+% \chapter{Modelo Quase-geostrófico de 2-camadas}\label{apend:mod2cam}
+% \input{apendA.tex}
+
+\newpage
+\addcontentsline{toc}{chapter}{Referências Bibliográficas}
+\bibliographystyle{tese_hj}
+\bibliography{abbrv_MSc,ref_MSc}
+
+\end{document}

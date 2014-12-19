@@ -1,0 +1,564 @@
+\documentclass[letter,fleqn]{article}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[dvips]{graphicx}
+
+
+\begin{document}
+
+\renewcommand{\d}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dd}[3]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}}
+\newcommand{\ddd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\renewcommand{\t}[1]{\textrm{<}#1\textrm{>}}
+\newcommand{\e}{e^{i(ly - \omega t)}}
+\newcommand{\D}[1]{\frac{D_h{#1}}{Dt}}
+
+\title{Modelos Baroclínicos na Plataforma Continental}
+\author{Roberto Antonio Ferreira de Almeida}
+\maketitle
+
+
+\section{Introdução}
+
+Nas últimas duas décadas diversos critérios foram adotados por oceanógrafos para classificar seus modelos. A geografia é um critério natural, uma vez que os modelos são desenvolvidos para o oceano global, as bacias do Atlântico e do Pacífico, o Mediterrâneo, o Golfo do México, etc. Um segundo critério faz uso dos processo físicos descritos: modelos podem ser hidrodinâmicos, termodinâmicos, ou ambos. Os modelos com camada de mistura superficial, e.g., são classificados como termodinâmicos, enquanto alguns dos modelos de camadas mais simples são do tipo hidrodinâmico.
+
+Os modelos utilizados na oceanografia também podem ser classificados de acordo com a condição de contorno na superfície livre do mar. Sob este critério, dividimos os modelos em modelos de superfície livre e modelos de camada rígida. Os primeiros permitem que haja alterações na superfície do oceano, tanto espacialmente como temporalmente. Os modelos de camada rígida eliminam essas alterações, filtrando assim as ondas longas do modelo. Apesar da ``tampa rígida'', os gradientes horizontais de pressão são preservados, uma vez que a pressão equivalente ao deslocamento da superfície é introduzida pela camada rígida.
+
+A discretização vertical dos modelos é uma característica importante, e muitas vezes deve ser adequada às características da região estudada. Assim, existem modelos de coordenadas $z$, para regiões em que a profundidade é relativamente constante; a coordenada $\sigma$ é muito utilizada em locais com variações batimétricas significativas, uma vez que esse tipo de discretização preserva o número de níveis verticais independente da profundidade local. Uma variação da coordenada $\sigma$, desenvolvida por Song \& Haidvogel (1994), é a coordenada $s$, em que a profundidade das camadas $\sigma$ pode variar espacial e temporalmente.
+
+Um método de discretização vertical interessante aparece no modelo de Bidston (Kowalik \& Murty, 1993), em que as equações são integradas na vertical, tornando o modelo bidimensional. O campo de velocidade é então mapeado em autofunções $f_r(z)$, cada uma correspondendo a um modo normal do movimento. Dessa forma, o perfil de velocidades pode ser obtido continuamente para $u$ e $v$ ao longo da coluna d'água, a partir das autofunções.
+
+Outro modelo que explora o fato de que o oceano é raso e hidrostático, e que os 3 ou 4 primeiros modos normais representam 95\% da energia, é o modelo isopicnal. Nele as equações de movimento são integradas na vertical entre superfície isopicnais, resultando em um modelo em que as variáveis dependentes são as velocidades médias e a espessura de cada camada. Como as superfícies isopicnais se movem com o fluido, esta representação é na verdade quase Langrangeana.
+
+Por último, mas não menos importante, o critério utilizado para agrupar os modelos descritos neste trabalho é a variação da densidade. Em geral, os modelos descrevem a resposta de um oceano com densidade variável às forçantes atmosféricas de calor e momentum. Esta resposta pode ser representada em termos dos automodos de um sistema linearizado de equações. Fisicamente, o modo zero é equivalente à média vertical da componente de velocidade, e recebe o nome de {\em modo barotrópico}. Os maiores modos são {\em baroclínicos}, e estão associados com componentes de alta ordem do perfil vertical de densidade.
+
+Sob a aproximação de águas rasas, os gradientes de pressão associados com a elevação da superfície livre são constantes ao longo de toda a coluna d'água. Dessa forma, os gradientes compõem o modo zero, e aparecem somente nas equações para o modo barotrópico. Conseqüentemente, o sistema baroclínico representando os modos de maior ordem não possui elevação de superfície associado com ele, e a condição de contorno na superfície correspondente é a da camada rígida.
+
+Um tipo especial de modelos baroclínicos são os chamados {\em modelos de gravidade reduzida}. Estes modelos são essencialmente modelos isopicnais onde a camada inferior possui profundidade infinita e velocidade nula. Claramente, o modo barotrópico não está associado com estes modelos, e embora o movimento seja causado pela diferença de densidade entre camadas, existem restrições nos movimentos e nos deslocamentos de interface. Por exemplo, em um modelo de gravidade reduzida de duas camadas as variações na interface entre as camadas (representando o movimento da picnoclina) são múltiplos da elevação da superfície livre, por um fator proporcional à diferença de densidade -- a {\em gravidade reduzida}
+
+\begin{equation}
+g' = g\frac{\rho_2}{\rho_2 - \rho_1}.
+\end{equation}
+
+
+\section{Modelos de Gravidade Reduzida}
+
+Os modelos de gravidade reduzida, como foi dito, são uma forma simplificada dos modelos isopicnais. O caso mais simples, que será discutido aqui, é o modelo de gravidade reduzida de uma camada ativa (também chamado de ``uma-camada-e-meia''), no qual uma camada superior de um dada espessura inicial (e.g., 300-500 m) está sobreposta a uma camada de profundidade infinita em repouso. Um peculiaridade destes modelos é o fato de que desvios na interface entre as duas camadas são múltiplos das elevações na superfície livre, por um fator $g'$ que recebe o nome de gravidade reduzida.
+
+\subsection{Equações para um Oceano de Gravidade Reduzida}
+
+Aqui apresentamos as equações do modelo de uma camada ativa em coordenadas cartesianas para um coeficiente de fricção constante. Estas equações são detalhadas em Hurlburt \& Thompson (1980), e Preller \& Hurlburt (1982).
+
+\begin{equation}
+\d{U}{t} = fV - g'h\left(\d{h}{x}\right) + (\tau_w - \tau_i)_x + A\nabla^2U - \d{}{x}\left(\frac{UU}{h}\right) - \d{}{y}\left(\frac{VU}{h}\right)
+\end{equation}
+
+\begin{equation}
+\d{V}{t} = -fV - g'h\left(\d{h}{x}\right) + (\tau_w - \tau_i)_y + A\nabla^2V - \d{}{x}\left(\frac{UV}{h}\right) - \d{}{y}\left(\frac{VV}{h}\right)
+\end{equation}
+
+\begin{equation}
+\d{h}{t} = - \left(\d{U}{x} + \d{V}{y}\right)
+\end{equation}
+
+Sendo,
+
+\begin{quote}
+\begin{tabular}{l l}
+$\vec{U} = (U,V)$ & transporte de massa em $x$ e $y$, respectivamente \\
+$\vec{\tau_w} = [(\tau_w)_x,(\tau_w)_y]$ & tensão de cisalhamento do vento \\
+$\vec{\tau_b} = [(\tau_b)_x,(\tau_b)_y]$ & tensão de cisalhamento com o fundo \\
+$\vec{\tau_i} = [(\tau_i)_x,(\tau_i)_y]$ & tensão de cisalhamento na interface \\
+$f = 2\Omega\sin\theta$ & parâmetro de Coriolis \\
+$A$ & coeficiente de atrito lateral \\
+$h$ & espessura total da camada superior \\
+$g'$ & gravidade reduzida 
+\end{tabular}
+\end{quote}
+
+A tensão de cisalhamento na interface $\tau_i$ pode ser relacionada de maneira linear ou não-linear com o salto de velocidade entre as duas camadas, da mesma maneira como é tratado o arrasto do vento ou o atrito com o fundo. Uma parametrização quadrática pode ser feita na forma
+
+\begin{equation}
+(\tau_i)_x = \bar{\rho}c_dU(U^2 + V^2)^{1/2},
+\end{equation}
+
+\begin{equation}
+(\tau_i)_y = \bar{\rho}c_dV(U^2 + V^2)^{1/2}.
+\end{equation}
+
+Definimos $h$ como a espessura total da camada superior, igual a
+
+\begin{equation}
+h = h_0 + \eta + P,
+\end{equation}
+
+onde $h_0$ é a espessura inicial da camada, $\eta$ é a elevação da superfície livre, e $P$ é o desvio da picnoclina. Como ressaltado anteriormente, 
+
+\begin{equation}
+P = g'\eta.
+\end{equation}
+
+É importante destacar que neste modelo, por utilizarmos a espessura variável $h$ nas equações do movimento, os termos de pressão se tornam não-lineares.
+
+
+\section{Modelos de Duas Camadas}
+
+Para estudar o modelo de duas camadas, vamos analisar o trabalho de Csanady (1973), sobre a indução de movimentos baroclínicos pelo vento na quebra da plataforma continental. Sabe-se que a termoclina sazonal na costa de grandes lagos está sujeita a deslocamentos causados pelo vento. A ressurgência ou subsidência da termoclina é freqüentemente acompanhada de um jato costeiro baroclínico. A teoria dinâmica mais simples capaz de prever esse comportamento baseia-se nas equações linearizadas de momento no plano $f$. A tensão do vento pode ser altamente idealizada, i.e., assumida como constante espacialmente, desde que o vento seja impulsivo. Para um fluido invíscido é necessário considerar os regimes de movimento como dependentes do tempo, de maneira com que o resultado seja composto de oscilações livres e um padrão de fluxo forçado.
+
+A questão proposta no trabalho é investigar se os mesmos deslocamentos da termoclina e os movimentos da água pelo impulso do vento acontecem na quebra da plataforma continental, e se esses movimentos têm amplitude suficiente para constituir um aspecto importante dos movimentos observados na elevação continental. Como veremos, este modelo mostra que existem deslocamentos na termoclina e a ocorrência de ``jatos de quebra''; porém, a intensidade desses fenômenos é pelo menos uma ordem de grandeza menor do que os processos análogos que acontecem junto à costa.
+
+\subsection{Modelo da Quebra de Plataforma}
+
+Como vimos, a estratificação da água será representada por um modelo de duas camadas. Na figura \ref{fig:csanady1} vemos a geometria e o sistema de coordenadas do problema. O desvio da densidade proporcional, $\epsilon = (\rho' - \rho)/\rho'$, tem um valor típico de $3\times 10^{-3}$. Como os contrastes de densidade são pequenos, movimentos no modo interno são caracterizados pelo transporte total nulo em ordem $\epsilon$:
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{csanady1.eps}
+\caption{Ilustração esquemática da plataforma continental e do sistema de coordenadas utilizado.}
+\label{fig:csanady1}
+\end{center}
+\end{figure}
+
+\begin{equation}
+\left.\begin{array}{l}
+U+U'=0 \\
+V+V'=0 \\
+\end{array}\right\},
+\end{equation}
+
+onde $(U,V)$ são as velocidades integradas na camada superior, e $(U',V')$ na camada inferior, ao longo dos eixos $x$ e $y$, respectivamente. Supondo que os deslocamentos da termoclina a partir do equilíbrio, $\zeta'$, sejam pequenos comparados com tanto $h$ e $h'$, e que a inclinação do fundo $dh'/dy$ seja bastante suave para que a aproximação hidrostática seja válida, as equações do movimento e da continuidade para o modo interno são:
+
+\begin{equation} \label{eq:2}
+\left.\begin{array}{l}\d{U}{t} - fV = g\epsilon\frac{hh'}{h+h'}\d{\zeta'}{x} + \frac{h'}{h+h'}F_x\\
+\d{V}{t} + fU = g\epsilon\frac{hh'}{h+h'}\d{\zeta'}{y} + \frac{h'}{h+h'}F_y\\
+\d{U}{x} + \d{V}{y} = \d{\zeta'}{t}\\
+\end{array}\right\}
+\end{equation}
+
+Sendo $F_x$ e $F_y$ as componentes de tensão do vento, e considerando as tensões nas interfaces e no fundo como nulas. Podemos definir a ``profundidade equivalente'' $h_e$ tal que
+
+\begin{equation}
+h_e = \frac{hh'}{h+h'}.
+\end{equation}
+
+Ao contrário do esperado intuitivamente, $h\epsilon$ varia lentamente em direção ao largo, de maneira com que $dh'/dy$ possa ser considerado constante. As variações brusca de profundidade na quebra da plataforma quase não afetam a distribuição da profundidade equivalente.
+
+\subsection{Vento Normal à Costa}
+
+A resposta do oceano ao vento impulsivo consistirá de uma parte forçada e oscilações inerciais livres. A partir dos cálculos de Crépon (1967), podemos inferir que as oscilações irão conter ondas progressivas e estacionárias, todas de freqüência inercial. Nossa atenção será voltada somente para a resposta forçada. Assumimos uma distribuição do vento dada por $F_x =0$ e $F_y = F$. Em uma plataforma infinita podemos considerar que não existem gradientes em $x$, i.e.,
+
+\begin{equation}
+\d{\zeta'}{x} = 0, \d{U}{x} = 0.
+\end{equation}
+
+Assim, nosso sistema de equações se reduz a:
+
+\begin{equation} \label{eq:5}
+\left. \begin{array}{l}
+\ddd{U}{t} - g\epsilon h_e\ddd{U}{y} + f^2U = \frac{h_e}{h}fF \\
+\zeta' = \frac{1}{f}\d{U}{y} \\
+V = \frac{1}{f}\d{U}{t} \\
+\end{array} \right\}
+\end{equation}
+
+As equações (\ref{eq:5}) mostra que existe conservação de vorticidade potencial, e por esse motivo o rotacional de $F/h$ desaparece. Analogamente ao caso de um canal infinito (Csanady, 1973), a parte forçada da solução deve ser independente do tempo, significando que $V=0$ e $U$ satisfaz
+
+\begin{equation} \label{eq:6}
+\frac{d^2U}{dy^2} - \frac{f^2}{g\epsilon h_e}U = -\frac{fF}{g\epsilon h}.
+\end{equation}
+
+A batimetria é determinada por
+
+\begin{equation}
+\left. \begin{array}{l l}
+h_e = sy, & y \le y_0 \\
+h_e = h_{e0}, & y \ge y_0 \\
+\end{array} \right\},
+\end{equation}
+
+sendo $s$ a inclinação do fundo, considerado como $2.5\times 10^{-4}$. A solução geral de (\ref{eq:6}) na região inclinada da plataforma, $y \le y_0$, é 
+
+\begin{equation} \label{eq:8}
+U = A\lambda K_1(\lambda) + B\lambda I_1(\lambda) + \frac{sF}{fh}y, y\le y_0,
+\end{equation}
+
+onde $A$ e $B$ são constantes, $K_1()$ e $I_1()$ são funções de Bessel modificadas, e
+
+\begin{equation}
+\lambda = \left(\frac{4y}{S}\right)^{1/2}
+\end{equation}
+
+\begin{equation}
+S = \frac{g\epsilon S}{f^2}.
+\end{equation}
+
+A quantidade $S$ é uma ``escala da inclinação''. Fora da quebra de plataforma, a solução é
+
+\begin{equation} \label{eq:10}
+U = \frac{h_{e0}}{h}\frac{F}{f}+Ce^{-y/R},
+\end{equation}
+
+sendo $C$ uma constante e 
+
+\begin{equation}
+R = \frac{(g\epsilon h_{e0})^{1/2}}{f}
+\end{equation}
+
+o raio de deformação do modo interno. A condição de contorno no infinito é satisfeita pela solução (\ref{eq:10}):
+
+\begin{equation}
+\zeta' = 0 \textrm{ para }y\Rightarrow \infty
+\end{equation}
+
+Para a geometria da plataforma idealizada encontramos as relações:
+
+\begin{equation}
+h_{e0} = sy_0
+\end{equation}
+
+\begin{equation}
+\frac{y_0}{R} = \frac{Rf^2}{g\epsilon s}=\frac{R}{S}
+\end{equation}
+
+\begin{equation}
+\lambda_0 = \left(\frac{4y_0}{S}\right)^{1/2} = \frac{2R}{S}
+\end{equation}
+
+Para determinarmos as constantes $A$, $B$ e $C$ nas equações (\ref{eq:8}) e (\ref{eq:10}), precisamos de três condições de contorno. Duas são satisfeitas pelas condições em $y=y_0$, sendo necessária a continuidade de $\zeta'$ e $V$, o que também significa continuidade de $U$ e $dU/dy$. Uma terceira condição de contorno deve ser imposta na costa: ela relaciona o transporte normal $V$ e afeta principalmente o valor de $A$. Sob a teoria linear, a condição de contorno apropriada é $V=0$. Com a tensão de cisalhamento do vento perpendicular à costa, isso também significa que da primeira equação de (\ref{eq:2}) $U=0$ em $y=0$, e portanto $A=0$ na equação (\ref{eq:8}).
+
+Definindo $A=0$, $U=0$ e $dU/dy=0$, as constantes $B$ e $C$ podem ser determinadas facilmente, resultando na seguinte distribuição para $U$ e $\zeta'$
+
+\begin{equation}
+\left.\begin{array}{l l}
+\frac{fhU}{h_{e0}F} = \frac{\lambda^2}{{\lambda_0}^2}-\frac{2\lambda}{{\lambda_0}^2}\frac{I_1(\lambda)}{I_0(\lambda_0)+I_1(\lambda_0)} & y \le y_0\\
+\frac{fhU}{h_{e0}F} = 1-\frac{2}{\lambda_0}\frac{I_1(\lambda_0)}{I_0(\lambda_0)+I_1(\lambda_0)}\exp\left(-\frac{y-y_0}{R}\right) & y \ge y_0\\
+\frac{f^2hR\zeta'}{h_{e0}F} = -\frac{2}{\lambda_0}+\frac{2}{\lambda_0}\frac{I_1(\lambda)}{I_0(\lambda_0)+I_1(\lambda
+_0)} & y \le y_0\\
+\frac{f^2hR\zeta'}{h_{e0}F} = -\frac{2}{\lambda_0}\frac{I_1(\lambda_0)}{I_0(\lambda_0)+I_1(\lambda_0)}\exp\left(-\frac{y-y_0}{R}\right) & y \ge y_0\\
+\end{array}\right\}.
+\end{equation}
+
+A resposta do oceano para o vento normal na camada da superfície é a deriva de Ekman ao largo, se reduzindo em direção da costa. A topografia da termoclina contém um ``degrau'' próximo à quebra da plataforma, e assume uma depressão constante ao se aproximar da costa. Nesta situação não ocorre feições de jato costeiro.
+
+\subsection{Vendo Paralelo à Costa}
+
+Considerando o vento paralelo à costa definido por $F_x = F$, $F_y = 0$, e desprezando os gradientes em $x$, nosso sistema de equações (\ref{eq:2}) se reduz a
+
+\begin{equation}
+\left.\begin{array}{l}
+\ddd{V}{t} - g\epsilon h_e\ddd{V}{y} + f^2V = -\frac{h_e}{h}fF \\
+\d{\zeta'}{t} = \d{V}{y} \\
+\d{U}{t} = fV + \frac{h_e}{h}F \\
+\end{array}\right\}.
+\end{equation}
+
+Nesta situação não ocorre a conservação da vorticidade potencial, e o deslocamento da termoclina é calculado a partir da divergência do transporte (que era nulo no caso anterior). A velocidade ao longo da costa é produzida diretamente pela tensão do vento, e também pela força de Coriolis em resposta ao transporte em direção à costa; $U$ deve pelo menos apresentar uma aceleração constante ao longo do tempo. A solução forçada para $V$ é dada por
+
+\begin{equation} \label{eq:16}
+\left.\begin{array}{l l}
+\frac{fhV}{h_{e0}F} = -\frac{\lambda^2}{{\lambda_0}^2}+\frac{2\lambda}{{\lambda_0}^2}\frac{I_1(\lambda)}{I_0(\lambda_0)+I_1(\lambda_0)} & y\le y_0\\
+\frac{fhV}{h_{e0}F} = -1+\frac{2}{\lambda_0}\frac{I_1(\lambda_0)}{I_0(\lambda_0)+I_1(\lambda_0)}\exp\left(-\frac{y-y_0}{R}\right) & y \ge y_0 \\
+\end{array}\right\}.
+\end{equation}
+
+A partir de (\ref{eq:16}) podemos obter as soluções para o transporte ao longo da costa e para o deslocamento da interface:
+
+\begin{equation}
+\left.\begin{array}{l l}
+\frac{hU}{h_{e0}Ft} = \frac{2\lambda}{{\lambda_0}^2}\frac{I_1(\lambda)}{I_0(\lambda_0)+I_1(\lambda_0)} & y \le y_0\\
+\frac{hU}{h_{e0}Ft} = \frac{2}{\lambda_0}\frac{I_1(\lambda_0)}{I_0(\lambda_0)+I_1(\lambda_0)}\exp\left(-\frac{y-y_0}{R}\right) & y \ge y_0\\
+\frac{fhR\zeta'}{h_{e0}Ft} = \frac{2}{\lambda_0}-\frac{2}{\lambda_0}\frac{I_1(\lambda)}{I_0(\lambda_0)+I_1(\lambda
+_0)} & y \le y_0\\
+\frac{fhR\zeta'}{h_{e0}Ft} = \frac{2}{\lambda_0}\frac{I_1(\lambda_0)}{I_0(\lambda_0)+I_1(\lambda_0)}\exp\left(-\frac{y-y_0}{R}\right) & y \ge y_0\\
+\end{array}\right\}
+\end{equation}
+
+Os resultados obtidos mostram que $\zeta'$ e $U$ aumentam linearmente com o tempo, como é comum no desenvolvimento de jatos costeiros. A velocidade normal à costa permanece constante, sendo igual à deriva de Ekman ao largo, e diminuindo em direção à costa como no exemplo anterior. Os deslocamentos da termoclina são também parecidos com no caso do vento normal à costa, mas muito mais intensos, e crescem linearmente com o tempo.
+
+Acompanhando o deslocamento da termoclina aparece um jato, com velocidades para a região de Virginia-Maryland por volta de 27 cm s$^{-1}$. Para um vento impulsivo de mesmo intensidade, os jatos costeiros previstos teoricamente apresentam velocidades muito maiores. Assim, o que descrevemos como um ``jato de plataforma'' é um fenômeno não muito importante, mas que pode ser facilmente observado.
+
+
+\section{Condições de Contorno Costeiras}
+
+Samelson (1997) investigou a geração de correntes na plataforma continental forçadas pelo vento através de um modelo de duas camadas, no qual a camada superior representa a camada de mistura, e a camada inferior representa o restante do fluido. A resposta de um modelo dinâmico idealizado é comparada com observações na faixa de 2 a 7 dias do Coastal Ocean Dynamics Experiment (CODE). As equações do modelo desenvolvido são (mantendo a notação do autor):
+
+\begin{equation}
+u_{1t} - fv_1 = -g\eta_x + (\tau_s^x - \tau_i^x)/H_1
+\end{equation}
+
+\begin{equation}
+v_{1t} + fu_1 = -g\eta_x + (\tau_s^y - \tau_i^y)/H_1
+\end{equation}
+
+\begin{equation}
+\zeta_1 - H_1(u_{1x} + v_{1x}) = 0
+\end{equation}
+
+\begin{equation}
+u_{2t} - fv_2 = -g\eta_x -g'\zeta_x + (\tau_i^x - \tau_b^x)/H_2
+\end{equation}
+
+\begin{equation}
+v_{2t} + fu_2 = -g\eta_x -g'\zeta_y + (\tau_i^y - \tau_b^y)/H_2
+\end{equation}
+
+\begin{equation}
+H_1(u_{1x} + v_{1y}) + u_2H_{2x} + H2(u_{2x} + v_{2y}) = 0
+\end{equation}
+
+\begin{equation}
+H_1 + H_2(x) = D(x)
+\end{equation}
+
+Sendo $\zeta$ o deslocamento da interface entre as camadas. Foi adotada a aproximação da camada rígida, de maneira com que $D$ independe do tempo, e $\eta$ é uma altura equivalente associada com a pressão na superfície. A profundidade no modelo aumenta exponencialmente em direção ao largo.
+
+As condições de contorno formam um aspecto importante de qualquer modelo dinâmica sobre a plataforma continental. Mitchum \& Clarke (1986) mostraram que para ondas longas, o fluxo resultante normal à costa é efetivamente bloqueado quando a espessura total do fluido atinge 3 vezes a espessura da camada de Ekman. Paras fechar o problema, porém, precisamos também especificar um condição de contorno no fluxo dependente da profundidade. Na teoria de ondas aprisionadas, a segunda condição normalmente exige que na costa o fluxo interior invíscido que balanceia o transporte normal à costa nas camadas de superfície e de fundo seja independente da profundidade no contorno. (Brink {\em et al.}, 1987; Clarke e Lopez, 1987). O movimento vertical que acompanha a divergência do transporte de Ekman superficial junto à costa deve ocorrer na plataforma interna. Estas duas condições de contorno são chamadas no trabalho como condições ``barotrópicas''.
+
+Uma segunda condições de contorno foi adotada junto a costa. No modelo de duas camadas, a condição de contorno costeira mais comum é a de que não ocorre fluxo normal em cada camada (Allen, 1975), ou seja
+
+\begin{equation} \label{eq:2.8}
+u_1 = u_2 = 0 \textrm{ em } x=0.
+\end{equation}
+
+Esta condição é aplicada, onde a espessura total do fluido é de 40 m. Neste caso, o movimento vertical induzido pela divergência de Ekman junto ao contorno da costa é forçado a ocorrer dentro do domínio do modelo, e nenhum fluxo pode passar através da plataforma interna. A condição de contorno (\ref{eq:2.8}) difere da condição ``barotrópica'' em seu efeito sobre o balanço de momento adjacente ao contorno costeiro. Quando adotamos as condições (\ref{eq:2.8}), a tensão de cisalhamento do vento paralela à costa imposta no fluido é balanceada na camada de superfície pelo gradiente de pressão ao longo da costa, a aceleração de um fluxo geostrófico paralelo à costa e um pequeno arrasto na interface. O movimento na camada inferior é causado apenas pelo arrasto na interface e pelos gradientes de pressão.
+
+Em contraste, quando adotamos a condição barotrópica, a tensão de cisalhamento do vento paralela à costa é balanceada por um gradiente de pressão independente da profundidade, e pelo arrasto com o fundo. Neste caso, o fluxo não satisfaz  a condição de fluxo total normal nulo no contorno costeiro em nenhum ponto da coluna d'água. Ao invés disso, a estrutura vertical do fluxo junto à parede é fixada pela imposição de que o fluxo interior na parede seja independente da parede, enquanto o movimento vertical acompanhando a divergência de Ekman na plataforma interna ocorre fora dos domínios do modelo.
+
+\subsection{Formulação e método de solução}
+
+A resposta linear do modelo para uma forçante estocástica foi computada pelo método de Brink {\em et al.} (1987). Foi considerado somente um vento paralelo à costa, definido por
+
+\begin{equation}
+T(x,y,t) = \tau^y(x,y,t).
+\end{equation}
+
+As tensões foram parametrizadas como
+
+\begin{equation}
+(\tau_i^x, \tau_i^y) = R_i(u_1 - u_2, v_1 - v_2),\textrm{ e}
+\end{equation}
+
+\begin{equation}
+(\tau_b^x, \tau_b^y) = R_b(u_2,v_2),
+\end{equation}
+
+sendo $R_i = 4\times 10^{-5}$ m s$^{-1}$, $R_b = 4 \times 10^{-4}$ m s$^{-1}$. As soluções foram obtidos em termos de ganho $R_{XT}$, coerência $\gamma_{XT}$ e fase $\theta_{XT}$.
+
+\subsection{Resultados}
+
+O modelo foi forçado com freqüências na faixa de $10^{-6}$ s$^{-1} < \omega < 6 \times 10^{-5}$ s$^{-1}$. Para os períodos de 2 a 7 dias o modelo reproduziu com confiança alguns aspectos da análise estatística das observações do CODE. A estrutura e a magnitude do ganho da velocidade paralela à costa na plataforma interna (aproximadamente 15 km da costa) foram reproduzidas com detalhes consideráveis no presente modelo, especialmente nas menores freqüências. Um máximo de ganho da velocidade paralela à costa superficial próximo à costa, bem como um máximo de ganho da velocidade normal à costa no interior no largo são previstos, e independem dos gradientes normais à costa da tensão do vento ou do coeficiente do atrito de fundo.
+
+As diferenças nas condições de contorno apareceram principalmente em uma zona baroclínica adjacente à costa cuja largura é determinada pelo raio de deformação interno de Rossby. Os resultados do CODE no período de 2 a 7 dias sugerem que uma zona de ajustamento baroclínico semelhante exista em uma porção significativa da plataforma. 
+
+
+\section{Modelo Diagnóstico}
+
+Um grande esforço vem sendo feito com o objetivo de determinar diretamente as correntes oceânicas a partir de propriedades medidas no oceano. Diversas abordagens incluem a análise de massas de água e cálculos numéricos ``diagnósticos'' através dos quais os campos de densidade são determinados a partir dos dados, mas também onde a equações primitivas de movimento são integradas; um caso especial é a de um cálculo puramente geostrófico, onde o cisalhamento da velocidade é relacionado com gradientes horizontais de densidade determinados a partir da climatologia.
+
+No trabalho de Kantha {\em et al.} (1982), um modelo foi desenvolvido para determinar o transporte total pela integração das equações diferenciais de primeira ordem (geostróficas) para o transporte total ao longo de contornos de vorticidade potencial planetária (f/H) constantes. Para se obter as velocidades, é necessário apenas que se especifique-se a função corrente em apenas um ponto de cada contorno, ou de uma linha que corte todos os contornos.
+
+O modelo é aplicado na South Atlantic Bight (SAB), caracterizada principalmente pela Corrente do Golfo. Nos cálculos foram desconsiderados tanto os termos de advecção como de difusão na equação de movimento e no balanço de vorticidade. Em um fluxo barotrópico ou num bacia rasa, a difusão de momentum é necessária para que haja balanço de advecção de vorticidade planetária. Caso contrário, a condição de fluxo normal nulo no contorno oeste não pode ser satisfeita. Entretanto, existe a possibilidade de que no oceano real, a advecção de vorticidade planetária seja balanceada pela vorticidade baroclínica. Assim, o papel dos efeitos de difusão horizontal estariam confinados à temperatura e salinidade. Nos cálculos do modelo, o rotacional do vento não foi incluído, uma vez que seu efeito é insignificante na SAB, exceto na plataforma continental onde o atrito com o fundo provavelmente também deveria ser incluído.
+
+\subsection{Equações Governantes}
+
+O modelo parte do conjunto de equações do movimento integradas na vertical, em um sistema de coordenadas esféricas
+
+\begin{equation}
+fU = -H\frac{1}{R}\d{P_b}{\phi} - \frac{1}{R}\d{\Phi}{\phi}, \textrm{ e}
+\end{equation}
+
+\begin{equation}
+fV = H\frac{m}{R}\d{P_b}{\lambda} + \frac{m}{R}\d{\Phi}{\lambda},
+\end{equation}
+
+sendo $R$ o raio da Terra, $(\Phi,\lambda)$ a latitude e longitude, e $m=\cos^{-1}\Phi$. $P_b$ é a pressão no fundo
+
+\begin{equation}
+P_b = g\eta + \int_{-H}^0(b-\bar{b})\,dz,
+\end{equation}
+
+e $b$ é a ``flutuabilidade'' ({\em buoyancy})
+
+\begin{equation}
+b = \frac{\rho g}{\rho_0}.
+\end{equation}
+
+Eliminando $P_b$, e conseqüentemente $\eta$, e combinando com a equação da continuidade, obtemos
+
+\begin{equation} \label{eq:12a}
+\frac{Um}{R}\d{}{\lambda}\left(\frac{f}{H}\right) + \frac{V}{R}\d{}{\phi}\left(\frac{f}{H}\right) = \frac{m}{R^2}D_1,
+\end{equation}
+
+sendo
+
+\begin{equation} \label{eq:12b}
+D_1 = \d{\Phi}{\lambda}\d{}{\phi}\left(\frac{1}{H}\right) - \d{\Phi}{\phi}\d{}{\lambda}\left(\frac{1}{H}\right).
+\end{equation}
+
+As equações (\ref{eq:12a}) e (\ref{eq:12b}) determinam o transporte ao longo dos contornos $f/H$, e representam também a taxa de mudança da vorticidade planetária potencial de uma coluna de fluido. Os termos em (\ref{eq:12b}) descrevem fontes de vorticidade potencial devido a um efeito conjugado da baroclinicidade e topografia de fundo, chamado {\em JeBar}. Definindo a função de transporte $\psi$, podemos reescrever (\ref{eq:12a}) como
+
+\begin{equation} \label{eq:13}
+\d{\psi}{\phi}\d{\xi}{\lambda} - \d{\psi}{\lambda}\d{\xi}{\phi} = D_1,
+\end{equation}
+
+sendo $\xi = f/H$. Admitindo que $\partial f/\partial\lambda = 0$, uma solução de (\ref{eq:13}) será $\psi + \Phi/f$, de maneira com que definimos
+
+\begin{equation} \label{eq:14}
+\chi = \psi - \frac{\Phi}{f}.
+\end{equation}
+
+Dessa forma, obtemos:
+
+\begin{equation} \label{eq:15a}
+\d{\chi}{\phi}\d{\xi}{\lambda} - \d{\chi}{\lambda}\d{\xi}{\phi} = D_2
+\end{equation}
+
+\begin{equation} \label{eq:15b}
+D_2  = - \d{}{\lambda}\left(\frac{\Phi}{H}\right)\frac{1}{f}\d{f}{\phi}
+\end{equation}
+
+Através da discretização de (\ref{eq:15a}) e (\ref{eq:15b}) podemos definir a função $\psi$ em cada ponto de grade dos contornos $f/H$. Para isso é necessário que conheçamos $\psi$ em um ponto para cada contorno $f/H$.  No modelo de Kantha {\em et al.} (1982), a SAB foi discretizada em uma grade de $40\times 46$ pontos  com resolução de $0.25^\circ$, utilizando uma grade B de Arakawa. Dados de temperatura e salinidade foram usados para calcular médias sazonais de densidade, em diferentes profundidades. Foram utilizados quatro valores distintos de transporte ao longo do estreito da Flórida como condição de contorno.
+
+Como era esperado, a magnitude das velocidades computadas para a Corrente do Golfo depende do valor do transporte prescrito no estreito. Qualitativamente os resultados são bastante similares nos quatro casos. A presença da imposição de uma subcorrente de contorno oeste (caso 4) parece não exercer uma influência significativa na Corrente do Golfo, mas exerce uma pequena influência nas regiões mais profundas, como poderia se esperar. A Corrente do Golfo climatológica possui uma extensão de 50 a 200 km, sendo mais estreita ao sul e mais difusa a partir do Cabo Haterras, provavelmente pelo ocorrência de meandros neste região que tornam a média difusa.
+
+Não há mecanismos sazonais marcantes nesta região. As correntes no interior da plataforma continental se mostraram relativamente fracas, mostrando que a presença da tensão de cisalhamento do vento, atrito com o fundo e um grade mais refinada é indispensável para obter resultados satisfatórios na região de águas rasas. Mesmo assim, o método é uma ferramenta diagnóstica simples mas poderosa para deduzir informações sobre a circulação com base me dados batimétricos e de densidade.
+
+
+\section{Modelo de Coordenadas $s$}
+
+Para finalizar a o estudo dos modelos baroclínicos, vamos abordar o uso do Proudman Oceanographic Laboratory Three-Dimensional Baroclinic B grid model (POL3DB), simulando a oceanografia física da plataforma continental noroeste da Europa por um período de um ano. O POL3DB utiliza um esquema de advecção avançado chamado ``Piecewise Parabolic Model'', que tem como vantagem a preservação das propriedades, sendo ideal para a simulação de feições baroclínicas da plataforma como plumas de rio e frentes.
+
+O modelo é formulado numa grade B de Arakawa (1972), em contraste com a grade C utilizada em diversos outros modelos, com o Princeton Ocean Model (POM). A grade B é mais utilizada em oceanos profundos, e é adequada para a modelagem de variações de densidade, uma vez que o termo de Coriolis pode ser calculado sem o uso de valores interpolados. Este procedimento previne a dispersão de feições de velocidade associadas com plumas, porém exige o uso de médias da velocidade na equação da continuidade e na advecção de escalares.
+
+O domínio foi modelado num grade de diferenças finitas de 12 km, e a escolha da região foi ditada pela disponibilidade de dados. Apesar disso, a área modelada está longe do ideal, uma vez que o contorno aberto intercepta a quebra de plataforma em três pontos. O modelo utiliza coordenadas $\sigma$ na vertical, mas de maneira com que o espaçamento entre as coordenadas possa variar na horizontal, de acordo com a transformada $s$ de Song \& Haidvogel (1994). O modelo não inclui difusão horizontal, uma vez que ela não é necessária para a estabilidade do modelo.
+
+Para comparar os resultados do modelo com imagens de satélite da temperatura superficial da água do mar, o modelo se desenvolve com um mínimo de restrições: apenas nos contornos abertos a temperatura e a salinidade são relaxados à climatologia. A resolução do modelo de 12 km é inadequada para resolver detalhes de feições baroclínicas na plataforma, uma vez que o raio de deformação interno de Rossby varia de 3 a 30 km. Apesar disso, o modelo é capaz de simular características gerais, como a localização das frentes.
+
+\subsection{Equações do Modelo}
+
+O POL3DB é formulado em coordenadas esféricas $(\chi,\phi,\sigma)$, sendo a coordenada vertical
+
+\begin{equation}
+\sigma = \frac{z-\zeta}{h+\zeta},
+\end{equation}
+
+onde $z$ é a coordenada vertical cartesiana, $h$ é a profundidade com referência ao nível de repouso, e $\zeta$ é a elevação. A espessura total da coluna é dada por $H=h+\zeta$. A coordenada vertical $\sigma$ é discretizada em níveis que variam na horizontal.
+
+A equação do estado é definida como uma aproximação da equação da UNESCO
+
+\begin{equation}
+\rho(T,S,p) = \rho(T,S,0) + \rho'(T,S,p),
+\end{equation}
+
+onde $T$ é a temperatura potencial, $S$ a salinidade, e $p$ a pressão relativa à superfície do mar. Aqui $\rho(T,S,0)$ é tomado da equação do estado da UNESCO e
+
+\begin{equation}
+\rho'(T,S,p) = 10^4\frac{p}{c^2}(1-0.20\frac{p}{c^2}),
+\end{equation}
+
+com
+
+\begin{equation}
+c = 1449.2 + 1.34(S-35) + 4.55T - 0.045T^2 + 0.00821p + 15.0 \times 10^{-9}p^2.
+\end{equation}
+
+O modelo resolve as equações de movimento hidrostáticas para um fluido incompressível, realizando a separação entre os modos barotrópico e baroclínico. Assim, as equações são dividas em dependentes e independentes da profundidade. As equações para as médias verticais são
+
+\begin{equation}
+\d{\bar{u}}{t} = f\bar{v} - (R\cos\phi)^{-1}\left[g\d{\zeta}{\chi} + {\rho_0}^{-1}\d{P_a}{\chi}\right] + H^{-1}[F_S - F_B] + NLB_\chi
+\end{equation}
+
+e
+
+\begin{equation}
+\d{\bar{v}}{t} = - f\bar{u} - R^{-1}\left[g\d{\zeta}{\phi} + {\rho_0}^{-1}\d{P_a}{\phi}\right] + H^{-1}[G_S - G_B] + NLB_\phi.
+\end{equation}
+
+As equações dependentes da coordenada vertical são
+
+\begin{equation}
+\d{u_r}{t} = -L(u) + fv_r + \frac{uv\tan\phi}{R} - \Pi_\chi + D(u) - H^{-1}[F_S - F_B] - NLB_\chi
+\end{equation}
+
+e
+
+\begin{equation}
+\d{v_r}{t} = -L(v) - fu_r - \frac{u^2\tan\phi}{R} - \Pi_\phi + D(v) -  H^{-1}[G_S - G_B] - NLB_\phi.
+\end{equation}
+
+Os temos de ``flutuabilidade'' são dados por
+
+\begin{equation}
+\Pi_\chi = (R\cos\phi)^{-1}\d{\psi}{\chi}\Big|_z
+\end{equation}
+
+\begin{equation}
+\Pi_\phi = R^{-1}\d{\psi}{\phi}\Big|_z.
+\end{equation}
+
+Os termos não-lineares de flutuabilidade
+
+\begin{equation}
+NLB_\chi = \int_{-1}^0\left[-L(u) + \frac{uv\tan\phi}{R} - \Pi_\chi\right]d\sigma
+\end{equation}
+
+\begin{equation}
+NLB_\phi = \int_{-1}^0\left[-L(v) + \frac{u^2\tan\phi}{R} - \Pi_\phi\right]d\sigma.
+\end{equation}
+
+A advecção é dada por:
+
+\begin{equation}
+L(a) = \frac{U}{R\cos\phi}\d{a}{\chi} + \frac{v}{R}\d{a}{\phi} + \Omega\d{a}{\sigma},
+\end{equation}
+
+sendo
+
+\begin{equation}
+\Omega = -\frac{\sigma}{H}\d{\zeta}{t} - (HR\cos\phi)^{-1} \times \left[\d{}{\chi}\left(H\int_0^\sigma ud\sigma\right) + \d{}{\phi}\left(H\cos\phi\int_0^\sigma vd\sigma\right)\right].
+\end{equation}
+
+Os gradientes verticais das tensões $(\tau_{z\chi},\tau_{z\phi})$ são substituídos por um termo de difusão:
+
+\begin{equation}
+D(a) = H^{-2}\d{}{\sigma}\left(K_z\d{a}{\sigma}\right)
+\end{equation}
+
+A equação da superfície livre é:
+
+\begin{equation}
+\d{\zeta}{t} = -(R\cos\phi)^{-1}\left[\d{}{\chi}(H\bar{u}) + \d{}{\phi}(H\cos\phi\bar{v})\right].
+\end{equation}
+
+No fundo e na superfície as tensões são parametrizadas por relações quadráticas. O modelo utiliza um esquema de fechamento turbulento de nível 2.5 de Mellor-Yamada-Galperin. O modelo é integrado no tempo utilizando um esquema centrado no espaço e avançado no tempo, com um passo de tempo interno de 400 s, e externo de 40 s. O método de advecção PPM assume que as variáveis variam parabolicamente dentro de cada elemento da grade, e preserva as propriedades escalares durante a advecção.
+
+O modelo conseguiu prever com precisão o ciclo anual de temperatura e suas estrutura espacial de larga escala. Além disso, ele apresentou grande estabilidade, se mostrando adequado para simulações interanuais. Os resultados se mostraram mais precisos na plataforma continental do que no Atlântico nordeste, embora a plataforma seja fortemente influenciada pelas condições de contorno que não concordam muito com as observações.
+
+O campo de salinidade não foi reproduzido com o mesmo rigor que o de temperatura; entretanto, uma comparação com os valores climatológicos sugere que a salinidade da superfície do mar está sendo bem modelada em grande parte do modelo, exceto em duas áreas de discrepância: as correntes costeiras da Escócia e da Noruega. A transformada $s$ permite que o modelo forme uma camada de mistura, que atravessa a quebra de plataforma e continua em direção à águas mais profundas com poucas variações, mostrando um grande avanço com relação às coordenadas tradicionais $\sigma$, especialmente na modelagem ecológica onde a produção biológica é muito sensível à estrutura vertical de temperatura e salinidade.
+
+
+\section{Bibliografia Consultada}
+
+\begin{description}
+\item Csanady, G. T., 1973. Wind-induced Baroclinic Motions at the Edge of the Continental Shelf, {\em Journal of Physical Oceanorgaphy 3}, 274-279.
+
+\item Hold, J. T., James, I. D., 2001. An $s$ coordinate density evolving modelo of the northwest European continental shelf 1, Model description and density structure, {\em Journal of Geophysical Research, 106}, C7, 14015-14034.
+
+\item Kantha, L. H., Mellor, G. L., Blumberg, A. F., 1982. A Diagnostic Calculation of the General Circulation in the South Atlantic Bight, {\em Journal of Physical Oceanogaphy, 12}, 805-819.
+
+\item Samelson, R. M., 1997. Coastal Boundary Conditions and the Baroclinic Structure of Wind-Driven Continental Shel Currents, {\em Journal of Physical Oceanography, 27}, 2645-2662.
+
+\item Computational Science Education Project, Queensland Parallel Supercomputing Foundation, 1991. Ocean Models.
+
+\item G. T. Csanady, 1976. Mean Circulation in Shallow Seas, {\em Journal of Geophysical Research, 81}, 30, 5389-5399.
+
+\item Pedlosky, J., 1974. On Coastal Jets and Upwelling in Bounded Basins, {\em Journal of Physical Oceanogaphy 4}, 1, 3-18.
+
+\item Gill, A. E., Schumann, E. H., 1974, {\em Journal of Physical Oceanogaphy 4}, 1, 83-90.
+
+\item Galt, J. A., 1998. Steady-State Diagnostic Model of the New York Bight, {\em Journal of Physical Oceanogaphy 10}, 1998-2020.
+
+\item Berloff, P., Meacham, S. P., 1998. The Dynamics of a Simple Baroclinic Model of the Wind-Driven Circulation, {\em Journal of Physical Oceanogaphy, 28}, 361-388.
+\end{description}
+
+\end{document}

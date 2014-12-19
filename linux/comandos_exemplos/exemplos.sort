@@ -1,0 +1,20 @@
+# Ordena pelo primeiro campo em ordem ascendente
+sort data.dat
+
+# Pelo segundo campo
+sort +1 data.dat
+
+# Trata maiúscula ou miníscula igualmente
+sort -f data.dat
+
+# Ignora espaços em brancos na frente
+sort -b +0 data.dat
+
+# Ordem descentende
+sort -r data.dat
+
+# Assume que o segundo campo é numérico e não alinhado
+sort -n +1 data.dat
+
+# Usa ':' como delimitador
+sort -t: data.dat

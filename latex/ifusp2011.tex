@@ -1,0 +1,497 @@
+\documentclass{beamer}
+% \documentclass[draft]{beamer}
+% \documentclass[handout]{beamer}
+\mode<handout>{\usepackage{pgf,pgfpages}}
+\mode<beamer>{\usetheme{AnnArbor}}
+\usepackage[utf8x]{inputenc}
+\usepackage{bookman} 
+\usepackage[T1]{fontenc} 
+\usepackage{textcomp}
+\usepackage{graphics}
+\usepackage{animate}
+
+\input{iouspcolors.sty}
+
+% ------------------------------------------------------------
+% comandos para fazer animações
+% ffmpeg -i quake.flv -pix_fmt rgb24 -r 2 lixo.gif
+% convert -antialias tsu.gif tsuj_%d.png
+% se ficar ruim abra o .gif no gim, use animate -> unoptimize -> save e repita o passo anterior 
+% ------------------------------------------------------------
+
+% \mode<handout>{\pgfpagesuselayout{4 on 1}[a4paper,border
+%   shrink=5mm,landscape]}
+
+\title{Oceanografia Física dos Tsunamis} 
+\subtitle{IFUSP 2011} 
+\author[Paulo S. Polito]{Paulo S. Polito, Ph.D.  \hfill
+  \texttt{polito@usp.br}}
+\institute[IOUSP]{Instituto Oceanográfico da USP\\
+\includegraphics[height=1.5cm]{logolos_310.png}}
+
+\date{}
+\mode<beamer>{\logo{\includegraphics[height=.5cm]{logolos_310.png}}}
+
+\AtBeginSubsection[] {
+  \begin{frame}<beamer> \frametitle{Roteiro}
+    \tableofcontents[currentsubsection]
+  \end{frame}
+} \setbeamercovered{highly dynamic}
+
+\begin{document}
+
+% \includeonlyframes{a,b,c,d,e,f,g,h}
+
+% ------------------------------------------------------------
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{header.png}}
+\begin{frame}
+\vspace{1.5cm}
+  \titlepage
+\end{frame}
+\usebackgroundtemplate{}
+
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Roteiro}
+  \tableofcontents
+\end{frame}
+% ------------------------------------------------------------
+\section{Introdução}
+% ------------------------------------------------------------
+\subsection{Porque Estudar Oceanografia Física?}
+% ------------------------------------------------------------
+\begin{frame}{Alguns Fatos Sobre os Oceanos}
+  \begin{columns}
+    \begin{column}{5.5cm}   
+      \begin{itemize}\setlength{\itemsep}{2ex}
+      \item A Terra(?) é coberta por 70\% de água.
+      \item 97.2\% da água está nos oceanos, 
+      \item 1,8\% é gelo, 0,9\% é subterrânea, 
+      \item \alert{Rios são só 0,02\%} e vapor 0.001\%.
+      \item 1m$^3$ de água armazena mais de 4000 vezes mais calor que
+        1m$^3$ de ar.
+      \end{itemize}
+    \end{column}
+    \begin{column}{6.5cm}
+      \centerline{\includegraphics[width=6cm]{earth.jpg}}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}{As Pessoas e os Oceanos}
+  \only<1>{  \begin{itemize}\setlength{\itemsep}{2ex}
+    \item Mais de metade dos humanos vive a < 100km do mar.
+    \item A largura típica dos oceanos é da ordem de 5000km.
+    \item Pouquíssimas pessoas foram mais de 1 km mar adentro.
+    \end{itemize}
+    \hrulefill
+    \begin{itemize}\setlength{\itemsep}{2ex}
+    \item A profundidade média dos oceanos é da ordem de 5km.
+    \item Pouquíssimos desceram mais de 10m abaixo da superfície.
+    \item Mais gente já foi à Lua que à Fossa das Marianas (-10.911m).
+    \end{itemize}
+    \hrulefill
+    \begin{itemize}\setlength{\itemsep}{2ex}
+    \item \alert{Proporcionalmente, o Atlântico seria uma poça d'água
+        com 5m de comprimento e 5mm de profundidade!}
+    \end{itemize} }
+  \only<2>{Proporcionalmente, seríamos bactérias na borda da poça... \\
+    \centerline{\includegraphics[height=0.7\paperheight]{bacteria.jpg}}}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}{Oceanos $\times$ Pessoas}
+  \begin{columns}
+    \begin{column}{0.475\textwidth}
+      \includegraphics[width=\textwidth]{banda_aceh.jpg}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}\setlength{\itemsep}{1.5ex}
+      \item São Vicente, 1541, 620 réis;
+      \item Lisboa, 1755, 100.000 $\dagger$
+      \item Messina, 1908 100.000 $\dagger$
+      \item \alert{Indonésia, 2004, 300.000 $\dagger$}
+      \item Chile, 2010, 700 $\dagger$
+      \item Japão, 2011, ~30.000 $\dagger$
+      \end{itemize}
+      \centerline{\includegraphics[height=0.45\textwidth]{indonesia2004_2.jpg}}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\subsection{Ondas Mecânicas}
+% ------------------------------------------------------------
+\begin{frame}[label=esquema]{O Vocabulário Correto}
+  \centerline{\includegraphics[width=12cm]{waveparm.jpg}}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Características Genéricas}
+  \begin{columns}
+    \begin{column}{4cm}   
+      \centerline{\includegraphics[height=7.5cm,width=4cm]{bird.jpg}}
+    \end{column}
+    \begin{column}{8cm}
+      \begin{itemize}\setlength{\itemsep}{2ex}
+      \item Transferem \alert{uma perturbação} através de um meio (como no estádio).
+      \item A perturbação é transmitida sem muito movimento de matéria.
+      \item A transmissão não modifica muito o formato da perturbação.
+      \item A velocidade de transmissão é geralmente constante.
+      \item \alert{Ondas transportam energia sem efetivamente
+          transportar matéria (vai--e--vem). }
+      \end{itemize}
+    \end{column}    
+  \end{columns}  
+\end{frame}
+% ------------------------------------------------------------
+\subsection{O Espectro do Oceano}
+\begin{frame}[label=espectro]{A Energia de Cada Tipo de Onda}
+  \centerline{\includegraphics[height=7.75cm]{spectrum2d.jpg}}
+\end{frame}
+% ------------------------------------------------------------
+\section{Tsunami Como Onda}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Características Específicas}
+  \begin{columns}
+    \begin{column}{3.5cm}   
+      \tiny{Fotos: National Geographic}
+
+      \includegraphics[width=3.7cm]{tsu1.jpg}
+
+      \includegraphics[width=3.7cm]{tsu2.jpg}
+
+      \includegraphics[width=3.7cm]{tsu3.jpg}
+    \end{column}
+    \begin{column}{8.5cm}
+      \begin{itemize}\setlength{\itemsep}{2ex}
+      \item A onda tem amplitude pequena (<1m) enquanto
+        em oceano profundo.
+      \item A velocidade é constante apenas em
+        mar profundo. 
+      \item \alert{Na costa a interação com o fundo desacelera, aumenta a
+          amplitude e muda a forma da onda}.
+      \item O movimento de vai--e--vem aliado ao \alert{comprimento da onda
+          longo e amplitude elevada} é justamente a causa da destruição. 
+      \end{itemize}
+    \end{column}    
+  \end{columns}  
+\end{frame}
+% ------------------------------------------------------------
+\subsection{Ondas de Gravidade}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Tsunamis são Ondas}
+  \begin{itemize}\setlength{\itemsep}{2.5ex}
+  \item Forçadas por terremotos, meteoros, vulcões, queda de barreiras submarinas etc..
+  \item \alert{Difíceis de detectar e de prever a tempo.}
+  \end{itemize}
+  \centerline{\includegraphics[width=0.45\paperwidth]{tsunami_gen.png}\animategraphics[autoplay,loop,width=0.5\paperwidth]{8}{quake/quake_}{0}{49}}
+\bigskip
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}{Ondas Lineares de Gravidade}
+    \begin{itemize}
+    \item Períodos de $\sim$10~s a 1 dia e $\lambda$ de $\sim$10~cm a 1000~km.
+    \item \alert{Em águas ``rasas'':}
+      \begin{itemize}
+      \item A velocidade {\bf não} depende do comprimento.
+      \item {\bf Não} mudam de forma, {\bf não} se dispersam e vão longe.  
+      \end{itemize}
+    \item \alert{Em águas ``profundas'':}
+      \begin{itemize}
+      \item A velocidade depende do comprimento.
+      \item Mudam de forma, se dispersam e {\bf não} vão longe.  
+      \end{itemize}
+    \item \alert{Rasa ou profunda em relação ao comprimento da onda:}
+    \end{itemize}
+    \centerline{\includegraphics[width=0.8\paperwidth]{aguasrasas.png}}  
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}{Comprimento $\times$ Profundidade}
+  \begin{itemize}
+  \item \alert{Tsunamis são ondas longas ou de águas rasas:}
+  \end{itemize}
+  \animategraphics[autoplay,loop,width=12cm]{35}{sww/sww_}{0}{69} 
+  \begin{columns}
+    \begin{column}{6cm} 
+      \begin{itemize}
+      \item Ondas curtas ou de águas profundas:
+      \end{itemize}
+      \animategraphics[autoplay,loop,width=6cm]{35}{dww/dww_}{0}{69} 
+    \end{column}
+    \begin{column}{6cm}
+      \begin{itemize}
+      \item Na superfície as trajetórias se assemelham. 
+      \item No fundo as ondas curtas não apresentam movimento.
+      \item No fundo as ondas longas apresentam movimento horizontal.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Tsunamis são Peculiares}
+  \begin{columns}
+    \begin{column}{0.2\paperwidth} 
+      \includegraphics[width=0.2\paperwidth]{tsu_thai.jpg}
+    \end{column}
+    \begin{column}{0.8\paperwidth} 
+      \begin{itemize}\setlength{\itemsep}{2.5ex}
+      \item Em mar profundo (linear):
+        \begin{itemize}\setlength{\itemsep}{1.5ex}
+        \item Período da ordem de 30~min;
+        \item Comprimento de onda da ordem de 300~km;
+        \item Amplitude de apenas 30~cm--1m.
+        \item \alert{Velocidade da ordem de 600~km/h;}
+        \end{itemize}
+      \item Na costa ocorre interação com o fundo: 
+        \begin{itemize}\setlength{\itemsep}{1.5ex}
+        \item Comprimento de onda encolhe para 20~km;
+        \item Velocidade cai para 80~km/h;
+        \item Formato muda para de senóide para degrau; 
+        \item \alert{Amplitude aumenta para 5--30~m.}
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\againframe{espectro}
+% ------------------------------------------------------------
+\subsection{Resultados da Teoria Linear}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Velocidade de Fase (c)}
+  \begin{columns}
+    \begin{column}{2.5cm}   
+      \centerline{\includegraphics[width=2.4cm]{hypfun.png}}
+    \end{column}
+    \begin{column}{9.5cm}
+      \begin{itemize}\setlength{\itemsep}{1.5ex}
+      \item Solução geral:
+        \[c=\sqrt{\frac{g\lambda}{2\pi}\tanh\left(\frac{2\pi H}{\lambda}\right)}\]
+      \item Se $H >> \frac{\lambda}{2}$ ondas ``curtas'',
+        $\tanh\left(\frac{2\pi H}{\lambda}\right) \rightarrow 1$:
+        \[c=\sqrt{\frac{g\lambda}{2\pi}}\]
+      \item Se $H << \frac{\lambda}{2}$ ondas ``longas'',
+        $\tanh\left(\frac{2\pi H}{\lambda}\right) \rightarrow \frac{2\pi
+          H}{\lambda}$:\alert{
+          \[c=\sqrt{gH}
+          \quad \mbox{ com } g = 10\, ms^{-2} \mbox{ e } H = 5000\, m\]
+          \[ \mbox{ temos } c=\sqrt{50.000} = 223\, ms^{-1} = 803\, km/h \]}
+      \end{itemize}
+    \end{column}    
+  \end{columns}  
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Mudança de Forma}
+  \begin{itemize}\setlength{\itemsep}{1.5ex}
+  \item Tsunamis mudam de forma quando a \alert{amplitude} da onda
+    tem a mesma ordem de grandeza da \alert{profundidade}.
+  \item Em oceano profundo não acontece: $A\sim 1\,m$ e
+    $H\sim 5\,km$.
+  \item Na praia uma onda de 1~m pode representar 5\% ou mais da
+    profundidade. A parte superior da onda se propaga mais rápido.
+  \end{itemize} 
+  \includegraphics[width=7cm]{steep.png}\includegraphics[width=4.5cm]{wave.jpg}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Energia e Momentum}
+  \begin{itemize}\setlength{\itemsep}{1.5ex}
+  \item O momentum por área é dado por:
+    \[ M \; = \; \frac{\frac{1}{2}\rho g A^2}{\sqrt{gH}} 
+    \quad kg\,\frac{m}{s}\,\frac{1}{m^2}\]
+  \item Por conservação, à medida que $H$ diminui, a velocidade 
+    de fase diminui e \alert{a amplitude $A$ aumenta.}
+  \item Para ondas longas a energia mecânica por área é:
+    \[ E \;=\; Mc \;=\;\frac{1}{2}\rho g A^2 \quad \frac{J}{m^2} \]
+  \item Observe que a energia depende da \alert{amplitude ao
+      quadrado}.
+  \end{itemize}
+\end{frame}
+% ------------------------------------------------------------
+\section{Observações e Previsões}
+% ------------------------------------------------------------
+\subsection{Modelos}
+\begin{frame}
+  \frametitle{Teoria $\Rightarrow$ Modelo (propagação da fase)}
+  \begin{columns}
+    \begin{column}{7.5cm}
+      \animategraphics[autoplay,loop,width=8cm]{5}{tsuj/tsuj_}{0}{99}
+    \end{column}
+    \begin{column}{4.5cm}
+      \begin{itemize}\setlength{\itemsep}{2.5ex}
+      \item Propagação de \alert{fase}.
+      \item Os quatro pontos amarelos (alto, esq.) são bóias.
+      \item A estrela vermelha é o epicentro.
+      \item Há um gráfico para cada bóia.
+      \item Note a forma da onda.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Teoria $\Rightarrow$ Modelo (propagação da energia)}
+  \begin{columns}
+    \begin{column}{9cm}
+      \includegraphics[width=9.5cm,height=7.75cm]{Energy_plot20110311-1000.png}
+    \end{column}
+    \begin{column}{3cm}
+      \begin{itemize}\setlength{\itemsep}{3ex}
+      \item $\triangle = $ bóia.
+      \item Linhas = 1 hora.
+      \item Cor = Amplitude
+      \item \alert{Energia $\propto$ Amplitude$^2$}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\subsection{Observações}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Medidas por Satélites Altimétricos}
+  \centerline{\includegraphics[width=0.475\paperwidth]{tsunami_envisat.png}\includegraphics[width=0.475\paperwidth]{tsunami_jason.png}}
+  \begin{itemize}\setlength{\itemsep}{1ex}
+  \item Usam tempo de retorno de radar para medir a anomalia do nível do mar numa área de 30~km de diâmetro.
+  \item Uma medida a cada 7~km = 1~s, \alert{com precisão de 2~cm}.
+  \item Cobrem o planeta a cada 10 dias (Jason) ou 35 dias (Envisat) $\leadsto$ não servem para monitoramento ou alerta.
+  \item \alert{Comprimento da ordem de 4--5$^\circ$ e a amplitude de 20~cm.}
+  \end{itemize}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Medidas In--Situ}
+  \begin{columns}
+    \begin{column}{0.58\paperwidth}
+      \centerline{\includegraphics[width=0.58\paperwidth]{boia.png}}
+    \end{column}
+    \hspace{0.01\paperwidth}
+    \begin{column}{0.25\paperwidth}
+      \centerline{\includegraphics[width=0.25\paperwidth]{dart-buoy-ndbc-2006c.jpg}}
+
+      \centerline{\includegraphics[width=0.25\paperwidth]{boia2.jpg}}
+    \end{column}
+  \end{columns}
+\bigskip
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Medidas $\times$ Modelo}
+  \begin{itemize}\setlength{\itemsep}{0ex}
+  \item As 8 bóias estão em mar profundo no Pacífico (Japão 2011).
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.6\paperwidth}
+      \includegraphics[width=0.65\paperwidth]{20110311_darts_comp.png}
+    \end{column}
+    \hspace{0.01\paperwidth}
+    \begin{column}{0.3\paperwidth}
+      \begin{itemize}\setlength{\itemsep}{2ex}
+      \item \alert{As previsões são boas.}
+      \item 4 de cima estão a menos de 2h, amplitude $\simeq$ 1m.
+      \item 4 de baixo estão a 3--6h, amplitude $\simeq$ 20cm.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\section{Sumário}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Em resumo...}
+  \begin{itemize}\setlength{\itemsep}{2ex}
+  \item Tsunamis são ondas de gravidade longas (águas rasas).
+  \item São gerados, na maioria dos casos, por terremotos.
+  \item A fase se propaga rápido, o tempo é curto para que se acione o alarme, a defesa civil etc.
+  \item A amplitude é pequena e cresce junto à costa.
+  \item A energia depende do quadrado da amplitude.
+  \item Satélites detectam tsunamis {\em a posteriori}.
+  \item As observações baseadas em sensores de pressão validam
+    as simulações numéricas e podem salvar vidas.
+  \end{itemize}
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}{Sobre Tsunamis Acabou...}
+\LARGE
+Mas se me permite perguntar...
+
+\vspace{4cm}
+
+\Large
+\hfill...você se interessou por oceanografia física?
+\normalsize
+\end{frame}
+% ------------------------------------------------------------
+\begin{frame}[allowframebreaks]{\normalsize Sobre Oceanografia Física na USP}
+  \begin{itemize}\setlength{\itemsep}{2ex}
+  \item Oceanografia se divide em 4 áreas:
+    \begin{itemize}
+    \item \alert{Física,}
+    \item Química,
+    \item Biologia e
+    \item Geologia.
+    \end{itemize}
+  \item O programa de pós--graduação em Oceanografia
+    \begin{itemize}
+    \item Oferece vagas de Mestrado e Doutorado;
+    \item Tem nível 5$^\dagger$ na Capes;
+    \item Tem nível internacional e
+    \item Admite alunos de outras áreas:
+      \begin{itemize}
+      \item Meteorologia,
+      \item Física,
+      \item Engenharia,
+      \item Matemática Aplicada,
+      \item Computação etc.
+      \end{itemize} 
+    \end{itemize}
+  \item Que tipo de problemas se discute?
+    \begin{itemize}\setlength{\itemsep}{1.5ex}
+    \item Ondas, todo o espectro,teoria e observações;
+    \item Correntes, fluxo de massa e momentum;
+    \item Nível do mar, 
+    \item Fluxo de calor e sal, relação com clima,
+    \item Modelagem numérica, (e.g. derramamento de óleo, IPCC), 
+    \item Técnicas estatísticas de análise de dados,
+    \item Influência de correntes e ondas na biologia,
+    \end{itemize}
+  \item A Oceanografia Física no IOUSP tem duas linhas de pesquisa:
+    \begin{itemize}
+    \item Hidrodinâmica costeira e estuarina e
+    \item Circulação oceânica de meso e larga escala.
+    \end{itemize}
+  \item Essas pesquisas se desenvolvem nos laboratórios de:
+    \begin{itemize}
+    \item \alert{Oceanografia por Satélites},
+    \item Dinâmica Oceânica,
+    \item Hidrodinâmica Costeira,
+    \item Simulação Hidrodinâmica,
+    \item Modelagem dos Oceanos e
+    \item Oceanografia, Clima e Criosfera.
+    \end{itemize}
+  \item Por fim, \alert{onde vão parar nossos egressos}?
+    \begin{itemize}
+    \item Institutos de pesquisa: INPE, CPTEC, Marinha, NIWA (Nova
+      Zelândia), NOAA (EUA) etc.
+    \item Universidades (docência): USP, UFABC, UFBA, UERJ, UNESP, UFSC etc.
+    \item Universidades (Ph.D., pos-doc):  MIT/WHOI, Caltech/NASA, URI, OSU,
+      UMiami, URI, UMass, Rutgers (EUA), LOCEAN (França) etc.
+    \item Iniciativa privada: petróleo e meio--ambiente (consultoria).   
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+% ------------------------------------------------------------
+% ------------------------------------------------------------
+\begin{frame}
+  \centerline{\includegraphics[width=\paperwidth]{obrigado.jpg}}
+  \begin{itemize}
+  \item Saiba mais em \alert{www.io.usp.br} e/ou converse com os
+    professores do IOUSP. É uma opção de futuro.
+  \end{itemize}
+\end{frame}
+% ------------------------------------------------------------
+\end{document}

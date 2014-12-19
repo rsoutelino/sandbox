@@ -1,0 +1,73 @@
+\documentclass{beamer}
+\usetheme{AnnArbor}
+\usepackage[utf8x]{inputenc}
+\usepackage{bookman} 
+\usepackage[T1]{fontenc} 
+\usepackage{textcomp}
+\usepackage{graphics}
+
+\input{iouspcolors.sty}
+
+\title{Título do Seminário} 
+\subtitle{Onde e Quando} 
+\author[José da Silva]{Zé da Silva, Ph.D.  \hfill
+  \texttt{zedasirva@usp.br}}
+\institute[IOUSP]{Instituto Oceanográfico da USP\\
+\includegraphics[height=1.5cm]{logolos_310.png}} 
+% ----O teu logo aí em cima e o do io ali em baixo -----
+\date{}
+\mode<beamer>{\logo{\includegraphics[height=1cm]{IO.jpg}}}
+
+\AtBeginSubsection[] {
+  \begin{frame}<beamer> \frametitle{Roteiro}
+    \tableofcontents[currentsubsection]
+  \end{frame}
+} \setbeamercovered{highly dynamic}
+
+\begin{document}
+
+% ------------------------------------------------------------
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{header.png}}
+\begin{frame}
+\vspace{1.5cm}
+  \titlepage
+\end{frame}
+\usebackgroundtemplate{}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Roteiro}
+  \tableofcontents
+\end{frame}
+% ------------------------------------------------------------
+% daqui para frente é por tua conta e risco
+% ------------------------------------------------------------
+\section{Introdução}
+% ------------------------------------------------------------
+\subsection{Porque Estudar Oceanografia Física?}
+% ------------------------------------------------------------
+\begin{frame}{Alguns Fatos Sobre os Oceanos}
+  \begin{columns}
+    \begin{column}{5.5cm}   
+      \begin{itemize}\setlength{\itemsep}{2ex}
+      \item A Terra(?) é coberta por 70\% de água.
+      \item 97.2\% da água está nos oceanos, 
+      \item 1,8\% é gelo, 0,9\% é subterrânea, 
+      \item \alert{Rios são só 0,02\%} e vapor 0.001\%.
+      \item 1m$^3$ de água armazena mais de 4000 vezes mais calor que
+        1m$^3$ de ar.
+      \end{itemize}
+    \end{column}
+    \begin{column}{6.5cm}
+\begin{itemize}\setlength{\itemsep}{1ex}
+    \item Mais de metade dos humanos vive a < 100km do mar.
+    \item A largura típica dos oceanos é da ordem de 5000km.
+    \item Pouquíssimas pessoas foram mais de 1 km mar adentro.
+    \item A profundidade média dos oceanos é da ordem de 5km.
+    \item Pouquíssimos desceram mais de 10m abaixo da superfície.
+    \item Mais gente já foi à Lua que à Fossa das Marianas (-10.911m).
+    \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+% ------------------------------------------------------------
+\end{document}

@@ -1,0 +1,37 @@
+###########################
+# Outros Comandos de Unix #
+###########################
+
+# igual ao cat mas para colunas
+paste -d" " file1 file2 > merge
+
+# é o 'cat' ao contrário 
+tac filename
+
+# encontra todos os arquivos no diretório presente com a extensão txt
+find . -path "*.txt"
+
+# o segundo exemplo formata as linhas para terem largura de 40 caracters
+fmt filename
+fmt -40 filename
+
+# salva strem video
+mplayer -dumpstream http://www.spiderman3oncomcast.com/SpiderMan3_Trailer3_March_HD-720p.qtl -dumpfile sim.mov
+# ou 
+mencoder -oac copy -ovc copy http://meu endereco/filme.mov -o sim.mov
+
+# converter videos
+ffmpeg -i video1.avi -ab 56 -ar 22050 -b 500 -s 800x600 video1.mpeg 
+
+# capturar tela
+import -window root tela.png
+
+# juntar videos
+cat video1.mpg video2.mpg video3.mpg | 
+ffmpeg -y -i - -fflags genpts -vcodec copy -acodec copy video1+2+3.mpg
+
+# achar aqrquivos tipo *~ \#* .*~ .\#* e apagar
+find . -type f -name "*~" | xargs -i bash -c "echo removendo {}; rm {}"
+
+# limpa history
+history -c

@@ -1,0 +1,129 @@
+
+\documentclass[12pt,portuguese,a4paper,pdftex]{article}
+%\usepackage{epstopdf}
+\usepackage[pdftex]{hyperref}
+%\documentclass[12pt,a4paper]{article}
+\usepackage[brazil]{babel}
+%\usepackage[latin1]{inputenc} %traduz acentos
+\usepackage{natbib}
+%\usepackage{epsf,psfig}
+\usepackage[dvips]{graphicx}
+%\usepackage[square]{natbib}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{amssymb}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\renewcommand{\baselinestretch}{1.5}
+\hoffset=-1cm % regula a margem esquerda 
+\topmargin -1cm % regula a margem superior
+\textwidth 16cm % largura da pagina
+\textheight 24.5cm % altura da pagina
+
+\begin{document}
+
+\pagestyle{empty}
+
+\hspace{-6mm}{\large \sc Mestrado em Oceanografia Física - IOUSP\\
+IOF 5855 - Métodos e Técnicas de Análise de Dados Quase-Sinóticos em Oceanografia Física\\
+\begin{center} Lista Prática \# 5 \end{center} }
+
+
+\vspace{4cm}
+
+\begin{center}
+{\large \bf 
+Rafael Guarino Soutelino\\} 
+\end{center}
+
+\vspace{4cm}
+
+\begin{center}
+Professor:\\
+{\bf Ilson Carlos Almeida da Silveira\\}
+\end{center}
+
+\vspace{4cm}
+
+\begin{center}
+{\small SÃO PAULO, \\
+25 de setembro de 2006}
+\end{center}
+
+
+\newpage
+\pagenumbering{arabic}
+\renewcommand{\baselinestretch}{1}
+
+\pagestyle{empty}
+
+O presente exercício consiste na construção de um modelo quase-geostrófico de 2 camadas otimamente calibrado para a região WESTRAX, seguido de um mapeamento de vorticidade potencial.\\
+
+{\bf Problema 1:} Aplicando-se o primeiro e o segundo esquema de calibração de \textsl{Flierl} (1978), obteve-se valores de salto de densidade $\epsilon$ e prufundidade da picnoclina $-H_1$, sumarizados na tabela abaixo. A Calibração 1 prioriza o efeito dos movimentos de Ekman e a Calibração 2 prioriza efeitos não lineares.\\
+
+\begin{table}
+
+\begin{center}
+% use packages: array
+\renewcommand{\arraystretch}{0.9}
+\renewcommand{\tabcolsep}{5mm}
+\begin{tabular}{|c|c|c|}
+\hline
+ & $\epsilon$ & $H_1$ \\ 
+\hline
+Calibração 1 & 0.0277 $kg.m^{-3}$ & 238 m \\ 
+\hline
+Calibração 2 & 3.2135 $kg.m^{-3}$ & 648 m\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\vspace{.5cm}
+
+A Figura \ref{fig:modos} mostra os perfis verticais dos modos discretos para o modelo de camadas utilizando cada um dos métodos de calibração.\\
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=7cm,keepaspectratio=true]{modos_met1.pdf}
+\includegraphics[width=7cm,keepaspectratio=true]{modos_met2.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:modos} \small{Modos verticais discretos.}}
+\end{figure}
+
+\newpage
+
+{\bf Problema 2:} Consiste no mapeamento de função de corrente $\psi$ para as camadas do modelo. Para tal, utilizou-se o esquema de calibração que prioriza os efeitos não-lineares. Os modos normais discretos calculados no Problema 1 são utilizados aqui para obter as amplitudes modais dos modos discretos. As velocidades são finalmente calculadas através do produto entre as amplitudes modais e os modos discretos. Estas velocidades são mapeadas via AO para o modo baroclínico do modelo de camadas, e as velocidades na camada superior e inferios são apresentadas respectivamente nas Figuras \ref{fig:cam1} e \ref{fig:cam2}. \\
+
+Através da análise deste campo, percebemos que a estrutura da retrofelxão da CNB é totalmente reproduzida, assim como a frente da corrente junto ao contorno dinâmico adotado. No que se refere a superfície, a aproximação de duas camadas adotada é adequada para descrever a dinâmica da CNB, principalmente se comparamos estes resultados com o campo de função de corrente observada em 50 m. O campo de $\psi$ na camada inferior do modelo representa bem a separação sub-termoclínica da CNB para alimentar a Sub-corrente Norte Equatorial. Esta última feição foi representada no campo de $\psi$ observada e 500 m. \\
+
+\textbf{Problema 3:} Consiste no mapeamento de vorticidade potencial quase-geostrófica $q$. Para tanto, $q$ foi separada em 3 termos: {\bf Vorticidade Relativa, Vorticidade Planetária e Vorticidade de Estiramento}. As distribuições destas 3 quantidades mapeadas via AO, assim como o a distribuição de {\bf Vorticidade Potencial} são mostradas nas Figuras \ref{fig:cam1} e \ref{fig:cam2}, para as duas camadas do modelo.\\
+
+Inspecionando separadamente as 3 componentes da VP quase-geostrófica para a camada superior do modelo, percebemos que o campo de VP segue excencialmente as linhas de vorticidade relativa, ou seja, esta componente, nesse caso, é a mais importante para o mapa final de VP. Para a camada inferior, os valores de vorticidade relativa são bem mais baixos que na camada superior, mas  ainda assim, se mostram predominantes em relação aos mapas de vorticidade de estiramento e vorticidade planetária.\\
+
+A última etapa do Problema 3 é tentar obter informações a respeito da evolução dos fluxos obtidos através da interpretação de mapas de $\psi$ sobrepostos às isolinhas de VP quase-geostrófica, em ambas as camadas, assumindo da presente quantidade. \\
+
+O estado estacionário, nesse caso, seria representado por isolinhas paralelas de $\psi$ e VP, enquanto que regiões onde as respectivas isolinhas se cruzam, representam advecção, ou seja, PV e $\psi$ estão mudando conforme o tempo varia. Estes mapas estão representados no útlimo painel das Figuras \ref{fig:cam1} e \ref{fig:cam2}. Para a camada superior, podemos identificar duas regiões aonde o cruzamento entre isolinhas de PV e $\psi$ é importante, as porções noroeste e sudeste do meandramento principal da retrofelxão. Isto sugere que este vórtice está se destacando da costa. 
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{camada1.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:cam1} \small{Camada Superior.}}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm,keepaspectratio=true]{camada2.pdf}
+\end{center}
+\vspace{-0.5cm}
+\renewcommand{\baselinestretch}{.5}
+\caption{\label{fig:cam2} \small{Camada Inferior.}}
+\end{figure}
+
+\end{document}

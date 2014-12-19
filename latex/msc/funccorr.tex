@@ -1,0 +1,592 @@
+\section{Preâmbulo}\label{sec:pre_funccorr}
+
+\hspace{6mm} Após a apresentação dos dois conjuntos (climatológico e sinótico) 
+de dados que utilizamos, é natural que apresentemos a metodologia empregada para a 
+construção dos campos de velocidade horizontalmente não-divergente 
+citados no capítulo anterior. Cada conjunto, 
+em particular, possibilitará a obtenção de diferentes campos. 
+
+Antes de discutirmos tais campos, abordaremos a fundamentação teórica na qual está
+calcada a presente dissertação. Através dessa fundamentação teórica e da metodologia 
+aplicada, conseguiremos construir mapas horizontais de velocidade a partir dos 
+conjuntos de dados citados. 
+
+O tipo de escoamento que pretendemos investigar tem escalas temporais e espaciais
+que se aproximam da geostrofia. O movimento geostrófico é um movimento 
+estacionário não-divergente horizontalmente (se avaliado no plano $f$), que consiste no resultado de 
+um equilíbrio entre as forças de gradiente
+de pressão e Coriolis. As duas modalidades conhecidas da força do gradiente de 
+pressão são a força do gradiente barotrópico de pressão e a força do gradiente baroclínico de
+pressão. A primeira depende unicamente da elevação da superfície livre
+do mar em relação a um nível base. Ela é responsável pela geração das correntes
+geostróficas barotrópicas, que não apresentam variações verticais.
+A segunda depende dos gradientes horizontais de densidade, 
+ou seja, dos gradientes horizontais das propriedades termohalinas. Esta é responsável
+pela geração de correntes geostróficas baroclínicas, que tem por definição o cisalhamento
+vertical de velocidades e transporte nulo na coluna de água. 
+
+As correntes geostróficas do oceano real, como as CCOs, tem na realidade a con\-tri\-bu\-i\-ção
+dos dois tipos de força do gradiente de pressão. É comum então dividirmos as correntes
+geostróficas em duas {\bf componentes}: a {\bf componente barotrópica} e a {\bf componente baroclínica}.
+De uma forma geral as correntes oceânicas como as CCOs em um oceano tropical, têm em sua 
+componente baroclínica a maior parte da energia, em parte devido a forte estratificação
+da coluna de água observada nestas latitudes. É devido a este motivo que, como pudemos
+perceber através do Capítulo \ref{cap:intro}, numerosos são os trabalhos que descrevem os escoamentos, 
+quantitativamente ou qualitativamente, com base apenas na componente baroclínica dos mesmos. 
+Por mais que esta componente seja predominante e ajude a responder e entender as lacunas
+ainda existentes no conhecimento do escoamento ao largo da margem continental brasileira, 
+a disponibilidade de traçar estimativas da velocidade total torna mais completo o entendimento
+da circulação. 
+
+Em geral, obter estimativas da velocidade total é consideravelmente mais dispendioso do que 
+apenas a da componente baroclínica. O motivo é que é muito mais difícil, por exemplo, obter
+dados de velocidade ou altura da superfície livre do mar, do que da estrutura termohalina
+tridimensional. 
+
+Neste trabalho, temos a disponibilidade dos dois tipos de variáveis: dados termohalinos
+(climatológicos e sinóticos) e dados de velocidade (sinóticos). Os dados termohalinos, 
+sejam eles climatológicos ou sinóticos, nos possibilitam a estimativa de velocidade 
+geostrófica baroclínica. Os dados de velocidade, possibilitam a estimativa da velocidade
+geostrófica total. Na próxima
+seção, detalharemos o embasamento teórico que permite, através de dados termohalinos, 
+estimar velocidades geostróficas baroclínicas relativas, e sob que ótica isto permite
+a construção de campos horizontais desta grandeza.    
+
+\section{Função de Corrente Geostrófica Relativa} \label{sec:psigeo}
+
+\subsection{Fundamentos Teóricos} \label{sec:psigeo_teo}
+
+\hspace{6mm} O movimento geostrófico, por ter aproximadamente natureza 
+horizontalmente não-divergente ($\nabla_H . \vec{v} = 0$), nos permite definir uma grandeza 
+denominada {\bf função de corrente ($\psi$)}, que tem como
+definição matemática
+
+\begin{equation}
+u = -\frac{\partial \psi}{\partial y} \ \ \ \ \ \ \ \ \  e  \ \ \ \ \ \ \ \ \  v = \frac{\partial \psi}{\partial x}.
+\vspace{0.5cm}
+\label{eq:uvpsi}
+\end{equation}
+
+Se partimos das componentes zonal e meridional da equação do movimento geostrófico,
+em coordenadas isobáricas, temos que 
+
+\begin{equation}
+u = -\frac{1}{f_0} \frac{\partial \Delta \Phi}{\partial y} \ \ \ \ \ \ \ \ \  e  \ \ \ \ \ \ \ \ \  v = \frac{1}{f_0} \frac{\partial \Delta \Phi}{\partial x},
+\vspace{0.5cm}
+\label{eq:uvgpan}
+\end{equation}
+ 
+onde $f_0$ é o parâmetro de Coriolis médio para a região de estudo. $\Delta \Phi$ é anomalia do geopotencial, definida por 
+
+\begin{equation}
+\Delta \Phi \: = \: \int_{p_0}^{p} \delta_\alpha dp,
+\vspace{0.5cm}
+\label{eq:gpan}
+\end{equation}
+
+que por sua vez depende unicamente dos dados termohalinos, pois 
+$\delta_\alpha$ consiste na anomalia do volume específico.  Portanto, vemos que para cada perfil hidrográfico,
+seja ele oriundo dos dados termohalinos climatológicos provenientes da base WOA2001, seja ele oriundo das
+estações hidrográficas da OEII, podemos calcular perfis de $\Delta \Phi$ relativos a um nível 
+$p_0$ de referência, que daqui em diante chamaremos de $\mathcal{NR}$. 
+Combinando as Equações \ref{eq:uvpsi} e \ref{eq:uvgpan}, chegamos facilmente a 
+
+\begin{equation}
+\psi_{(p_0/p)} \: = \: \frac{\Delta \Phi}{f_0},
+\vspace{0.5cm}
+\label{eq:psigpan}
+\end{equation}
+
+de onde podemos calcular as componentes zonal e meridional do movimento geostrófico, através da Equação 
+\ref{eq:uvpsi}. Entretanto, calcular o gradiente explicitado na referida equação requer um mapeamento
+horizontal da quantidade $\psi_{(p_0/p)}$. 
+
+Das Equações \ref{eq:psigpan} e \ref{eq:gpan}, podemos apontar algumas limitações inerentes ao método quando da obtenção 
+de $\psi_{(p_0/p)}$ através de dados hidrográficos apenas.
+Uma vez que a determinação de $\psi_{(p_0/p)}$ passa por adotarmos um valor representativo do $\mathcal{NR}$, 
+este deve ser tal que melhor reproduza o campo de velocidades baroclínicas absolutas 
+ao largo da costa leste brasileira. Em outras palavras, está associado às velocidades geostróficas 
+baroclínicas relativas (ao $\mathcal{NR}$) e não absolutas. A forma mais comum de lidar com o $\mathcal{NR}$
+é assumir um valor nulo e constante para o mesmo, em toda a área de estudo. Esta abordagem que permite a obtenção
+de velocidades geostróficas através dos dados termohalinos é denominada Método Dinâmico Clássico ($\mathcal{MDC}$),
+e foi desenvolvido originalmente por \cite{sandstrom_helland1903}.
+
+As técnicas utilizadas para o mapeamento de $\psi_{(p_0/p)}$, e conseq\"uentemente $u_{(p_0/p)}$ e $v_{(p_0/p)}$ 
+geostróficas serão detalhadas na próxima seção.
+Entretanto, já adiantamos aqui que para as diferentes abordagens previstas nesta dissertação
+(climatológica e sinótica), técnicas diferentes serão utilizadas para este mapeamento, em 
+função dos tipos de variáveis observacionais disponíveis para cada uma delas. Para o cenário 
+climatológico, por dispormos apenas de dados termohalinos, utilizaremos exatamente a abordagem 
+apresentada nesta seção. Para o cenário sinótico, utilizaremos uma com\-bi\-na\-ção de dados termohalinos
+e de velocidade para nos isentarmos da dependência de um $\mathcal{NR}$. 
+
+\subsection{Mapeamento Objetivo} \label{sec:psigeo_AO}
+
+\hspace{6mm} Fazendo uso dos dados termohalinos climatológicos disponíveis e usufruindo do método analítico 
+detalhado na seção anterior, comecemos a descrição da metodologia empregada
+na construção dos campos de $\psi_{(p_0/p)}$ geostrófico climatológico para o verão austral.
+
+Inicialmente, como buscamos a representação de um cenário 
+médio que possa nos prover uma descrição adequada da feição da BiCSE, adotaremos o $\mathcal{NR}$ de 1000 dbar, 
+já utilizado por \cite{rodrigues_etal2006}. De acordo com estes autores este é o nível médio em que o escoamento associado ao 
+giro subtropical se esvanece. 
+
+Na construção dos campos horizontais de $\psi_{(p_0/p)}$, primeiramente calculamos um perfil de $\psi_{(p_0/p)}$ a partir de 
+cada perfil termohalino da base de dados WOA2001, limitados ao Oceano Atlântico Sul, e usando 
+a Equação \ref{eq:psigpan}. Posteriormente, interpolamos os valores de $\psi_{(p_0/p)}$ encontrados para uma 
+grade limitada pelos paralelos de 2$^\circ$-30$^\circ$S e pelos meridianos de 30$^\circ$-50$^\circ$W, em cada
+nível vertical. Para tanto
+utilizamos uma técnica de interpolação chamada 
+\textit{Análise Objetiva} ($\mathcal{AO}$). De acordo com 
+\cite{bretherton_etal1976}, a $\mathcal{AO}$ é baseada no Teorema 
+de Gauss-Markov. Este teorema fornece uma expressão para a estimativa de erros mínimos 
+quadráticos de variáveis físicas (temperatura, salinidade, velocidade, função de corrente, 
+vorticidade, etc), sendo a estatística do campo estimada na forma de espectro espaço-temporal. 
+Mapas de erros são obtidos através de estimativas do erro médio quadrático de interpolação. 
+
+\cite{carter_robinson1987} mostraram que a $\mathcal{AO}$ de dados oceânicos pode ser pensada 
+como um ajuste por mínimos quadrados onde as funções-peso dependem da correlação entre os dados. 
+Logo, sua implementação requer um conhecimento prévio da função de correlação das 
+variáveis, $C$, e da variância do erro amostral aleatório, $\epsilon^2$. Seguindo 
+\cite{emery_thomson1998}, embora a especificação da matriz de correlação deva ser determinada na 
+estrutura observada das variáveis do oceano, há a opção de se utilizar uma forma matemática teórica 
+ajustada e baseada nesta estrutura. É o caso sugerido quando os dados amostrados são esparsos, 
+como acontece com o conjunto WOA2001 e a OEII (já adiantando que o mesmo método de 
+interpolação será adotado para este conjunto).
+
+Para o mapeamento horizontal de escoamentos geofísicos, buscamos utilizar uma função 
+de correlação dada por:
+
+\begin{equation}
+C(\Delta x,\Delta y) = (1-\epsilon^{2})e^{-\left [ (\Delta x)^2/l_x^2 + (\Delta y)^2/l_y^2 \right ]},
+\vspace{0.25cm}
+\label{func_cor_1}
+\end{equation}
+onde $\Delta x$ e $\Delta y$ representam os incrementos espaciais horizontais nas 
+direções zonal e meridional, respectivamente, $l_x$ e $l_y$ são os chamados comprimentos de 
+correlação e $\epsilon^{2}$ é a variância do erro amostral aleatório \citep{carter_robinson1987}.
+
+Para essa natureza de escoamentos, as diferenças entre os comprimentos de correla\-ção 
+horizontais $l_x$ e $l_y$ costumam ser sutis como conseq\"uência da notável isotropia horizontal dos 
+mesmos. Em muitos casos e principalmente naqueles envolvendo mapeamento de quantidades 
+com estruturas de caráter radial, tal como característico das feições de larga escala, como a BiCSE,
+e as feições ligadas à atividade de meso-escala da CB (meandros e vórtices),
+é convidativo utilizar a forma isotrópica gaussiana da Equação \ref{func_cor_1}:
+
+\begin{equation}
+C(r) = (1-\epsilon^{2})e^{-{r^2/l_c^2}},
+\vspace{0.25cm}
+\label{func_cor_2}
+\end{equation}
+onde $r = \sqrt{x^2 + y^2}$ e $l_c$ é o comprimento de correlação horizontal na 
+direção radial \citep{silveira_etal2000B}.
+
+O comprimento de correlação e a variância do erro amostral podem ser determinados 
+de duas maneiras conhecidas: (1) a partir do ajuste não-linear da função de correlação amostral 
+dos dados à forma teórica (Eq. \ref{func_cor_2}) ou (2) através do conhecimento prévio da 
+estrutura do campo investigado e das principais feições que se quer realçar. Nesta dissertação, 
+a determinação destes parâmetros é realizada através do caso (1), seguindo \cite{silveira_etal2000B}. 
+Fica claro o grau de subjetividade implícito no caso (2). Em muitas ocasiões, isto pode resultar 
+em campos estimados ``contaminados'' com estruturas as quais não conseguem ser resolvidas pela 
+grade de observações e resultam em feições artificais. Assim como no caso (2), há também uma 
+limitação associada ao caso (1), não de caráter 
+subjetivo, mas sim metodológico. Nem sempre a correlação apresentada entre os dados observados e 
+aqueles estimados respeita aquela assumida como gaussiana pela Equação \ref{func_cor_1} ou 
+\ref{func_cor_2}. Logo, há uma implicação em determinarmos qual a forma da função de correlação, 
+o que pode acarretar em um problema de solução a longo prazo.
+
+\begin{figure}%[ht]
+ \begin{center}
+  \includegraphics[width=14cm,keepaspectratio=true]{/home/rafaelgs/mestrado/proc/climatologia/figuras_larga_escala/corr_woa_larga.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:func_corr} \small Correlação amostral da função de corrente 
+ geostrófica calculada para os dados do WOA2001. Conforme ajuste não-linear para a Equação 
+ \ref{func_cor_2} (linha vermelha), obtemos um comprimento de correlação $l_c = 488$ km 
+ $\approx 4,4^\circ$ e uma variância do erro amostral aleatório $\epsilon^2 =$ 0,105.}
+\end{figure}
+
+Calculamos a correlação dos valores de $\psi_{(p_0/p)}$ para uma profundidade em que existam valores em 
+todos os pontos de grade do WOA2001. A correlação amostral é apresentada na Figura \ref{fig:func_corr}, 
+graficada em função da distância entre as estações (\textit{lag}). É fácil notar o caráter 
+aproximadamente gaussiano apresentado pela correlação, sugerindo que a forma teórica proposta 
+(Eq. \ref{func_cor_2}) é uma boa aproximação. Seu ajuste não-linear nos fornece um comprimento de 
+correlação \textbf{$l_c =$ 488 km $\approx$ 4,4$^\circ$} e uma variância do erro amostral 
+aleatório \textbf{$\epsilon^2 =$ 0,105}. 
+
+% Consideramos, conforme sugerido 
+% por \cite{denman_freeland1985}, que qualquer valor de correlação de $\psi_{(p_0/p)}$ que fuja das 
+% proximidades de zero a uma distância muito maior que o primeiro raio de deformação 
+% baroclínico típico da região, não possuem um embasamento na física envolvida e, portanto, 
+% podem ser desconsiderados. Logo, de posse do valor médio aproximado do raio de deformação igual a 
+% 80 km \citep{houry_etal1987}, limitamos a correlação em aproximadamente 1000 km, como 
+% apresentado na Figura \ref{fig:func_corr}.
+
+Em resumo, o emprego da $\mathcal{AO}$ como técnica de interpolação na construção dos campos 
+horizontais de $\psi_{(p_0/p)}$ estima o valor desta quantidade para cada ponto pertencente à grade de 
+interpolação de escolha. Os parâmetros $l_c =$ 4,4$^\circ$ e $\epsilon^2 =$ 0,105 são então 
+utilizados. Como subproduto, a $\mathcal{AO}$ nos fornece o campo de erros, estimado a partir do erro 
+médio quadrático, associado ao processo de interpolação. A Figura \ref{fig:grades} 
+apresenta tal campo de erros de interpolação (percentual) considerando os parâmetros $l_c$ e 
+$\epsilon^2$ determinados. 
+A título de informação, a Figura \ref{fig:grades} ilustra a grade construída para 
+interpolação, caracterizada por uma resolução de $60 \times 60$ pontos espaçados, em média, 
+de 50 km.
+
+\begin{figure}[hb]
+ \begin{center}
+  \includegraphics[width=16cm,keepaspectratio=true]{/home/rafaelgs/mestrado/proc/climatologia/figuras_larga_escala/er_woa.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:grades} \small Representação da grade para interpolação dos campos de $\psi_{(p_0/p)}$ 
+ da climatologia WOA2001 sobreposta ao mapa do erro médio quadrático percentual de interpolação por 
+ $\mathcal{AO}$: $l_c =$ 4,4$^\circ$ e $\epsilon^{2} =$ 0,105. A área correspondente aos domínios geográficos da
+OEII está envolta pela caixa vermelha.}
+\end{figure}
+
+Há ainda um último aspecto importante a ser frisado sobre à construção dos campos de $\psi_{(p_0/p)}$. 
+Determinadas estruturas espúrias presentes nos campos podem ter sua origem na forma como 
+$\psi_{(p_0/p)}$ foi calculado nas proximidades da costa, onde são mais esparsos os perfis 
+do WOA2001 e, adicionalmente, há 
+a complicação de como lidar com as condições de contorno no lado costeiro do domínio. É necessário 
+satisfazer as condições de contorno junto à borda oeste, no caso. Em particular, as 
+condições de contorno de \textit{Dirichlet} são de implementação mais simples. Estas consistem 
+simplesmente em estabelecer $\psi = constante$ no contorno sólido, em outras palavras, fluxo 
+nulo normal ao contorno.
+
+\cite{silveira_etal2000B} propõem que a condição de \textit{Dirichlet} seja aplicada durante o 
+processo de mapeamento através da inclusão do que chamam de ``pseudo-dados'' no esquema de 
+interpolação por $\mathcal{AO}$. Para tanto, a matriz com as coordenadas da isóbata da 
+profundidade que se deseja mapear e valores de $\psi = 0$ no contorno são adicionados à 
+matriz contendo as coordenadas das estações e os valores de $\psi_{(p_0/p)}$ calculados relativamente 
+ao $\mathcal{NR}$.
+
+
+\section{Função de Corrente Geostrófica Absoluta} \label{sec:psiref}
+
+\subsection{Fundamentos Teóricos} \label{sec:psiref_teo}
+
+\hspace{6mm} O arcabouço teórico utilizado aqui é o mesmo apresentado na seção precedente, ou seja, a geostrofia. 
+Com isso, a formulação matemática para o cálculo das velocidades geostróficas permanece
+inalterada. O que muda é que substituiremos o {\it nível de movimento nulo} ($\mathcal{NR}$) por um {\it nível de velocidade
+conhecida}, oriunda dos dados de ADCP. Ao fazermos isto, estaremos migrando do {\bf Método Dinâmico Clássico} ($\mathcal{MDC}$) para 
+o {\bf Método Dinâmico Referenciado} ($\mathcal{MDR}$). De agora em diante, quando nos referirmos ao $\mathcal{MDR}$
+fazemos alusão àquele que utiliza-se das velocidades observadas por ADCP de casco. Neste caso, para nos fazermos mais claros, expandiremos a abordagem 
+matemática. 
+
+Na Seção \ref{sec:psigeo_teo}, mostramos como chegar à grandeza escalar $\psi_{(p_0/p)}$ através dos 
+dados termohalinos, através das Equações \ref{eq:uvgpan} e \ref{eq:psigpan}. O que buscaremos agora
+é uma equação que relacione uma componente qualquer da velocidade (meridional por exemplo) aos dados
+termohalinos diretamente. Se combinamos as Equações \ref{eq:uvgpan} e \ref{eq:psigpan} e as escrevemos para  
+a componente meridional, obtemos 
+
+\begin{equation}
+v(p) - v(p_0) = - \frac{1}{f_0} \int_{p_0}^p \frac{\partial \delta_\alpha}{\partial x} dp,
+\vspace{0.5cm}
+\label{eq:vgeo}
+\end{equation}
+
+que nada mais é do que uma forma diferente de representar o já exposto na Seção \ref{sec:psigeo_teo}, 
+porém torna-se fundamental para entender o cerne do processo de referenciamento do Método Dinâmico. 
+
+Na Equação \ref{eq:vgeo}, $v(p)$ é a velocidade em um nível isobárico qualquer de interesse e $v(p_0)$ corresponderia à 
+velocidade no $\mathcal{NR}$. Ou seja, segundo o $\mathcal{MDC}$, $v(p_0) = 0$, mas para a aplicação do $\mathcal{MDR}$, simplesmente
+$v(p_0)$ será a velocidade medida pelo ADCP de casco. A Figura \ref{fig:ex_metdinref} ilustra como é feito este cálculo
+através da representação de um perfil de velocidade idealizado calculado por ambos os métodos: o $\mathcal{MDC}$, 
+que se baseia em um $\mathcal{NR}$ e o $\mathcal{MDR}$, que se baseia em um nível de 
+velocidades medidas diretamente. Supondo ser uma representação idealizada do sistema CB-SNB por exemplo, note
+o quão inadequada pode se tornar a representação do perfil de velocidades caso a escolha do $\mathcal{NR}$ seja mal sucedida. 
+À medida que utilizamos dados observados de velocidade, a representação fica mais próxima do cenário real, por nos
+tornarmos livres da imposição de um nível {\bf constante} de escoamento nulo. No nosso caso, teremos inúmeros perfis, 
+e em cada um deles, o valor de velocidade observada é único.
+
+\begin{figure}%[ht]
+ \begin{center}
+  \includegraphics[width=16cm,keepaspectratio=true]{/home/rafaelgs/mestrado/figuras/ex_metdinref.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:ex_metdinref} \small Representação idealizada de um perfil de velocidade típico da 
+costa brasileira evidenciando as diferenças entre métodos $\mathcal{MDC}$ e $\mathcal{MDR}$. O painel esquerdo
+representa um perfil de velocidade geostrófica calculada através do $\mathcal{MDC}$ com NR = 1000 dbar, o painel central
+exemplifica o caso do NR = 150 dbar e o painel direito mostra como se dá a aplicação do $\mathcal{MDR}$.}
+\end{figure}
+
+A próxima e crucial etapa consiste em selecionar um $v(p_0)$ que possibilite isolar o movimento geostrófico, tendo em vista
+que as velocidades diretamente observadas são o resultado da ação de um conjunto de movimentos
+diversos ocorrentes no oceano. Isto significa que devemos buscar apenas a 
+componente geostrófica dos vetores de velocidade oriundos do ADCP, para que utilizemos a Equação \ref{eq:vgeo}
+adequadamente. A melhor estratégia, segundo \cite{sutton_chereskin2002} e \cite{pickard_lindstrom1993},
+está calcada na escolha de $p_0$, garantindo que este nível esteja
+sob mínima influência possível das componentes ageostróficas da velocidade.
+Segundo estes autores, existem três principais fontes de 
+velocidades ageostróficas para regiões oceânicas, como esta que é objeto de estudo nesta dissertação.
+São estas: 
+
+\begin{itemize}
+
+\item[$\checkmark$] a deriva de Ekman, provocada pela tensão de cisalhamento do vento;
+
+\item[$\checkmark$] as correntes quase-inerciais;
+
+\item[$\checkmark$] as correntes de maré.   
+
+\end{itemize}
+
+Dos três itens, as correntes quase-inerciais e as correntes de maré serão filtradas naturalmente através 
+da interpolação por $\mathcal{AO}$ que aplicaremos aos dados, por terem freq\"uências relativamente altas quando comparadas às
+correntes geostróficas. Para evitarmos a deriva de Ekman, pretendemos, de acordo com \cite{sutton_chereskin2002},
+buscar níveis de profundidade onde o efeito direto da tensão de cisalhamento do vento é praticamente nulo.
+Para tanto, conduzimos uma estimativa da profundidade média da camada de Ekman durante o período de duração da 
+OEII. 
+
+De acordo com \cite{cushman1994}, a profundidade da camada de Ekman pode ser determinada empiricamente 
+através de 
+
+\begin{equation}
+h_E = \frac{\gamma}{\rho_0}u_*, 
+\vspace{0.5cm}
+\label{eq:hek}
+\end{equation}
+
+onde $\gamma$ é a constante de {\it Von Karman} e tem como valor 0,4. A variável $u_*$ é a {\it velocidade
+friccional} que depende diretamente da tensão de cisalhamento do vento, através de
+
+\begin{equation}
+u_* = \sqrt{\frac{| \vec{\tau} |}{f_0}}.
+\vspace{0.5cm}
+\label{eq:ufric}
+\end{equation}
+  
+Para obtermos uma estimativa do vento, retiramos os valores de tensão de cisalhamento ($\vec{\tau}$)
+de campos oriundos do escaterômetro da NASA (QuickSCAT), recolhidos
+para todo o período de duração da OEII. Trata-se de um sensor remoto montado em um satélite que mede
+a tensão de cisalhamento do vento junto a superfície do mar através da rugosidade da mesma. Estes dados 
+são conteúdo de um programa de sensoriamento remoto internacional que data desde o ano de 1998 até os dias atuais, 
+e estão disponíveis gratuitamente na rede através do {\it website} da NASA. 
+De posse de todos os valores de $h_E$ calculados através do uso destes dados na Equação \ref{eq:hek}, 
+obtivemos seu valor médio, que foi de aproximadamente 77 m. Utilizamos os vetores de velocidade de corrente no nível
+equivalente à aproximadamente o dobro da profundidade média da camada de Ekman calculada (150 m),
+que estão certamente livres deste efeito.
+Este nível de 150 m adicionalmente localiza-se em uma profundidade onde os dados de ADCP
+ainda apresentam uma boa consistência, considerando sua 
+capacidade de penetração.
+
+Como nas investigações deste trabalho estamos construindo campos horizontais, na prática não usaremos a Equação 
+\ref{eq:vgeo}, portanto voltemos a abordagem que 
+considera $\psi$ em detrimento de tratar separadamente as componentes do vetor velocidade. Esta abordagem é 
+mais elegante e confortável, pois carrega a informação dos dois componentes do vetor velocidade em uma só
+grandeza escalar ($\psi$). Esta é também a abordagem utilizada por \cite{sutton_chereskin2002} que partem
+do princípio que 
+
+\begin{equation}
+\psi_{tot} = \psi_{(p_0/p)} + \psi_{obs(p_0)}.
+\vspace{0.5cm}
+\label{eq:psiref}
+\end{equation}
+
+O procedimento de cálculo representado através da Eq. \ref{eq:psiref} consiste na soma
+escalar de dois campos horizontais de $\psi$, e pode ser resumido em três etapas: 
+
+\begin{enumerate}
+
+ \item {\bf Cálculo de $\psi_{(p_0/p)}$:} consiste na construção de um campo de função de corrente
+geostrófica segundo o $\mathcal{MDC}$, baseando-se unicamente na estrutura termohalina da OEII. 
+O $p_0$ utilizado será convenientemente o de 150 m.
+ 
+ \item {\bf Cálculo de $\psi_{obs(p_0)}$:} consiste na construção de um campo de função de corrente
+observada baseando-se nos dados de velocidade observada via ADCP de casco durante a OEII. Este
+campo será construído no nível de 150 m, de acordo com as razões apresentadas nos últimos parágrafos. 
+
+ \item {\bf Cálculo de $\psi_{tot}$:} consiste na construção de um campo de função de corrente geostrófica
+absoluta. Isto se dá com a soma dos demais campos construídos, de acordo com a expressão
+apresentada na Eq. \ref{eq:psiref}. Notemos que a etapa 1 utiliza-se de um $p_0 = 150 m$, pois o campo
+de função de corrente geostrófica absoluta neste nível deve ser idêntico ao campo de função de corrente
+observada. Neste nível, somaremos o campo de $\psi_{obs(p_0)}$ com um campo de $\psi_{(p_0/p)}$ {\bf nulo}. 
+O resultado destes cálculos em um panorama vertical é semelhante ao exposto na Figura \ref{fig:ex_metdinref}.
+
+\end{enumerate}
+
+\subsection{Mapeamento Objetivo} \label{sec:psiref_AO}
+
+\hspace{6mm} Evidentemente, é necessário tecermos maiores esclarecimentos acerca da etapa 2, ou seja, do cálculo 
+de $\psi_{obs(p_0)}$, uma vez que 
+esta é oriunda da interpolação das componentes zonal ($u_{obs(p_0)}$) e meridional ($v_{obs(p_0)}$) do vetor velocidade fornecidas pelo 
+ADCP, utilizando uma 
+modalidade diferente da $\mathcal{AO}$: a {\bf Análise Objetiva Vetorial} ($\mathcal{AOV}$) \citep{bretherton_etal1976}.
+Antes de esclarecermos
+tal método, lembramos que os campos de $\psi_{(p_0/p)}$ são calculados exatamente aos moldes do que foi detalhado na Seção  
+\ref{sec:psigeo_teo}, e dependem unicamente dos dados termohalinos. De acordo com esta abordagem ($\mathcal{MDC}$), o interpolador 
+$\mathcal{AO}$
+recebe como entrada $\psi_{(p_0/p)}$, e disponibiliza
+como saída a mesma grandeza $\psi_{(p_0/p)}$ interpolada otimamente. Já para o caso de $\psi_{obs(p_0)}$ é necessária
+a utilização da $\mathcal{AOV}$, pois as grandezas de entrada e saída são de natureza dimensional diferente. Temos
+como entrada as componentes $u_{obs(p_0)}$ e $v_{obs(p_0)}$ e como saída $\psi_{obs(p_0)}$. Este procedimento é executado
+de forma semelhante nos cálculos de \cite{silveira_etal2000B}, que fez uso de dados de velocidade observada diretamente via
+perfilador PEGASUS. 
+
+O princípio físico que torna possível tal cálculo está calcado em garantir a não-divergência do campo de velocidade 
+após a interpolação, que é o caso dos cálculos realizados pela $\mathcal{AOV}$.
+Naturalmente, mesmo em níveis profundos como o de 150 m,
+longe da influência da tensão de cisalhamento do vento, ainda resta nos campos alguma divergência horizontal, 
+oriunda de movimentos ageostróficos de mais baixa freq\"uência. Com isso, a $\mathcal{AOV}$ além de necessária
+para transformar $u_{obs(p_0)}$ e $v_{obs(p_0)}$ em $\psi_{obs(p_0)}$, favorece ainda mais a eliminação
+dos ruídos ageostróficos. 
+
+Em síntese, o esquema de interpolação por $\mathcal{AOV}$ utiliza o princípio de que todo e qualquer campo
+de velocidade, pode ser escrito segundo a decomposição de Euler, que consiste em 
+
+\begin{eqnarray}
+\vec{v} = (u,v) = \vec{k} \times \bigtriangledown \psi - \bigtriangledown \chi,
+\label{eq:cauchyriemman}
+\end{eqnarray}
+
+onde $\chi$ é o potencial de velocidade, que representa a parte divergente e irrotacional do campo de velocidade,
+e $\psi$ a função de corrente, que representa a parte  
+rotacional e não-divergente. Para podermos obter um campo de função de corrente observada $\psi_{obs(p_0)}$, de acordo com sua definição \citep{kundu1990}, obrigatoriamente devemos
+remover a divergência.  Os cálculos efetuados durante a $\mathcal{AOV}$ dão uma estimativa de $\psi_{obs(p_0)}$, assumindo que
+o fluxo divergente é negligenciável, seguindo o princípio:
+{\it ``Se existe uma relação funcional entre a velocidade não-divergente e $\psi_{obs(p_0)}$, existe também uma relação funcional 
+entre suas funções de correlação, assumindo isotropia para o campo de velocidade.''} 
+
+Assim como a $\mathcal{AO}$, a $\mathcal{AOV}$ tem a mesma propriedade de promover uma filtragem espaço-temporal
+nos dados, de forma a eliminar as estruturas que estejam embebidas em uma escala não resolvida pelo desenho
+amostral da OEII. Para tanto, devemos repetir os cálculos referentes à estimativa dos parâmetros de interpolação
+{\bf $l_c$} e {\bf $\epsilon^2$}, de modo a manter o critério metodológico que permite utilizar a técnica de forma
+ótima. Portanto, repetimos os cálculos descritos na Seção \ref{sec:psigeo_AO} para o caso de $\psi$ climatológico,
+dessa vez utilizando $\psi$ sinótico, seja $\psi_{(p_0/p)}$ ou $\psi_{obs(p_0)}$. 
+Escolhemos aqui o $\psi_{(p_0/p)}$ para esta estimativa, e assumimos que 
+tanto para esta grandeza quanto para as velocidades observadas pelo ADCP, as escalas horizontais das estruturas
+de interesse são as mesmas. 
+
+Conforme esperávamos, o  {\bf $l_c$} estimado para os dados sinóticos é significativamente menor do que aquele
+estimado para a climatologia, pois a mesma representa um cenário médio, onde as estruturas são de maior escala 
+espacial. A Figura \ref{fig:corr_oeii} mostra a curva de 
+auto-correlação e os valores dos parâmetros encontrados são de comprimento de 
+correlação \textbf{$l_c =$ 95 km $\approx$ 1$^\circ$} e variância do erro amostral 
+aleatório \textbf{$\epsilon^2 =$ 0,19}. Este valor menor de $l_c$, já nos dá indícios do quão maior será o nível 
+de detalhamento contido no escoamento encontrado. A título de informação, a Figura \ref{fig:grades_oeii}
+ilustra a grade curvilinear construída para 
+interpolação, caracterizada por uma resolução de $50 \times 30$ pontos espaçados, em média, 
+de 15 km. O mapa de erro percentual de interpolação está subposto à grade curvilinear na Figura \ref{fig:grades_oeii}.
+
+A metodologia empregada para o cálculo de $l_c$ e $\epsilon^2$, apesar de ser meramente estatística, 
+remete a um significado físico suficientemente robusto: estamos minimizando {\it aliasing} por estruturas
+não resolvidas adequadamente pela amostragem. 
+
+
+\begin{figure}%[hb]
+ \begin{center}
+  \includegraphics[width=12cm,keepaspectratio=true]{/home/rafaelgs/mestrado/proc/hidrografia/figuras/comp_corr_leste2.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:corr_oeii} \small Correlação amostral da função de corrente 
+ geostrófica calculada para os dados da OEII. Conforme ajuste não-linear para a Equação 
+ \ref{func_cor_2} (linha vermelha), obtemos um comprimento de correlação $l_c = 95$ km 
+ $\approx 1^\circ$ e uma variância do erro amostral aleatório $\epsilon^2 =$ 0,19.}
+\end{figure}
+
+\begin{figure}%[ht]
+ \begin{center}
+  \includegraphics[width=12cm,keepaspectratio=true]{/home/rafaelgs/mestrado/proc/hidrografia/figuras/er_OEII_20m.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:grades_oeii} \small Representação da grade para interpolação dos campos da 
+ da OEII sobreposta ao mapa do erro médio quadrático percentual de interpolação por 
+ $\mathcal{AO}$: $l_c =$ 1$^\circ$ e $\epsilon^{2} =$ 0,19.}
+\end{figure}
+
+% O sensoriamento remoto é uma ferramenta poderosíssima de amostragem indireta dos oceanos. Imagens de satélite
+% são obtidas diariamente em todo o globo, em poucos minutos. Dentro do escopo da circulação oceânica, podemos
+% citar alguns tipos de produtos oriundos do sensoriamento remoto que nos auxiliam na identificação e interpretação
+% de feições de escoamento. Imagens da temperatura da superfície do mar são excelentes traçadoras de frentes térmicas
+% associadas à correntes de contorno, meandros, vórtices e ressurgências, pois tais feições são caracterizadas por
+% gradientes térmicos marcantes. Na região sudeste brasileira é muito comum a ocorrência de ressurgências costeiras  e
+% de plataforma, que fazem com que na maior parte do tempo, as águas na plataforma continental sejam mais frias do que 
+% na porção oceânica adjacente. Com isso, o meandramento de uma corrente de contorno como a CB é capaz de advectar estas
+% águas mais frias para a porção oceânica, ou injetar águas oceânicas para a plataforma continental. Ambos os mecanismos
+% fazem com que os meandros sejam reconhecidos através de uma imagem térmica. 
+%   
+% Porém, em nossa região de interesse, os meandros e vórtices não possuem assinatura
+% térmica, devido à ausência de águas mais frias junto a costa e a plataforma continental. Com isso, devemos procurar
+% outro traçador para identificar estas feições. Um meandro ou vórtice é conhecido pela sua capacidade de 
+% bombear água em direção à superfície (ciclônico) ou em direção à termoclina (anticiclônico). Em uma região oceânica, 
+% caracterizada por águas pobres em nutrientes, um bombeamento de águas provenientes da termoclina para o interior
+% da camada de mistura, por disponibilizar nutrientes na zona eufótica, pode promover ``blooms'' de fitoplâncton.
+% Estas microalgas são ricas em clorofila, que convenientemente para este estudo, pode ser medida indiretamente
+% por sensores remotos de satélite. 
+% 
+% Buscamos então imagens de clorofila disponíveis na rede, oriundas do satélite MODIS, que estivessem livre
+% de contaminação por nuvens e que tenham sido obtidas dentro do período de realização da OEII. Escolhida uma
+% imagem com essas características, comparamo-a com um campo de função de corrente geostrófica calculada através
+% da metodologia descrita. Esta comparação está retratada na Figura \ref{fig:modis}. Ao inspecionarmos a figura, 
+% imediatamente remetemos a atenção ao vórtice anticiclônico centrado em aproximadamente 11.7$^\circ$S e 35$^\circ$W.
+% Fica evidente a correspondência entre as dimensões da estrutura nos dois métodos. Considerando que a imagem de 
+% clorofila é instantânea e que os vetores de velocidade são calculados sobre um conjunto termohalino que demorou
+% mais de um mês para ser obtido, temos aqui mais uma confirmação de que o $l_c$ calculado está fazendo com que as 
+% estruturas estejam sendo representadas adequadamente. É mais um indício de que não existe o risco de uma 
+% filtragem excessiva e tampouco uma contaminação por ``aliasing''.  
+% 
+% \begin{figure}%[ht]
+%  \begin{center}
+%   \includegraphics[width=10cm,keepaspectratio=true]{../proc/clorofila/figuras/clorofila_vgeo.pdf}
+%  \end{center}
+%  \vspace{-.25cm}
+%  \renewcommand{\baselinestretch}{1}
+%  \caption{\label{fig:modis} \small Sobreposição de vetores de velocidade geostrófica em superfície a
+% um campo de concentração de clorofila oriundo do satélite MODIS.}
+% \end{figure}
+
+Antes de prosseguir, para melhorar o entendimento dos cálculos executados, expandiremos o exemplo idealizado exposto
+na Figura \ref{fig:ex_metdinref2} para o espaço horizontal, que
+será a forma de apresentação que nos possibilitará interpretação dos resultados.
+Lembremos então, que para todo vetor $\vec{v} = u\vec{i} + v\vec{j}$ existe 
+um escalar $\psi$, e vice-versa. Escolhemos a abordagem vetorial para este exemplo por esta permitir uma melhor visualização
+dos cálculos executados. Para tanto, construímos campos idealizados das quantidades
+$\psi_{(p_0/p)}$ e $\psi_{obs(p_0)}$ e somamo-os com a finalidade de obter um $\psi_{tot}$ também idealizado. 
+
+A Figura \ref{fig:ex_metdinref2} apresenta os campos idealizados onde são representados vetores de velocidade não-divergente.
+Estes vetores foram obtidos através do cálculo do gradiente horizontal das quantidades explicitadas no parágrafo anterior,
+conforme a Equação \ref{eq:uvpsi}.
+No painel superior esquerdo, é mostrado o campo idealizado de vetores de velocidade geostrófica em 10 m relativa a 150 m:
+$\vec{v}_{(p_0/p)}$. O painel superior direito representa os vetores de velocidade observada por ADCP em 150 m isentos de sua componente
+divergente: $\vec{v}_{obs(p_0)}$. O painel inferior representa o resultado da soma explicitada na Equação \ref{eq:psiref}, com
+as devidas adaptações para uso vetorial: $\vec{v}_{tot} = \vec{v}_{(p_0/p)} + \vec{v}_{obs(p_0)}$. Esta é a forma com a qual
+calcularíamos o campo de velocidades em 10 m, por exemplo.  Procedemos exatamente dessa 
+forma com os dados reais observados durante a OEII para os vários níveis verticais de interesse deste trabalho.    
+
+Após o esclarecimento e detalhamento da metodologia empregada nesta etapa do trabalho, nos resta
+dar início a apresentação dos resultados. 
+
+
+\begin{figure}%[ht]
+ \begin{center}
+  \includegraphics[width=7.5cm,keepaspectratio=true]{figuras/ex_metdinref2_1.pdf}
+  \includegraphics[width=7.5cm,keepaspectratio=true]{figuras/ex_metdinref2_2.pdf}
+  \includegraphics[width=7.5cm,keepaspectratio=true]{figuras/ex_metdinref2_3.pdf}
+ \end{center}
+ \vspace{-.25cm}
+ \renewcommand{\baselinestretch}{1}
+ \caption{\label{fig:ex_metdinref2} \small Campos idealizados de velocidade não-divergente ilustrando os cálculos correspondentes ao
+ $\mathcal{MDR}$. O painel superior esquerdo idealiza a velocidade geostrófica em 10m calculada com $\mathcal{NR}$ = 150m. O
+painel superior direito idealiza a velocidade observada via ADCP de casco em 150m, após remoção da componente divergente. O
+painel inferior mostra o campo final, resultado da soma vetorial dos anteriores.}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

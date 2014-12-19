@@ -1,0 +1,1006 @@
+\documentclass{beamer}
+
+\hypersetup{pdfpagemode=FullScreen}
+\usepackage{hyperref}
+% \usepackage{beamerthemeAntibes}
+% \usepackage{beamerthemebars}
+% \usepackage{beamerthemeBergen}
+% \usepackage{beamerthemeBerkeley}
+% \usepackage{beamerthemeBerlin}
+% \usepackage{beamerthemeBoadilla}
+% \usepackage{beamerthemeboxes}
+% \usepackage{beamerthemeclassic}
+% \usepackage{beamerthemeCopenhagen}
+% \usepackage{beamerthemeDarmstadt}
+% \usepackage{beamerthemeDresden}
+% \usepackage{beamerthemeFrankfurt}
+% \usepackage{beamerthemeGoettingen}
+% \usepackage{beamerthemeHannover}
+% \usepackage{beamerthemeIlmenau}
+% \usepackage{beamerthemeJuanLesPins}
+% \usepackage{beamerthemeLuebeck}
+% \usepackage{beamerthemeMadrid}
+% \usepackage{beamerthemeMalmoe}
+% \usepackage{beamerthemeMarburg}
+% \usepackage{beamerthemeMontpellier}
+% \usepackage{beamerthemePaloAlto}
+% \usepackage{beamerthemePittsburgh}
+% \usepackage{beamerthemeRochester}
+% \usepackage{beamerthemeSingapore}
+% \usepackage{beamerthemesplit}
+% \usepackage{beamerthemeSzeged}
+% \usepackage{beamerthemeWarsaw}
+% \usepackage{beamerthemeumbc2_v2}
+\usepackage[square]{natbib}
+\usepackage[brazil]{babel}
+\usepackage{subfigure}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{nicefrac}
+\usepackage{graphics}
+\usepackage{multimedia}
+\usepackage{rotating}
+\usepackage{amssymb,amsmath}
+\usepackage{nicefrac}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{palatino}
+\usepackage{mathabx}
+\usepackage[normalem]{ulem}
+
+\setbeamercovered{transparent}
+\setbeamercolor{normal text}{bg=black!70!blue,fg=white!100}
+\setbeamercolor{title}{fg=yellow}
+\setbeamercolor{frametitle}{fg=yellow}
+\setbeamercolor{section in toc}{fg=yellow}
+\setbeamercolor{item}{fg=yellow}
+\setbeamerfont{section in toc}{size=\footnotesize}
+\setbeamerfont{section in toc shaded}{size=\footnotesize}
+% \setbeamertemplate{items}[ball]
+% \setbeamertemplate{blocks}[rounded][shadow=true]
+
+\pgfdeclareverticalshading{beamer@headfade}{\paperwidth}{
+ color(0cm)=(black!70!blue);
+ color(1.0cm)=(black)
+}
+\addtoheadtemplate{\pgfuseshading{beamer@headfade}\vskip-1.0cm}{}
+% \addtofoottemplate{\pgfuseshading{beamer@headfade}\vskip-0.75cm}{}
+
+\setbeamercolor{footcol}{fg=yellow,bg=black!75!blue}
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.2cm,dp=0.1cm]{footcol}
+    \Tiny\hspace*{4mm}\insertshortauthor\hfill\insertshorttitle\hfill\insertframenumber\hspace{4mm}
+  \end{beamercolorbox}
+}
+
+\title{Feições de meso e larga escalas da Corrente do Brasil ao largo do sudeste brasileiro}
+
+\author{Rafael Augusto de Mattos}
+
+\institute{Departamento de Oceanografia Física, Química e Geológica\\
+           \vskip 0.125cm
+           Instituto Oceanográfico da Universidade de São Paulo}
+\date{}
+
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\frame{
+  \titlepage
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \begin{center}
+        \includegraphics[width=\textwidth]{figuras/IO_logo.png}
+      \end{center}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{center}
+        {\scriptsize Orientador: Ilson Carlos Almeida da Silveira}\\
+        {\scriptsize Laboratório de Dinâmica Oceânica - LaDO}
+      \end{center}
+    \end{column}
+    \begin{column}{0.25\textwidth}
+      \begin{center}
+      \includegraphics[width=\textwidth]{figuras/LaDO_logo.png}
+      \end{center}
+    \end{column}
+  \end{columns}
+}
+
+\section*{Roteiro}
+\frame[c]{
+  \frametitle{\large \textcolor{white}{$\dashv$ Roteiro $\vdash$}}
+  \vskip 0.5cm
+  \tableofcontents
+}
+
+\AtBeginSection[]{
+  \frame[c]{
+    \frametitle{\large \textcolor{white}{$\dashv$ Roteiro $\vdash$}}
+    \vskip 0.5cm
+    \tableofcontents[current]
+  }
+}
+
+\section{Introdução}
+
+\frame[label=intro1,c]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,center,shadow=true,rounded=true]{footcol}
+    {\footnotesize \textcolor{white}{Representando a Corrente de Contorno Oeste do giro subtropical 
+    do Atlântico Sul, a \textcolor{yellow}{Corrente do Brasil} (\textcolor{yellow}{CB}) é formada 
+    na bifurcação do ramo sul da Corrente Sul Equatorial, ao sul de 12$^\circ$S, e bordeja as costas 
+    leste, sudeste e sul do Brasil. Em torno de 38$^\circ$S, quando se encontra com a Corrente das 
+    Malvinas, há sua separação da costa sul-americana formando a Corrente do Atlântico Sul.}}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=intro21,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 1.5cm
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,center,shadow=true,rounded=true]{footcol}
+    {\footnotesize \textcolor{white}{Representam aqui a atividade de meso-escala associada 
+    ao escoamento das Correntes de Contorno Oeste.}}
+  \end{beamercolorbox}
+  \vskip 1.0cm
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,center,shadow=true,rounded=true]{footcol}
+    {\footnotesize \textcolor{white}{Variabilidade temporal da ordem de semanas e/ou meses e 
+    escala de espacial variando de dezenas a algumas centenas de quilômetros.}}
+  \end{beamercolorbox}
+}
+
+\frame[label=intro2,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 0.4cm
+  \centerline{
+    \begin{minipage}[c]{8cm}
+      \centerline{\scriptsize Extensão da Corrente do Golfo}
+      \vspace{0.1cm}
+      \centerline{\includegraphics[width=8cm]{figuras/gulfstream_amo_2005108_temp.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny Fonte: \textsl{National Aeronautics and Space Administration (NASA)}.}
+    \end{minipage}
+  }
+}
+
+\frame[label=intro3,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 1.25cm
+  \centerline{
+    \begin{minipage}[c]{11cm}
+      \centerline{\scriptsize Extensão da Corrente do Brasil}
+      \vspace{0.1cm}
+      \centerline{\includegraphics[width=11cm]{figuras/olson_fig2_600_v3.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Olson et al.} [1988].}
+    \end{minipage}
+  }
+}
+
+\frame[label=intro4,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 0.4cm
+  \centerline{
+    \begin{minipage}[c]{7cm}
+      \centerline{\scriptsize Corrente do Golfo}
+      \vspace{0.1cm}
+      \centerline{\includegraphics[width=7cm]{figuras/060405_095_0351_n17_v2.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny Fonte: \textsl{Coastal Ocean Observation Lab/Marine Remote Sensing Lab (RU)}.}
+    \end{minipage}
+  }
+}
+
+\frame[label=intro5,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 0.3cm
+  \centerline{
+    \begin{minipage}[c]{7cm}
+      \centerline{\scriptsize Corrente do Brasil}
+      \vspace{0.1cm}
+      \centerline{\includegraphics[width=7cm]{figuras/270694_v2.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny Fonte: cortesia João A. Lorenzetti (INPE).}
+    \end{minipage}
+  }
+}
+
+\frame[label=intro6,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 0.25cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.2cm,left,shadow=true,rounded=true]{footcol}
+    {\small \uline{Sudeste Brasileiro}\\}
+    \vskip 0.4cm
+    {\footnotesize $\rightarrow$ Ocorrência $\leftarrow$\\}
+    \vskip 0.1cm
+    {\scriptsize \textit{Mascarenhas et al.} [1971]: \textcolor{white}{topografia dinâmica de 
+    estruturas vorticais baroclínicas ciclônicas e anticiclônicas ao largo de Cabo Frio;\\}}
+    \vskip 0.1cm
+    {\scriptsize \textit{Signorini et al.} [1978]: \textcolor{white}{topografia dinâmica de um 
+    vórtice anticiclônico de extensão vertical de 500 m e 100 km de raio ao largo de Cabo Frio;\\}}
+    \vskip 0.1cm
+    {\scriptsize \textit{Garfield} [1990]: \textcolor{white}{assinatura na TSM de meandros 
+    propagantes para sul-sudoeste com velocidades de 2,6-3,8 km/dia;\\}}
+    \vskip 0.4cm
+    {\footnotesize $\rightarrow$ Dinâmica $\leftarrow$\\}
+    \vskip 0.1cm
+    {\scriptsize \hyperlink{campos<1>}{\textit{Campos et al.} [1995]}: \textcolor{white}{mecanismo 
+    de geração dos meandros através de conservação de vorticidade potencial;\\}}
+    \vskip 0.1cm
+    {\scriptsize \hyperlink{calado<1>}{\textit{Calado} [2001]}: \textcolor{white}{papel da mudança 
+    de orientação da costa e da topografia na geração e crescimento de meandros baroclínicos através 
+    de simulações numéricas;\\}}
+    \vskip 0.1cm
+    {\scriptsize \hyperlink{godoi<1>}{\textit{Godoi} [2005]}: \textcolor{white}{estrutura dinâmica 
+    das ondas baroclínicas na porção central do Embaiamento de São Paulo através de dados 
+    hidrográficos.\\}}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=intro7,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Células de Recirculação: As Feições de Grande Escala}}
+  \vskip 1.25cm
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,center,shadow=true,rounded=true]{footcol}
+    {\footnotesize \textcolor{white}{Explicam as variações de transporte das Correntes de Contorno 
+    Oeste subtropicais enquanto estas fluem em direção aos pólos desde de seu sítio de origem em 
+    mais baixas latitudes.}}
+  \end{beamercolorbox}
+  \vskip 1.0cm
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,center,shadow=true,rounded=true]{footcol}
+    {\footnotesize \textcolor{white}{Integram e subdividem a célula de maior circulação, associada 
+    ao giro subtropical, em duas células anticiclônicas menores próximas ao contorno oeste.}}
+  \end{beamercolorbox}
+}
+
+\frame[label=intro8,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Células de Recirculação: As Feições de Grande Escala}}
+  \framezoom<1><2>[border=1](2.25cm,1.5cm)(3cm,2.5cm)
+  \framezoom<1><3>[border=1](3.25cm,4.5cm)(3.25cm,2.0cm)
+  \vskip 0.15cm
+  \centerline{
+    \begin{minipage}[c]{6.5cm}
+      \centerline{\includegraphics[width=6.5cm]{figuras/tsuchiya_fig1.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Tsuchiya} [1985].}
+    \end{minipage}
+  }
+}
+
+\frame[label=intro9,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Células de Recirculação: As Feições de Grande Escala}}
+  \vskip 0.3cm
+  \centerline{
+    \begin{minipage}[c]{9.5cm}
+      \centerline{\includegraphics[width=9.5cm]{figuras/vianna.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Vianna \& Menezes} [2005].}
+    \end{minipage}
+  }
+}
+
+\frame[label=intro10,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Células de Recirculação: As Feições de Grande Escala}}
+  \vskip 0.4cm
+  \centerline{
+    \begin{minipage}[c]{8.0cm}
+      \centerline{\includegraphics[width=8.0cm]{figuras/chen_50m.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Chen} [2002].}
+    \end{minipage}
+  }
+}
+
+% \frame[plain]{
+% }
+
+\section{Objetivos}
+
+\frame[label=obj1,t]{
+  \frametitle{\large $\dashv$ Objetivos $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Central}}
+  \vskip 2.25cm
+  \begin{beamercolorbox}[wd=\textwidth,sep=0.25cm,center,shadow=true,rounded=true]{footcol}
+    {\footnotesize \textcolor{white}{Descrever as feições de meso e grande escalas da Corrente do 
+    Brasil, ao largo do sudeste brasileiro, a partir de observações quase-sinóticas do campo de 
+    massa e explorar a estrutura dinâmica das mesmas por meio da construção de um modelo 
+    quase-geostrófico de 1\nicefrac{1}{2}-camadas.}}
+  \end{beamercolorbox}
+}
+
+\frame[label=obj2,t]{
+  \frametitle{\large $\dashv$ Objetivos $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Específicos}}
+  \vskip 0.15cm
+  \begin{itemize}
+    \item[\scriptsize $\checkmark$] {\scriptsize Identificar e descrever as principais estruturas ciclônicas 
+                        e anticiclônicas de meso e grande escalas através da construção de mapas de 
+                        função de corrente geostrófica, determinando para tanto um apropriado nível 
+                        de referência;}
+    \vskip 0.4cm
+    \item[\scriptsize $\checkmark$] {\scriptsize Caracterizar as ondas de vorticidade baroclínicas de 
+                        meso-escala em termos de dinamicamente curtas ou longas, nas diferentes 
+                        porções da área de estudo, através do mapeamento de função de corrente, 
+                        vorticidades relativa, de estiramento e potencial do oceano aproximado por 
+                        1$\nicefrac{1}{2}$-camadas;}
+    \vskip 0.4cm
+    \item[\scriptsize $\checkmark$] {\scriptsize Qualificar como de grande escala a feição associada à 
+                        célula de recirculação norte da CB analogamente como abordado para as ondas de 
+                        meso-escala;}
+    \vskip 0.4cm
+    \item[\scriptsize $\checkmark$] {\scriptsize Identificar se as feições de meso e grande escalas são 
+                        propagantes ou estacionárias e avaliar o potencial crescimento em amplitude destas feições 
+                        através da análise de diagramas de função de corrente vs. vorticidade potencial.}
+  \end{itemize}
+}
+
+\section{Conjuntos de Dados}
+
+\frame[label=dados1,t]{
+  \frametitle{\large $\dashv$ Conjuntos de Dados $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ World Ocean Atlas 2001}}
+  \vskip -0.3cm
+  \begin{columns}
+  \begin{column}{.4\textwidth}
+  {\scriptsize \textcolor{yellow}{$\checkmark$} \textsl{World Ocean Database 2001}\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Temperatura / Salinidade\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Anual / Sazonal / Mensal\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Resolução Horizontal: 0,25$^\circ$\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Resolução Vertical:\\}
+  \vskip 0.3cm
+  {\scriptsize \hspace{1.5cm} 10 m (0-50 m)\\}
+  \vskip 0.1cm
+  {\scriptsize \hspace{1.5cm} 25 m (50-150 m)\\}
+  \vskip 0.1cm
+  {\scriptsize \hspace{1.5cm} 50 m (150-300 m)\\}
+  \vskip 0.1cm
+  {\scriptsize \hspace{1.5cm} 100 m (300-1500 m)\\}
+  \vskip 0.1cm
+  {\scriptsize \hspace{1.5cm} 500 m (1500-5500 m)\\}
+  \vskip 0.1cm
+  \end{column}
+  \begin{column}{.6\textwidth}
+  \flushright{
+    \begin{minipage}[c]{5.5cm}
+    \centerline{\includegraphics[width=5.5cm]{figuras/woa_global.png}}
+    \vspace{-0.2cm}
+    \flushright{\tiny Baseado em \textit{Boyer et al.} [2005].}
+    \end{minipage}
+  }
+  \end{column}
+  \end{columns}
+}
+
+\frame[label=dados2,t]{
+  \frametitle{\large $\dashv$ Conjuntos de Dados $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Operação Oceano Sudeste I}}
+  \vskip 0.5cm
+  \begin{columns}
+  \begin{column}{.42\textwidth}
+  {\scriptsize \textcolor{yellow}{$\checkmark$} N/Oc. Antares - Marinha do Brasil\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} 21 de maio a 06 de julho de 2000\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} 162 estações - 12 radiais\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Perfilagem CTD\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Resolução Horizontal:\\}
+  \vskip 0.3cm
+  {\scriptsize \hspace{1.0cm} 28 km (costa-quebra)\\}
+  \vskip 0.1cm
+  {\scriptsize \hspace{1.0cm} 56 km (quebra-440 km)\\}
+  \vskip 0.1cm
+  {\scriptsize \hspace{1.0cm} 112 km (440-660 km)\\}
+  \vskip 0.5cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Resolução Vertical: 1 m\\}
+  \end{column}
+  \begin{column}{.58\textwidth}
+  \flushright{
+    \begin{minipage}[t]{6.8cm}
+    \centerline{\includegraphics[width=6.8cm]{figuras/grade_ocse1_color_v2.png}}
+    \end{minipage}
+  }
+  \end{column}
+  \end{columns}
+}
+
+\section{Função de Corrente Geostrófica e Sua Investigação}
+
+\frame[label=func1,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip 0.5cm
+  \centerline{
+  \begin{beamercolorbox}[wd=4cm,center,sep=0.25cm]{footcol}
+    {\textcolor{white}{$\psi \: = \: \frac {1}{f_0} \int_{p_0}^{p} \delta_\alpha dp$}}
+  \end{beamercolorbox}
+  }
+  \centerline{
+  \begin{beamercolorbox}[wd=12cm,center,sep=0.0cm]{}
+  \vskip 0.2cm
+  {\footnotesize $p_0 =$ \textcolor{yellow}{nível de referência} (\textcolor{yellow}{$\mathcal{NR}$})\\}
+  \vskip 0.75cm
+  {\scriptsize \textit{Signorini} [1978]: \textcolor{yellow}{500} db; \textit{Gonçalves} [1993]: 
+  \textcolor{yellow}{750} db; \textit{Chen} [2002]: \textcolor{yellow}{600} db; 
+  \textit{Godoi} [2005]: \textcolor{yellow}{480} db;\\}
+  \vskip 0.5cm
+  \end{beamercolorbox}
+  }
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.2cm,shadow=true,rounded=true]{footcol}
+  {\footnotesize \textcolor{yellow}{Critério:}\\}
+  \vskip 0.2cm
+  {\footnotesize $\mathcal{NR} \Leftrightarrow$ \textcolor{white}{Interface Isopicnal entre a Água 
+  Central do Atlântico Sul (\textcolor{yellow}{ACAS}) e a Água Intermediária Antártica 
+  (\textcolor{yellow}{AIA})}}
+  \end{beamercolorbox}
+  }
+  \centerline{
+  \begin{beamercolorbox}[wd=12cm,center,sep=0.0cm]{}
+  \vskip 0.2cm
+  {\footnotesize \textcolor{yellow}{$\Downarrow$}\\}
+  \vskip 0.2cm
+  {\footnotesize \textcolor{yellow}{Teoremas de Shtokman} [\textit{Shtokman}, 1943]}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=func2,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Interface ACAS-AIA}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{9.5cm}
+      \centerline{\includegraphics[width=9.5cm]{figuras/trian_med_shtokv2_ocse1.png}}
+    \end{minipage}
+  }
+%   \centerline{
+%   \begin{beamercolorbox}[wd=\textwidth,center,sep=0.1cm,shadow=true,rounded=true]{footcol}
+%   {\scriptsize \textcolor{white}{Evolução geométrica dos pares 
+%   temperatura(\textcolor{yellow}{T})-salinidade(\textcolor{yellow}{S}), sobre o Diagrama T-S, 
+%   sob a ação dos processos de mistura vertical entre as massas de água}\\}
+%   \end{beamercolorbox}
+%   }
+}
+
+\frame[label=func3,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Interface ACAS-AIA}}
+  \vskip 0.3cm
+  \centerline{
+    \begin{minipage}[c]{7cm}
+      \centerline{\includegraphics[width=7cm]{figuras/interf_med_shtokv2_ocse1.png}}
+      \vspace{0.1cm}
+      \centerline{{\footnotesize {\small \textcolor{yellow}{$\mathcal{NR}$}} $=$ 563 $\pm$ 3 m $\approx$ 
+      {\small \textcolor{yellow}{560} m}}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func4,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Construção dos Campos}}
+  \vskip 0.1cm
+  \begin{columns}
+  \begin{column}{.35\textwidth}
+  \centerline{
+  \begin{beamercolorbox}[wd=3.5cm,center,sep=0.2cm]{footcol}
+    {\small \textcolor{yellow}{Análise Objetiva}}
+  \end{beamercolorbox}
+  }
+  \vskip-0.2cm
+  \centerline{\tiny \textit{Bretherton et al.} [1987]}
+  \vskip 0.75cm
+  \centerline{\scriptsize \textcolor{yellow}{$\checkmark$} Interpolação Ótima}
+  \vskip 0.75cm
+  \centerline{$C(r) = (1-\epsilon^{2})e^{-{r^2/l_c^2}}$}
+  \end{column}
+  \begin{column}{.65\textwidth}
+  \flushright{
+    \begin{minipage}[t]{7.5cm}
+    \centerline{\includegraphics[width=7.5cm]{figuras/func_corr_1D_ocse1.png}}
+    \end{minipage}
+  }
+  \end{column}
+  \end{columns}
+}
+
+\frame[label=func5,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip-0.2cm
+  \centerline{
+    \begin{minipage}[c]{10cm}
+      \centerline{\includegraphics[width=10cm]{figuras/geopsi_ocse1_AO_0100m_color.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func6,c]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \begin{columns}
+  \begin{column}{.5\textwidth}
+  \centerline{\small \textit{Godoi} [2005]}
+  \end{column}
+  \begin{column}{.5\textwidth}
+  \centerline{\small Presente Trabalho}
+  \end{column}
+  \end{columns}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{12.5cm}
+      \centerline{\includegraphics[width=12.5cm]{figuras/ocse1hm2.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func7,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip-0.2cm
+  \centerline{
+    \begin{minipage}[c]{10cm}
+      \centerline{\includegraphics[width=10cm]{figuras/zoom_onda.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func8,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip-0.2cm
+  \centerline{
+    \begin{minipage}[c]{10cm}
+      \centerline{\includegraphics[width=10cm]{figuras/geopsi_ocse1_AO_0100m_color.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func9,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip-0.2cm
+  \centerline{
+    \begin{minipage}[c]{10cm}
+      \centerline{\includegraphics[width=10cm]{figuras/geopsi_ocse1_AO_0100m_color_v2.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func10,c]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+%   \vskip-0.2cm
+  \centerline{
+    \begin{minipage}[c]{11cm}
+      \centerline{\includegraphics[width=11cm]{figuras/tsuchiya_fig2_v2.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Tsuchiya} [1985].}
+    \end{minipage}
+  }
+}
+
+\frame[label=func11,c]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+%   \vskip-0.2cm
+  \centerline{
+    \begin{minipage}[c]{10.5cm}
+      \centerline{\includegraphics[width=10.5cm]{figuras/vianna_edit.png}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Vianna \& Menezes} [2005].}
+    \end{minipage}
+  }
+}
+
+\frame[label=func12,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip 0.0cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\textcolor{white}{Inverno}}
+      \vskip 0.2cm
+      \centerline{\includegraphics[width=9cm]{figuras/geopsi_woaocse1_inverno_0020.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=func13,t]{
+  \frametitle{\large $\dashv$ Função de Corrente Geostrófica e Sua Investigação $\vdash$}
+  \vskip 0.0cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\textcolor{white}{Primavera}}
+      \vskip 0.2cm
+      \centerline{\includegraphics[width=9cm]{figuras/geopsi_woaocse1_primavera_0020.png}}
+    \end{minipage}
+  }
+}
+
+\section{O Cenário Quase-geostrófico}
+
+% \frame[label=vort1,t]{
+%   \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+%   \vskip 0.1cm
+%   \centerline{
+%   \begin{beamercolorbox}[wd=\textwidth,center,sep=0.2cm,shadow=true,rounded=true]{footcol}
+%   {\scriptsize \textcolor{white}{Caracterizar a onda baroclínica de vorticidade associada à 
+%   Corrente do Brasil 
+%   em termos de dinamicamente curta ou longa e qualificar como de grande escala a célula de 
+%   recirculação norte do Atlântico Sul. Ainda, estimar possível propagação e potencial crescimento 
+%   em amplitude das feições.}}
+%   \end{beamercolorbox}
+%   }
+%   \vskip 0.1cm
+%   \centerline{
+%   \begin{beamercolorbox}[wd=\textwidth,center,sep=0.0cm]{}
+%   {\large \textcolor{yellow}{$\Downarrow$}}
+%   \end{beamercolorbox}
+%   }
+%   \vskip 0.1cm
+%   \centerline{
+%   \begin{beamercolorbox}[wd=\textwidth,center,sep=0.1cm,shadow=true,rounded=true]{footcol}
+%   {\small \textcolor{yellow}{Modelo Quase-geostrófico de 1\nicefrac{1}{2}-Camadas}}
+%   \end{beamercolorbox}
+%   }
+%   \vskip 0.5cm
+%   \begin{columns}
+%   \begin{column}{.6\textwidth}
+%     \begin{minipage}[c]{6cm}
+%       \centerline{\includegraphics[width=6cm]{figuras/mod2cam_esq2.png}}
+%     \end{minipage}
+%   \end{column}
+%   \begin{column}{.4\textwidth}
+%   \centerline{H$_{2} \rightarrow \infty$}
+%   \end{column}
+%   \end{columns}
+% }
+
+\frame[label=vort1,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip 0.2cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.2cm,shadow=true,rounded=true]{footcol}
+  {\scriptsize \textcolor{white}{Caracterizar a onda baroclínica de vorticidade associada à 
+  Corrente do Brasil 
+  em termos de dinamicamente curta ou longa e qualificar como de grande escala a célula de 
+  recirculação norte do Atlântico Sul. Ainda, estimar possível propagação e potencial crescimento 
+  em amplitude das feições.}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.2cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.0cm]{}
+  {\large \textcolor{yellow}{$\Downarrow$}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.2cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.1cm,shadow=true,rounded=true]{footcol}
+  {\small \textcolor{yellow}{Modelo Quase-geostrófico de 1\nicefrac{1}{2}-Camadas}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.4cm
+  \centerline{
+  \begin{beamercolorbox}[wd=7cm,center,sep=0.25cm]{footcol}
+  {\textcolor{white}{$\frac{d}{dt} \tilde{q} \ = \ 0$}}
+  \vskip 0.5cm
+  {\textcolor{white}{$\tilde{q} \ = \nabla^{2} \tilde{\psi} - \frac{1}{\hat{R}d^2} \tilde{\psi} + \beta y$,}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.25cm
+  \centerline{{\scriptsize \textcolor{white}{onde $\hat{R}d = \sqrt{\varepsilon g H_1}/f_0$}}}
+}
+
+\frame[label=vort2,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip 0.0cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,left,sep=0.0cm]{}
+  {\footnotesize \textcolor{yellow}{$\rightarrow$ Calibração Dinâmica [\textit{Flierl}, 1978] $\leftarrow$}}
+  \vskip 0.3cm
+    \centerline{
+    \begin{beamercolorbox}[wd=\textwidth,left,sep=0.0cm]{}
+    {\hspace{1cm}\small $\mathcal{NR} \Leftrightarrow $ H$_{1} \ \rightarrow \ \ $ \textcolor{yellow}{H$_{1} =$} 560 m}
+    \vskip 0.2cm
+    {\hspace{1cm}\small $Rd^1\bigl|_{real} = Rd^1\bigl|_{2cam} \ = \ \left [ \frac{\varepsilon g H_1 \left ( H - H_1 \right )}{f_0^2 H} \right ]^{1/2} \ \rightarrow \ $ \textcolor{yellow}{$\varepsilon =$} 1,34 $\times$ 10$^{-3}$}
+    \end{beamercolorbox}
+    }
+  \end{beamercolorbox}
+  }
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{7.5cm}
+      \centerline{\includegraphics[width=7.5cm]{figuras/bfrq_modos_ocse1.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=vort3,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Função de Corrente Geostrófica}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\includegraphics[width=9cm]{figuras/psi_ocse1_color.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=vort4,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.75cm
+  \centerline{
+  \begin{beamercolorbox}[wd=6cm,center,sep=0.25cm]{footcol}
+  {\textcolor{white}{$\tilde{q} \ = \nabla^{2} \tilde{\psi} - \frac{1}{\hat{R}d^2} \tilde{\psi} + \beta y$}}
+  \end{beamercolorbox}
+  }
+  \vskip 1.0cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.25cm]{}
+  {\textcolor{white}{\textcolor{yellow}{\textit{vorticidade relativa}} $ \ \sim \ \frac{U}{L}$}}
+  \vskip 0.5cm
+  {\textcolor{white}{\textcolor{yellow}{\textit{vorticidade de estiramento}} $ \ \sim \ \frac{LU}{\hat{R}d^2}$}}
+  \end{beamercolorbox}
+  }
+  \vskip 1.0cm
+  \centerline{
+  \begin{beamercolorbox}[wd=8cm,center,sep=0.25cm]{footcol}
+  \textcolor{white}{{$\frac{\textit{\normalsize vorticidade relativa}}{\textit{\normalsize vorticidade de estiramento}} \ = \ \frac{\hat{R}d^2}{L^2}$}}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=vort5,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\includegraphics[width=9cm]{figuras/vrel_ocse1_color.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=vort6,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\includegraphics[width=9cm]{figuras/vest_ocse1_color.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=vort7,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\includegraphics[width=9cm]{figuras/vvplan_ocse1_color.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=vort8,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.75cm
+  \centerline{
+  \begin{beamercolorbox}[wd=6cm,center,sep=0.25cm]{footcol}
+  {\textcolor{white}{$\frac{d}{dt} \tilde{q} \ = \ \frac{\partial}{\partial t} \tilde{q} \ + \ \mathcal{J} \left ( \tilde{\psi},\tilde{q} \right ) \ = \ 0$}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.7cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.25cm]{}
+  {\textcolor{white}{\textcolor{yellow}{\textit{movimento estacionário}} $ \ \rightarrow \ \frac{\partial}{\partial t} \tilde{q} \ = \ 0$}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.7cm
+  \centerline{
+  \begin{beamercolorbox}[wd=8cm,center,sep=0.25cm]{footcol}
+  \textcolor{white}{{$\vec{k} \cdot \left ( \nabla \tilde{\psi} \times \nabla \tilde{q} \right ) \ = \ 0$}}
+  \end{beamercolorbox}
+  }
+  \vskip 0.7cm
+  \centerline{
+  \begin{beamercolorbox}[wd=\textwidth,center,sep=0.25cm]{}
+  {\footnotesize \textcolor{white}{\textcolor{white}{Num escoamento com $\tilde{q}$ invariante no tempo, linhas de corrente e isolinhas de 
+  $\tilde{q}$ são paralelas e/ou coincidentes.}}}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=vort9,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{8.5cm}
+      \centerline{\includegraphics[width=8.5cm]{figuras/psixvpqqg_area1_ocse1.png}}
+    \end{minipage}
+  }
+}
+
+\frame[label=vort10,t]{
+  \frametitle{\large $\dashv$ O Cenário Quase-geostrófico $\vdash$}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Análise de Vorticidade}}
+  \vskip 0.4cm
+  \centerline{
+    \begin{minipage}[c]{10cm}
+      \centerline{\includegraphics[width=10cm]{figuras/psixvpqg_area2_ocse1.png}}
+    \end{minipage}
+  }
+}
+
+\section{Considerações Finais}
+
+\frame[label=fim1,c]{
+  \frametitle{\large $\dashv$ Considerações Finais $\vdash$}
+  \centerline{
+  \begin{beamercolorbox}[wd=11cm,left,sep=0.25cm]{}
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Os campos quase-sinóticos de função de corrente 
+  geostrófica evidenciaram, ao largo do sudeste brasileiro, a presença de uma onda baroclínica de 
+  vorticidade associada ao escoamento da Corrente do Brasil. Ainda, ilustraram a assinatura da 
+  porção sul de sua célula de recirculação norte composta pela Contra-corrente Subtropical do Atlântico 
+  Sul;}
+  \vskip 0.3cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} No domínio da onda de vorticidade, os campos de 
+  vorticidade relativa e vorticidade de estiramento apresentaram magnitudes comparáveis. Logo, 
+  tal onda é caracterizada por ocupar o centro do espectro entre ondas curtas e longas;}
+  \vskip 0.3cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Já no domínio da célula de recirculação, notou-se 
+  uma dominância da vorticidade de estiramento qualificando tal feição como de grande escala;}
+  \vskip 0.3cm
+  {\scriptsize \textcolor{yellow}{$\checkmark$} Da superposição dos campos de função de corrente 
+  geostrófica e vorticidade potencial, evidências foram constatadas sobre uma sutil propagação destas 
+  para sul-sudoeste. A estrutura da célula de recirculação, porém, mostrou-se robusta com evidências 
+  de quase-estacionaridade.}
+  \end{beamercolorbox}
+  }
+}
+
+\section{Sugestões para Trabalhos Futuros}
+
+\frame[label=sugest1,c]{
+  \frametitle{\large $\dashv$ Sugestões para Trabalhos Futuros $\vdash$}
+%   \vskip 
+  \centerline{
+  \begin{beamercolorbox}[wd=11cm,left,sep=0.25cm]{}
+  {\footnotesize \textcolor{yellow}{$\checkmark$} Levantamento sinótico que perfile diretamente 
+  velocidade da superfície ao fundo e caracterize, vertical e horizontalmente, a estrutura da célula de 
+  recirculação em suas porções particularmente associadas à Contra-corrente Subtropical do Atlântico Sul;}
+  \vskip 1.0cm
+  {\footnotesize \textcolor{yellow}{$\checkmark$} Experimentos preditivos acerca da 
+  dinâmica da Corrente do Brasil e de suas correntes circunvizinhas que incluam a feição representada pela célula 
+  de recirculação para melhor reprodução dos padrões de velocidade e transporte de volume;}
+  \vskip 1.0cm
+  {\footnotesize \textcolor{yellow}{$\checkmark$} Estudos numéricos de processo devem ser conduzidos 
+  para a compreensão das relações entre a Corrente do Brasil, seus meandros e recirculações.}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=obrig1,b]{
+  \frametitle{\large }
+%   \vskip 
+  \flushright{
+  \begin{beamercolorbox}[wd=11cm,right,sep=0.25cm]{}
+  {\textcolor{yellow}{Obrigado!}}
+  \end{beamercolorbox}
+  }
+}
+
+\frame[label=campos,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 1.0cm
+  \centerline{
+    \begin{minipage}[c]{9cm}
+      \centerline{\hyperlink{intro6<1>}{\includegraphics[width=9cm]{figuras/esq_camp_sch.png}}}
+      \vspace{-0.2cm}
+      \flushright{\tiny Adaptado de \textit{Godoi} [2005].}
+    \end{minipage}
+  }
+}
+
+\frame[label=calado,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 1.2cm
+  \centerline{
+    \begin{minipage}[c]{12cm}
+      \centerline{\hyperlink{intro6<1>}{\includegraphics[width=12cm]{figuras/vel50d.png}}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Calado} [2001].}
+    \end{minipage}
+  }
+}
+
+\frame[label=godoi,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 1.2cm
+  \centerline{
+    \begin{minipage}[c]{12cm}
+      \centerline{\hyperlink{intro6<1>}{\includegraphics[width=12cm]{figuras/mappsihm2.png}}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Godoi} [2005].}
+    \end{minipage}
+  }
+}
+
+\frame[label=godoi2,t]{
+  \frametitle{\large $\dashv$ Introdução $\vdash$ \hspace{0.125cm} {\footnotesize A Corrente do Brasil: Seus Meandros, Vórtices e 
+  Recirculações}}
+  \vskip -0.25cm
+  {\footnotesize \textcolor{yellow}{$\drsh$ Meandros e Vórtices: As Feições de Meso-escala}}
+  \vskip 0.2cm
+  \centerline{
+    \begin{minipage}[c]{8.5cm}
+      \centerline{\hyperlink{intro6<1>}{\includegraphics[width=8.5cm]{figuras/vort_hm2.png}}}
+      \vspace{-0.2cm}
+      \flushright{\tiny De acordo com \textit{Godoi} [2005].}
+    \end{minipage}
+  }
+}
+
+\end{document}

@@ -1,0 +1,123 @@
+    *************************************************************
+      ROTEIRO DE LEITURA E PRE-PROCESSAMENTO DE DADOS DE ADCP
+                 DE ACORDO COM O PACOTE CODAS
+               Rafael Soutelino - agosto de 2007
+    *************************************************************
+
+
+
+*** PREPARACAO ****************************************************************************************************************
+
+- criar arvore de diretorios <adcptree.py nome_diretorio /path/codas -d lta>
+
+- copiar modelo de arquivo.cnt e este roteiro para dentro do raiz
+
+- copiar os dados para o diretorio /ping
+
+
+*** RODANDO O QUICK_ADCP.PY ***************************************************************************************************
+
+- editar o control file para rodar o quick_adcp.py <quick_adcp.py --cntfile nome_arquivo.cnt>, colocando yes pra tudo...
+- procedimentos realizados: 
+	* SCAN: procura por arquivos corrompidos;
+	* LOAD: carregando os dados e montando o banco de dados
+	* NAVEGACAO: desconta a navegacao para obter a velocidade absoluta das correntes
+	* ROTATE: procura por desvios na direcao da velocidade
+	* ESTATISTICA: plota parametros de quaidade dos dados
+	* CALIBRACOES PRELIMINARES: bottom tracking e water tracking
+
+
+*** CORRECAO DE ANGULO - Muito Importante *************************************************************************************
+
+- o CODAS, atraves do watertracking e bottomtracking encontra desvios de direcao de velocidade, que devem ser corrigidos
+
+- ir no diretorio /cal/watertrk e checar os arquivos adcpcal.out e dbname_7.cal (mostra ponto a ponto 
+os valores de amplitude e fase para onde a watertrack/bottomtrack calibration pôde ser feita). Ver o valor medio do angulo de fase 
+no dbname.cal e rodar novamente o quick_adcp.py. caso seja necessario, investigar trechos onde a fase esta fora da media, caso 
+aconteca, aplicar correcao apenas para o trecho em questao (usar o diretorio /rotate)
+
+- voltar pra raiz e executar <quick_adcp.py --use_refsm --yearbase 2005 --steps2rerun rotate:navsteps:calib --rotate_angle (valor numerico do angulo medio)> dando sim pra tudo.
+
+
+*** EDICAO DOS DADOS **********************************************************************************************************
+
+- essa eh a hora de olhar os dados em detalhe e procurar por erros, spikes, incoerencias, sejam do ponto de 
+  vista tecnico ou fisico. Aqui o usuario ja deve promover analise minuciosa dos dados, procurando problemas e 
+  elminando-os
+
+- ir no diretorio /edit e executar o gautoedit.m no matlab, remover os dados ruins, olhando o trecho completo
+- apos remover dados ruins eh necessario APLICAR!
+- no diretorio edit:
+
+1)	dbupdate ../adcpdb/dbname abottom.asc
+	dbupdate ../adcpdb/dbname abadprf.asc
+	badbin ../adcpdb/dbname abadbin.asc
+
+2) (na ordem)
+	set_lgb ../adcpdb/dbname 
+	setflags setflags.cnt
+
+3) ir pro diretorio /nav
+	adcpsect as_nav.tmp
+	refabs refabs.tmp
+	smoothr smoothr.tpm
+
+4) update na navegacao
+	(no matlab) --> refsm.m 
+	putnav putnav.tmp
+
+obs: tudo isso consta na documentacao do gautoedit
+
+
+*** EXTRACAO/VIZUALIZACAO DOS DADOS ******************************************************************************************
+
+CRIAR GRADE - diretorio /grid
+- editar llgrid.cnt (renomeando-o para cada grade em particular) e executar <llgrid nome.cnt>
+
+PLOTANDO GRAFICOS DE CONTORNO (SECOES) - diretorio /contour
+- rodar o adcpsect para extrair os dados do banco de dados segundo as grades definidas 
+	- editar o adcpsect.cnt renomeando-o para cada grade em particular
+	- descomentar no final a linha que permite usar o acessar as grades geradas (arquivos.llg)
+	- apagar os trechos existentes no .cnt original.
+	- executar <adcpsect nome.cnt>
+- criar um programa .m para carregar os .mat e plotar
+
+PLOTANDO GRAFICOS DE VETORES - diretorio /vector
+- editar o adcpsect.cnt renomeando-o
+- executar adcpsect para extrair os dados .mat
+- editar o vector.cnt, renomeando-o
+- executar <vector arquivo.cnt>
+
+
+
+MODIFICACOES INTERESSANTES DE FAZER
+
+- modificar a interface do gautoedit, principalmente o mapa de vetores -->
+  	- aplicar o ocean_colormap + vetores amarelos, pra facilitar vizualizacao
+	- no programa apuv.m, incluir linha de costa
+        - abrir mapa de vetores em uma fig nova, maior
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

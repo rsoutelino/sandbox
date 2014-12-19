@@ -1,0 +1,149 @@
+\documentclass[12pt,portuguese,a4paper,pdftex]{article}
+
+\usepackage[square]{natbib}
+\usepackage[brazil]{babel}
+\usepackage[pdftex]{hyperref}
+\usepackage{natbib}
+\usepackage[dvips]{graphicx}
+%\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{amssymb,amsmath}
+%\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+%\usepackage{nicefrac}
+\usepackage{fancyhdr}
+%\usepackage{multirow}
+\usepackage{palatino} %fonte para tese
+\usepackage{color}
+\usepackage{cancel}
+\usepackage{shadow}
+% \usepackage{helvet} %família de fontes helvet, fonte helvetica = arial 
+% \renewcommand{\rmdefault}{phv} % necessario para colocar fonte arial
+
+
+\renewcommand{\baselinestretch}{1.5}
+% \hoffset -12.8mm %regula a margem esquerda
+% % \topmargin -0.5in %regula a margem superior
+% \textwidth 160mm %largura da pagina
+% % \textheight 8.5in %altura da pagina
+
+\topmargin -6mm %regula a margem superior
+\hoffset -11mm %regula a margem esquerda
+\textwidth 160mm %largura da pagina
+\textheight 240mm %altura da pagina
+
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\begin{document}
+
+%%% CAPA %%%
+\begin{titlepage}
+
+\textcolor{white}{R}
+
+
+\begin{center}
+{\LARGE {\bf \sc Projeto: ``Título completo a definir''}}\\
+\vspace{2cm}
+{\LARGE \bf PROJETO ACRONIMO}
+
+\vspace{4cm}
+
+{\Large \it Coordenação: Rafael Guarino Soutelino (IEAPM)\\
+Leandro Calado (IEAPM)}
+
+\end{center}
+
+
+\vspace{3cm}
+
+\begin{center}
+
+ {\large  Divisão de Dinâmica dos Oceanos do Grupo de Oceanografia Física\\
+ {\bf Instituto de Estudos do Mar Almirante Paulo Moreira - IEAPM}}
+
+\end{center}
+
+
+\renewcommand{\baselinestretch}{1.2}
+
+\vspace{1.65in}
+
+\vspace{1cm}
+
+\begin{center}
+{\large Arraial do Cabo}\\
+{\large 2013}
+\end{center}
+
+
+\end{titlepage}
+
+%%% INDICE %%%
+\newpage
+\pagestyle{empty}
+\tableofcontents
+
+% \pagestyle{fancy}
+% \fancyhead{}
+% \cfoot{\thepage}
+
+% \newpage
+% % \chapter*{Lista de Figuras}
+% \listoffigures
+% \addcontentsline{toc}{chapter}{Lista de Figuras}
+
+% \newpage
+% % \chapter*{Lista de Tabelas}
+% \listoftables
+% \addcontentsline{toc}{chapter}{Lista de Tabelas}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{plain}
+% \lhead{\small\sl \leftmark}
+% \rhead{\thepage}
+% \fancyfoot{}
+\section{Introdução}\label{sec:introducao}
+
+
+		Objetivos
+		Justificativa
+		Metas
+		Metodo
+		Justificativa para aquisicao de material permanente ou equips
+		Resultados esperados
+		Referencias Bibliograficas
+		Cronograma em meses corridos
+
+\newpage
+\section{Objetivos}\label{sec:objetivos}
+
+\newpage
+\section{Justificativa}\label{sec:justificativa}
+
+\newpage
+\section{Metas}\label{sec:metas}
+
+\newpage
+\section{Métodos}\label{sec:metodos}
+
+\newpage
+\section{Justificativa para Aquisição de Material}\label{sec:mateiral}
+
+\newpage
+\section{Resultados Esperados}\label{sec:resultados}
+
+\newpage
+\section{Cronograma}\label{sec:cronograma}
+
+
+\newpage
+\addcontentsline{toc}{section}{Referências Bibliográficas}
+\bibliographystyle{tese_hj}
+\bibliography{abbrv_MSc,ref_MSc}
+
+\end{document}

@@ -1,0 +1,834 @@
+\documentclass{beamer}
+\usetheme{AnnArbor}
+% \usetheme{Singapore}
+\usepackage[utf8x]{inputenc}
+% \usepackage{bookman} 
+\usepackage[T1]{fontenc} 
+\usepackage{textcomp}
+\usepackage{graphics}
+\usepackage{animate}
+
+\input{iouspcolors.sty}
+
+\title{\bf{On the dynamics of the Brazil Current site of origin}}
+
+\subtitle{São Paulo, Nov 13, 2012} 
+
+\author[Rafael Soutelino]{Student: {\bf Rafael Soutelino}\\
+Advisor: Ilson da Silveira | IO-USP\\
+Co-Advisor: Avijit Gangopadhyay | SMAST-UMASSD}
+
+\institute[IOUSP]{
+\includegraphics[height=1.5cm]{lado.png} 
+\includegraphics[height=1.6cm]{SMASTlogo_umass_circle.pdf} 
+} 
+% ----O teu logo aí em cima e o do io ali em baixo -----
+\date{}
+\mode<beamer>{\logo{\includegraphics[height=1cm]{IO.jpg}}}
+
+\AtBeginSubsection[] {
+  \begin{frame}<beamer> \frametitle{Summary}
+    \tableofcontents[currentsubsection]
+  \end{frame}
+} \setbeamercovered{highly dynamic}
+
+\begin{document}
+
+% ------------------------------------------------------------
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{header.png}}
+\begin{frame}
+\vspace{1.5cm}
+  \titlepage
+\end{frame}
+\usebackgroundtemplate{}
+% ------------------------------------------------------------
+\begin{frame}
+  \frametitle{Summary}
+  \tableofcontents
+\end{frame}
+% ------------------------------------------------------------
+% daqui para frente é por tua conta e risco
+% ------------------------------------------------------------
+\section{Introduction}
+
+\subsection{Study Area, Literature Review}
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Presenting the study area}
+\includegraphics[width=4cm,keepaspectratio=true]{figures/atlantic.pdf}
+\includegraphics[width=8cm,keepaspectratio=true]{figures/stommel.pdf}
+
+\footnotesize{Tomczak - Regional Oceanography}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Peculiarities of the Brazil Current System}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/brasil_3D-en.pdf}\hspace{1cm}
+\includegraphics[width=4cm,keepaspectratio=true]{figures/esq_transports.pdf}\\
+\footnotesize{According to {\it Stramma \& Englang (1999)}}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Peculiarities of the Brazil Current System}
+\begin{center}
+\includegraphics[width=9cm,keepaspectratio=true]{figures/topog.png}\\
+\footnotesize{Mapped from ETOPO 2'}
+\end{center}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Synoptic circulation review: north of BiSEC}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/schott_etal2005.png}\hspace{1cm}
+\includegraphics[width=4cm,keepaspectratio=true]{figures/esq_transports.pdf}
+
+\footnotesize{\it Schott et al. (2005)}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Synoptic circulation review: south of BiSEC}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/silva_19S.png}\hspace{1cm}
+\includegraphics[width=4cm,keepaspectratio=true]{figures/esq_transports.pdf}\\
+\footnotesize{\it Silva et al. (2009)}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Synoptic circulation review - mesoscale eddies}
+\includegraphics[width=11cm,keepaspectratio=true]{figures/campos2006.pdf}
+
+\footnotesize{\it Campos (2006)}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Typical mesoscale features}
+\begin{center}
+\includegraphics[width=8cm,keepaspectratio=true]{figures/brazil_cartoon.pdf}
+\end{center}
+
+\footnotesize{According to previous research}
+}
+
+
+\subsection{Scientific Hypothesis and Objectives}
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Scientific Hypothesis and Objectives}
+\begin{footnotesize}
+\begin{alertblock}{\textcolor{black}{\bf Hypothesis}}
+  \begin{enumerate}
+    \item{The BC site of origin and surface SEC bifurcation consists of a broad and eddy-dominated
+          area, instead of a narrow limit between different flow regimes.}
+    \item{The rich mesoscale activity observed at the BC site of origin is caused by a combined
+          effect of jet-topography and jet-jet interaction, where the existence of a western
+          boundary undercurrent plays a key role.}
+  \end{enumerate}
+\end{alertblock}
+
+\begin{alertblock}{\textcolor{black}{\bf Objectives}}
+  \begin{enumerate}
+    \item{Build a regional synoptic picture of the origin, formation and organization of the BC as a 
+          boundary current, as well as of the mesoscale activity between 10-20$^\circ$S.}
+    \item{Identify the roles of topography and BC-NBUC shear on the eddy activity in the near-surface
+          flow at the BC formation region.}
+  \end{enumerate}
+\end{alertblock}
+\end{footnotesize}
+
+}
+
+% \subsection{Broad Impacts}
+% % -------------------------------------------------
+\frame
+{
+  \frametitle{Broad impacts}
+\begin{small}
+\begin{block}{\textcolor{black}{\bf Motivation to study synoptic circulation at BC origin}}
+\begin{itemize}
+ \item [$\checkmark$] \textcolor{blue}{Verify which typical mesoscale features occurs;}
+% \vspace{.2cm}
+ \item [$\checkmark$] \textcolor{blue}{Accurately represent real dynamics in numerical simulations, important
+to process understanding, nowcasting and forecasting;}
+% \vspace{.2cm}
+ \item [$\checkmark$] Annual and inter-annual variability - meridional overturning circulation;
+% \vspace{.2cm}
+%  \item [$\checkmark$] Large scale heat poleward transport - climate change mechanisms;
+% \vspace{.2cm}
+ \item [$\checkmark$] Shelf-slope interactions and exchanges;
+% \vspace{.2cm}
+ \item [$\checkmark$] Sedimentological implications of deep currents;
+% \vspace{.2cm}
+ \item [$\checkmark$] Biological implications of eddy activity.
+\end{itemize}
+\end{block}
+\end{small}
+}
+
+
+
+
+\section{Part I: Regional description of the study area}
+
+\subsection{{\it In situ} velocity evidences}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Recent In Situ velocity data}
+\begin{center}
+\includegraphics[width=12cm,keepaspectratio=true]{figures/cruises.pdf}
+\end{center}
+\vspace{-0.5cm}
+\footnotesize{\it Soutelino et al. (2011)}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Recent In Situ velocity data}
+\begin{columns}
+\begin{column}{15cm}
+\hspace{-1cm}
+\includegraphics[width=14.5cm,keepaspectratio=true]{figures/obs.pdf}
+\end{column}
+\end{columns}
+\vspace{-0.5cm}
+\footnotesize{\it Soutelino et al. (2011)}
+}
+
+\subsection{OGCM velocity evidences}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{OGCM results - OCCAM}
+\begin{columns}
+\begin{column}{15cm}
+\hspace{-1cm}
+\includegraphics[width=14.5cm,keepaspectratio=true]{figures/occam.pdf}
+\end{column}
+\end{columns}
+\vspace{-0.5cm}
+\footnotesize{\it Soutelino et al. (2011)}
+}
+
+\subsection{Satellite velocity evidences}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Satellite altimetry results}
+\includegraphics[width=11cm,keepaspectratio=true]{figures/aviso_time_series.pdf}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Summary of Part I}
+\begin{itemize}
+\item{According to recent {\it in situ} observations, satellite altimetry and OGCM results, the
+flow at the BC formation region is weak and dominated by mesoscale eddies.}
+\item{Three large anticyclonic mesoscale eddies are possibly steady or recurrent at the region. } 
+\end{itemize} 
+
+\begin{alertblock}{\textcolor{black}{\bf Hypothesis 2}}
+  \begin{itemize}
+    \item{The rich mesoscale activity observed at the BC site of origin is caused by a combined
+          effect of jet-topography and jet-jet interaction, where the presence of a western
+          boundary undercurrent (NBUC) plays a key role.}
+  \end{itemize}
+\end{alertblock}
+}
+
+\section{Part II: Dynamics of the study area}
+
+\subsection{Methodology}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Strategy to test the hypothesis: The FORMS technique}
+% \begin{center}
+\includegraphics[width=7cm,keepaspectratio=true]{figures/FORMS.png}\hspace{0.5cm}
+\includegraphics[width=3.5cm,keepaspectratio=true]{figures/esq_transports.pdf}
+% \end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models Formulation - Velocity}
+
+\begin{columns}
+  \begin{column}{6cm}
+
+\begin{footnotesize}
+\begin{eqnarray*}
+    \mathcal{V}(x,y,z) = v(y,z)\ exp \left[- \frac{(x-x_c)^2}{2 \delta^2} \right],
+    \label{eq:main}
+\end{eqnarray*}
+
+
+\begin{eqnarray*}
+    \label{eq:nbuc_alongstream}
+    \hspace{-0.5cm} v_{NBUC} = v_c(y) 
+    \begin{cases} 
+        exp \left[ - \frac{(z-z_c(y))^2}{2\delta_t^2} \right], \  \text{at}  \ z_c < z < 0 \\
+        \ \\
+        exp \left[ - \frac{(z-z_c(y))^2}{2\delta_b^2} \right], \  \text{at}  \ z_b < z < z_c \\
+    \end{cases}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    v_{BC} = v_c(y) . exp \left[ - \frac{(z-z_c)^2}{2\delta_{bc}^2} \right], \ \ at \ \ z < 0
+    \label{eq:bc_alongstream}
+\end{eqnarray*}
+
+\end{footnotesize}
+
+  \end{column}
+
+  \begin{column}{5cm}
+    \includegraphics[width=5cm,keepaspectratio=true]{figures/bc-nbuc_diagram_south.pdf}
+  \end{column}
+
+\end{columns}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models Formulation - Velocity}
+
+    \begin{tiny}
+    \begin{center}
+    % use packages: array
+    \renewcommand{\arraystretch}{1.2}
+    \renewcommand{\tabcolsep}{2mm}
+    \begin{tabular}{cccccccc}
+        \hline
+        \hline
+        Feature & Relevant studies \\
+        \hline
+        NBUC (10$^\circ$-15$^\circ$S) & Silveira et al. (1994) \\
+               & Stramma et al. (1995) \\
+               & Stramma \& Schott (1999) \\
+               & Boebel et al. (1999) \\
+               & Silveira et al. (2000) \\
+               & Dengler et al. (2004) \\
+               & Schott et al. (2005) \\
+               & Rodrigues et al. (2007) \\
+        \hline
+        IWBC/NBUC (15$^\circ$-25$^\circ$S) & Stramma \& England (1999) \\
+               & Boebel et al. (1999) \\
+               & Silveira et al. (2000) \\
+               & Silveira et al. (2004) \\
+               & Rodrigues et al. (2007) \\
+               & Schmidt et al. (2007) \\
+        \hline
+        BC (10$^\circ$-28$^\circ$S)& Stramma et al. (1990) \\
+           & Miranda \& Castro (1981) \\
+           & Silveira et al. (2000) \\
+           & Silveira et al. (2004) \\
+           & Campos (2006) \\
+           & Rodrigues et al. (2007) \\
+           & Soutelino et al. (2011) \\
+        \hline
+    \end{tabular}
+    \end{center}
+    \end{tiny}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models Formulation - Velocity}
+
+    \begin{footnotesize}
+    \begin{center}
+    % use packages: array
+    \renewcommand{\arraystretch}{1.5}
+    \renewcommand{\tabcolsep}{2mm}
+    \begin{tabular}{cccccccc}
+        \hline
+        \hline
+        Feature & $x_c$ & $\delta$ & $z_c$ & $\delta_t/2$ & $\delta_b/2$ & $v_c$ & $T$\\
+        \hline
+        NBUC-S & 160 $km$ & 100 $km$ & 500 $m$ & 100 $m$ & 360 $m$ & 20 $cm\ s^{-1}$ & 9 $Sv$ \\
+        NBUC-N & 160 $km$ & 100 $km$ & 200 $m$ & 100 $m$ & 360 $m$ & 50 $cm\ s^{-1}$ & 23 $Sv$ \\
+        \hline
+        BC-S & 160 $km$ & 100 $km$ & 0 $m$ & $\times$ & 150 $m$ & 20 $cm\ s^{-1}$ &  3$Sv$ \\
+        BC-N & 160 $km$ & 100 $km$ & 0 $m$ & $\times$ & 0 $m$   & 0 $cm\ s^{-1}$ & 0 $Sv$ \\
+        \hline
+    \end{tabular}
+    \end{center}
+    \end{footnotesize}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models Formulation - Mass Field}
+
+\begin{small}
+\begin{eqnarray*}
+    f_0 \frac{\partial v}{\partial z} = - \frac{g}{\bar{\rho}} \frac{\partial \rho}{\partial x}, 
+    \label{eq:thermal_wind}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    \rho(x,z) = \rho(0,z) - \frac{f_0 \bar{\rho}}{g} \int_0^L \frac{\partial v}{\partial z} dx, 
+    \label{eq:rho}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    T(x,z) = \frac{\frac{-\rho}{\bar{\rho}} + 1 + \bar{\beta}S_0(z)}{\bar{\alpha}}.
+    \label{eq:temp}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    S(x,z) = S_0(z) - 10^{-2} T(x,z).
+    \label{eq:salt}
+\end{eqnarray*}
+
+\end{small}
+
+\begin{small}
+Following {\it Schmidt at al. (2007) and Fernandes (2007)}
+\end{small}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models vertical structure}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/bc-nbuc_diagram_south.pdf}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/bc-nbuc_diagram_rho_south.pdf}
+
+\end{center}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models vertical structure}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/bc-nbuc_diagram_north.pdf}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/bc-nbuc_diagram_rho_north.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models Structure}
+\begin{center}
+% \vspace{-0.3cm}
+\animategraphics[autoplay,loop,height=6cm]{1}{figures/transect}{3}{17}
+\animategraphics[autoplay,loop,height=6cm]{1}{figures/frame}{3}{17}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models Structure}
+\begin{center}
+% \vspace{-0.3cm}
+\animategraphics[autoplay,loop,height=6cm]{1}{figures/transect}{3}{17}
+\animategraphics[autoplay,loop,height=6cm]{1}{figures/rho}{3}{17}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models vertical structure}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/sec_rho.pdf}
+\includegraphics[width=6cm,keepaspectratio=true]{figures/sec_vel.pdf}
+\end{center}
+}
+
+% % -------------------------------------------------
+% \frame
+% {
+%   \frametitle{3-D Idealized Field Representation}
+% \begin{center}
+% % \vspace{-0.3cm}
+% \includegraphics[width=5cm,keepaspectratio=true]{figures/esq_transports.pdf}
+% \end{center}
+% }
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models horizontal structure}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=12cm,keepaspectratio=true]{figures/fm_vel_horiz.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Feature Models horizontal structure}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=12cm,keepaspectratio=true]{figures/fm_rho_horiz.pdf}
+\end{center}
+}
+
+
+% % -------------------------------------------------
+% \frame
+% {
+%   \frametitle{Feature Models horizontal structure}
+% \begin{center}
+% % \vspace{-0.3cm}
+% \includegraphics[width=12cm,keepaspectratio=true]{figures/vbat_zeta_horiz.pdf}
+% \end{center}
+% }
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Model Domain / Grid}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=12cm,keepaspectratio=true]{figures/model_grid.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Sensitivity experiments setup}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=12cm,keepaspectratio=true]{figures/experiments.pdf}
+\end{center}
+}
+
+
+
+\subsection{Results}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{CONTROL Experiment - snapshots}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd15_vel_day1_100m.pdf}
+\includegraphics[width=5cm]{figures/phd15_vel_day10_100m.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{CONTROL Experiment - snapshots}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd15_vel_day20_100m.pdf}
+\includegraphics[width=5cm]{figures/phd15_vel_day30_100m.pdf}
+\end{center}
+}
+
+% % -------------------------------------------------
+% \frame
+% {
+%   \frametitle{CONTROL Experiment - 3 month averages}
+% \begin{center}
+% % \vspace{-0.3cm}
+% \includegraphics[width=5cm]{figures/phd15_vel_day90-120_100m.pdf}
+% \includegraphics[width=5cm]{figures/phd15_vel_day150-180_100m.pdf}
+% \end{center}
+% }
+
+% % -------------------------------------------------
+% \frame
+% {
+%   \frametitle{CONTROL Experiment - 3 month averages}
+% \begin{center}
+% % \vspace{-0.3cm}
+% \includegraphics[width=5cm]{figures/phd15_vel_day210-240_100m.pdf}
+% \includegraphics[width=5cm]{figures/phd15_vel_day270-300_100m.pdf}
+% \end{center}
+% }
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{CONTROL Experiment - Run average}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd15_vel_day30-360_1m.pdf}
+\includegraphics[width=5cm]{figures/phd15_vel_day30-360_100m.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{CONTROL Experiment - Run average}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd15_vel_day30-360_200m.pdf}
+\includegraphics[width=5cm]{figures/phd15_vel_day30-360_400m.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{S1 Experiment - Run Average}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd16_vel_day30-360_1m.pdf}
+\includegraphics[width=5cm]{figures/phd16_vel_day30-360_400m.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{S2 Experiment - snapshots}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd18_vel_day10_100m.pdf}
+\includegraphics[width=5cm]{figures/phd18_vel_day30_100m.pdf}
+\end{center}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{S2 Experiment - snapshots}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=5cm]{figures/phd18_vel_day60_100m.pdf}
+\includegraphics[width=5cm]{figures/phd18_vel_day90_100m.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Results Summary - model vs data comparison}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=12cm]{figures/comparison.pdf}
+\end{center}
+}
+
+
+
+
+\subsection{Dynamics of the Eddy Formation}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Run-averaged fields: the basic state}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=13cm]{figures/average_fields.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{QG Approximation}
+\begin{small}
+\begin{eqnarray*}
+Ro = \frac{|\zeta|}{|f_0|} << 1
+\label{eq:Ro}
+\end{eqnarray*}
+\vspace{-0.5cm}
+\end{small}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=9cm]{figures/rossby_map.pdf}
+\end{center}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Conditions for leeward eddy formation}
+
+\begin{footnotesize}
+According to {\it Magaldi et al. (2008)}, when the Burger Number is larger than one ($B_u > 1$), 
+leeward eddies emerge at the lee of topographic promontories. 
+
+\begin{eqnarray*}
+    Bu = \frac{R_d}{D}
+    \label{eq:burger}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    R_d = \frac{ \sqrt{ \frac{\Delta \rho}{\rho_0} g H_i} } {|f_0|}
+    \label{eq:rd}
+\end{eqnarray*}
+
+$B_u$(BC) = 16.61\\
+$B_u$(NBUC) = 5.27\\
+Anticyclones are expected at the NBUC layer: \textcolor{blue}{We have them!}\\
+Cyclones are expected at the BC layer: \textcolor{red}{We do not have them. Why?}
+
+\end{footnotesize}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Baroclinic instability}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=10cm]{figures/instability.pdf}
+\end{center}
+\begin{small}
+\begin{eqnarray*}
+EC = \frac{g\alpha}{\theta_z} \left( \overline{u'T'} \frac{\partial\bar{T}}{\partial x} + 
+                                     \overline{v'T'} \frac{\partial\bar{T}}{\partial y}  \right )
+\label{eq:bc_conversion}
+\end{eqnarray*}
+
+{\it Cronin \& Watts (1996), Mano et al (2009), Francisco et al (2011)}
+\end{small}
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Energy Conversion Analysis}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=4cm]{figures/phd15_zoom_10_1m.pdf}
+\includegraphics[width=4cm]{figures/phd15_zoom_10_400m.pdf}\\
+\includegraphics[width=6cm]{figures/energy_conversion.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Energy Conversion Analysis}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=4cm]{figures/phd15_zoom_20_1m.pdf}
+\includegraphics[width=4cm]{figures/phd15_zoom_20_400m.pdf}\\
+\includegraphics[width=6cm]{figures/energy_conversion.pdf}
+\end{center}
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Energy Conversion Analysis}
+\begin{center}
+% \vspace{-0.3cm}
+\includegraphics[width=4cm]{figures/phd15_zoom_30_1m.pdf}
+\includegraphics[width=4cm]{figures/phd15_zoom_30_400m.pdf}\\
+\includegraphics[width=6cm]{figures/energy_conversion.pdf}
+\end{center}
+}
+
+\section{Final Remarks}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Final Remarks}
+\begin{footnotesize}
+\begin{alertblock}{\textcolor{black}{\bf Conclusions}}
+  \begin{enumerate}
+    \item{The near-surface flow in the surroundings of the BC site of origin (10-20$^\circ$)S
+          is recurrently dominated by anticyclonic mesoscale eddies.}
+    \item{Topography and BC-NBUC interaction are both 
+          essential to explain the observed mesoscale patterns. Geophysical baroclinic instability appears to be playing a key role in the eddy formation. }
+  \end{enumerate}
+\end{alertblock}
+
+\begin{alertblock}{\textcolor{black}{\bf Future Work}}
+  \begin{enumerate}
+    \item{The obvious one: more {\it in situ} observations are needed!  }
+    \item{Modeling initiatives in the region, for process studies or nowcast and forecast, should
+          never underestimate the importance of the undercurrent.}
+    \item{Include the DWBC in the system and evaluate its role. }
+    \item{Study the response of different BC-NBUC transport ratios.}
+  \end{enumerate}
+\end{alertblock}
+\end{footnotesize}
+
+}
+
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{Acknowledgments}
+
+\includegraphics[width=2cm]{USP.png}\hspace{1cm}
+\includegraphics[width=2cm]{IO.jpg}\hspace{1cm}
+\includegraphics[width=2cm]{lado.png}\hspace{1cm}
+\includegraphics[width=2cm]{SMASTlogo_umass_circle.pdf}\\
+\includegraphics[width=2cm]{logo_capes.jpg}\hspace{1cm}
+\includegraphics[width=2cm]{logo_cnpq.png}\hspace{1cm}
+\includegraphics[width=1cm]{brasao.jpg}\hspace{1cm}
+\includegraphics[width=2cm]{latex_logo.png}\\
+\includegraphics[width=1cm]{logo_linux.jpg}\hspace{1cm}
+\includegraphics[width=3cm]{logo_python.png}\hspace{1cm}
+\includegraphics[width=3cm]{logo_matplotlib.png}\hspace{1cm}
+\includegraphics[width=1cm]{logo_inkscape.png}
+
+}
+
+% -------------------------------------------------
+\frame
+{
+  \frametitle{}
+\hspace{3.5cm} {\huge Thank you!}\\
+
+\vspace{2cm}
+
+\hspace{3.7cm} {\huge Obrigado!}
+
+}
+
+\end{document}

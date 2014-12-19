@@ -1,0 +1,39 @@
+source ~/.bashrc #carrega os alias
+
+# conjunto 'ls'
+alias lx='ls -lXB'              # ordena por wxtensão
+alias lk='ls -lSr'              # ordena por tamanho
+alias lc='ls -lcr'              # ordena por alteração
+alias lu='ls -lur'              # ordena por tempo de acesso
+alias lt='ls -ltr'              # ordena por data
+alias la='ls -Al'               # mostra arquivos escondidos
+alias ls='ls -hF --color'       # coloca cor
+alias lr='ls -lR'               # ls recursivo
+alias lm='ls -al |more'         # 'pipe' pelo 'more'
+alias ll='ls -lh'               # mais humano
+
+# outros
+alias mat='matlab -nodesktop'
+alias mc='mount /media/CORSAIR'
+alias umc='umount /media/CORSAIR'
+alias cd..='cd ..'
+alias cp='cp -v'
+alias rm='rm -vi'
+alias mv='mv -v'
+alias mkdir='mkdir -p'
+alias h='history'
+alias path='echo -e ${PATH//:/\\n}'
+alias du='du -kh'
+alias df='df -kTh'
+alias cls='clear'
+alias dusk='du -skch * | sort -rn'
+alias nsl='netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail +2'
+
+# não funcionam
+alias ff='find . -name \!:1 -exec fgrep -Hn \!:2 '{}' \;'
+alias tree='tree -Csu'          # alternativa ao 'ls'
+
+# PROMPTs
+PS1="\[\033[1;30m\][\[\033[1;32m\]\u\[\033[1;30m\]@\[\033[0;32m\]\h\[\033[1;30m\]] \[\033[0;37m\]\W \[\033[1;30m\]\$\[\033[0m\]"
+
+PS1="\[\033[1;32m\][\$(date +%H:%M)][\u@\h:\w]$\[\033[0m\]"
