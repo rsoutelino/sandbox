@@ -25,13 +25,19 @@ Fase = atan2(Bn,An);
 
 k=0:N-1;n=0:N-1;
 
-stop
 
-yr = (1/N)*sum(repmat(Amp,N,1)'.*cos(repmat(Fase,N,1)'+2*pi*(k'*n)/N));  
+Amprep  = repmat(Amp,N,1)';
+Faserep = repmat(Fase,N,1)';
+tmp     =  Faserep + 2*pi * (k'*n) / N;
+costmp  = cos(tmp);
+
+yr = (1/N) * sum( Amprep .* costmp );  
+% yr = (1/N)*sum(repmat(Amp,N,1)'.*cos(repmat(Fase,N,1)'+2*pi*(k'*n)/N));
+
 
 % a inversa (yr) é igual aos dados de entrada!
-title('Aqui tem 2 curvas')
-plot(t,y,t,yr,'y--')
+% title('Aqui tem 2 curvas')
+% plot(t,y,t,yr,'y--')
 
 % o vetor de amplitudes é 'espelhado' em relação ao zero
 % o eixo das freqüências é construído levando-se isto em conta
@@ -42,6 +48,7 @@ subplot(2,1,1),plot(fre,A)
 title('Amplitudes')
 subplot(2,1,2),plot(fre,A);axis([0 .3 0 1]);
 title('Zoom no Pico ')
+
 
 pasbax1=double(fre<0.2);
 filtro=[pasbax1 fliplr(pasbax1)];
