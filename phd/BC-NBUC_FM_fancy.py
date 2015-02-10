@@ -292,12 +292,12 @@ lonm, latm = m(lonr, latr)
 Xm, Ym = m(X, Y)  
      
 #############################################################################################
-plt.figure(facecolor='w', figsize=(14,8))
+fig1 = plt.figure(facecolor='w')
 
 p1=plt.subplot(1,2,1)
-m.contourf(Xm, Ym, V[-1,...]*100, np.arange(-10, 10+0.3,0.3), cmap=plt.cm.RdBu_r, extend='both')
+m.contourf(Xm, Ym, V[-1,...]*100, np.arange(-10, 10+0.3,0.3), cmap=plt.cm.RdBu, extend='both')
 plt.colorbar(shrink=0.9, extend='both')
-m.contourf(lonm, latm, zb, colors=('0.7'), alpha=1)
+m.contourf(lonm, latm, zb, colors=('0.7'), alpha=0.5)
 m.plot(xb, yb,'k--');
 m.drawcoastlines(zorder=5)
 m.drawcountries(zorder=4)
@@ -314,9 +314,9 @@ ax,ay = m(-33,-22)
 plt.text(ax, ay, "a", ha="center", va="center", size=12, bbox=bbox_props)
 
 p2=plt.subplot(1,2,2)
-m.contourf(Xm, Ym, V[-400/dz,...]*100, np.arange(-50, 50+2,2), cmap=plt.cm.RdBu_r, extend='both')
+m.contourf(Xm, Ym, V[-400/dz,...]*100, np.arange(-50, 50+2,2), cmap=plt.cm.RdBu, extend='both')
 plt.colorbar(shrink=0.9, extend='both')
-m.contourf(lonm, latm, zb, colors=('0.7'), alpha=1)
+m.contourf(lonm, latm, zb, colors=('0.7'), alpha=0.5)
 m.plot(xb, yb,'k--');
 m.drawcoastlines(zorder=5)
 m.drawcountries(zorder=4)
@@ -332,9 +332,7 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = m(-33,-22)
 plt.text(ax, ay, "b", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/fm_vel_horiz.pdf')
-# plt.savefig('/home/rsoutelino/prod/congressos/roms_wksp2012/fm_vel_horiz.png', dpi=300)
-# plt.savefig('/home/rsoutelino/phd/tex/figures/roms_wksp2012/fm_vel_horiz.pdf')
+plt.savefig('figures/fm_vel_horiz.pdf')
 ###############################################################################################
 
 
@@ -342,14 +340,13 @@ plt.text(ax, ay, "b", ha="center", va="center", size=12, bbox=bbox_props)
 
 pp = plt.figure(figsize=(8,8), facecolor='w')
 ax = plt.axes()
-cc = plt.contourf(X[0,:],Z, np.squeeze(V[:,0,:])*100,np.arange(-20,20+3,3), cmap=plt.cm.RdBu, alpha=1)
+cc = plt.contourf(X[0,:],Z, np.squeeze(V[:,0,:])*100,np.arange(-20,20+3,3), cmap=plt.cm.RdBu, alpha=0.6)
 plt.colorbar(shrink=0.9, extend='both')
-plt.axis([-44.4, -42.7, -1250, 50])
-# plt.axis('off')
+plt.axis([-44.4, -42.7, -1250, 50]); plt.axis('off')
 plt.plot([-44.4, -44.4, -42.7, -42.7, -44.4],[-1250, 50, 50, -1250, -1250],'k', linewidth=2)
 plt.plot((-44.4, -42.7),(0,0), 'k--', linewidth=5, alpha=0.1)
-plt.text(-44.3, -1350, '$X$: Cross-stream axis [Longitude]');
-plt.text(-44.7, -860, '$Z$: Vertical axis  [Depth]', rotation=90);
+plt.text(-44.3, -1300, '$X$: Cross-stream axis $\longrightarrow$');
+plt.text(-44.5, -860, '$Z$: Vertical axis  $\longrightarrow$', rotation=90);
 plt.text(-42.6, 5, '$cm.s^{-1}$')
 plt.text(-42.6, -1250, '$Vel$')
 
@@ -435,21 +432,19 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = (-44.3,-1150)
 plt.text(ax, ay, "a", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/bc-nbuc_diagram_south.pdf')
-plt.savefig('/home/rsoutelino/phd/tex/figures/bc-nbuc_diagram_south.pdf')
-# plt.savefig('/home/rsoutelino/prod/congressos/roms_wksp2012/bc-nbuc_diagram_south.png', dpi=300)
+plt.savefig('figures/bc-nbuc_diagram_south.pdf')
+
 #==========================================================================
 
 pp = plt.figure(figsize=(8,8), facecolor='w')
 ax = plt.axes()
-cc = plt.contourf(X[0,:],Z, np.squeeze(V[:,-1,:])*100,np.arange(-50,50+6,6), cmap=plt.cm.RdBu, alpha=1)
+cc = plt.contourf(X[0,:],Z, np.squeeze(V[:,-1,:])*100,np.arange(-50,50+6,6), cmap=plt.cm.RdBu, alpha=0.6)
 plt.colorbar(shrink=0.9, extend='both')
-plt.axis([-44.4, -42.7, -1250, 50])
-# plt.axis('off')
+plt.axis([-44.4, -42.7, -1250, 50]); plt.axis('off')
 plt.plot([-44.4, -44.4, -42.7, -42.7, -44.4],[-1250, 50, 50, -1250, -1250],'k', linewidth=2)
 plt.plot((-44.4, -42.7),(0,0), 'k--', linewidth=5, alpha=0.1)
-plt.text(-44.3, -1350, '$X$: Cross-stream axis [Longitude]');
-plt.text(-44.7, -860, '$Z$: Vertical axis  [Depth]', rotation=90);
+plt.text(-44.3, -1300, '$X$: Cross-stream axis $\longrightarrow$');
+plt.text(-44.5, -860, '$Z$: Vertical axis  $\longrightarrow$', rotation=90);
 plt.text(-42.6, 5, '$cm.s^{-1}$')
 plt.text(-42.6, -1250, '$Vel$')
 
@@ -513,9 +508,8 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = (-44.3,-1150)
 plt.text(ax, ay, "b", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/bc-nbuc_diagram_north.pdf')
-plt.savefig('/home/rsoutelino/prod/congressos/roms_wksp2012/bc-nbuc_diagram_north.png', dpi=300)
-plt.savefig('/home/rsoutelino/phd/tex/figures/bc-nbuc_diagram_north.pdf')
+plt.savefig('figures/bc-nbuc_diagram_north.pdf')
+
 
 #############################################  
    
@@ -528,7 +522,7 @@ print ' '
 # rho(x,z) = rho0(z) - rho_bar.f/g * int_0^L{ dv/dz dx}
 
 # obtaining rho0 and rho_bar from WOA2009:
-MeanDens = sp.loadmat('MeanDens.mat')
+MeanDens = sp.loadmat('/home/rsoutelino/phd/fm/MeanDens.mat')
 rho0  = MeanDens['potdens'][:].ravel(); rho0 = rho0[::-1]
 zrho  = MeanDens['z'][:].ravel(); zrho = zrho[::-1]
 salt0 = MeanDens['salt'][:].ravel(); salt0 = salt0[::-1] 
@@ -580,15 +574,14 @@ for i in range(0, li):
 ###############################################################################################
 pp = plt.figure(figsize=(8,8), facecolor='w')
 ax = plt.axes()
-cc = plt.contourf(X[0,:],Z, np.squeeze(RHO[:,0,:])-1000,np.arange(23.2,27.8,0.2), cmap=plt.cm.Spectral_r, alpha=1)
+cc = plt.contourf(X[0,:],Z, np.squeeze(RHO[:,0,:])-1000,np.arange(23.2,27.8,0.2), cmap=plt.cm.Spectral_r)
 plt.colorbar(shrink=0.9, extend='both')
 plt.contour(X[0,:],Z, np.squeeze(RHO[:,0,:])-1000,np.arange(23.2,27.8,0.2), colors='0.4') 
-plt.axis([-44.4, -42.7, -1250, 50])
-# plt.axis('off')
+plt.axis([-44.4, -42.7, -1250, 50]); plt.axis('off')
 plt.plot([-44.4, -44.4, -42.7, -42.7, -44.4],[-1250, 50, 50, -1250, -1250],'k', linewidth=2)
 plt.plot((-44.4, -42.7),(0,0), 'k--', linewidth=5, alpha=0.1)
-plt.text(-44.3, -1350, '$X$: Cross-stream axis [Longitude]');
-plt.text(-44.7, -860, '$Z$: Vertical axis  [Depth]', rotation=90);
+plt.text(-44.3, -1300, '$X$: Cross-stream axis $\longrightarrow$');
+plt.text(-44.5, -860, '$Z$: Vertical axis  $\longrightarrow$', rotation=90);
 plt.plot(x0,-1100, 'wv',markersize=6)
 plt.text(x0-0.1,-1150, r'$x = x_c$', {'color' : 'k', 'fontsize' : 16})
 plt.plot(-43,-500, 'w>',markersize=6)
@@ -606,21 +599,18 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = (-44.3,-1150)
 plt.text(ax, ay, "a", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/bc-nbuc_diagram_rho_south.pdf')
-# plt.savefig('/home/rsoutelino/prod/congressos/roms_wksp2012/bc-nbuc_diagram_rho_south.png', dpi=300)
-plt.savefig('/home/rsoutelino/phd/tex/figures/bc-nbuc_diagram_rho_south.pdf')
+plt.savefig('figures/bc-nbuc_diagram_rho_south.pdf')
 
 pp = plt.figure(figsize=(8,8), facecolor='w')
 ax = plt.axes()
-cc = plt.contourf(X[0,:],Z, np.squeeze(RHO[:,-1,:])-1000,np.arange(23.2,27.8,0.2), cmap=plt.cm.Spectral_r, alpha=1) 
+cc = plt.contourf(X[0,:],Z, np.squeeze(RHO[:,-1,:])-1000,np.arange(23.2,27.8,0.2), cmap=plt.cm.Spectral_r) 
 plt.colorbar(shrink=0.9, extend='both')
 plt.contour(X[0,:],Z, np.squeeze(RHO[:,-1,:])-1000,np.arange(23.2,27.8,0.2), colors='0.4') 
-plt.axis([-44.4, -42.7, -1250, 50])
-# plt.axis('off')
+plt.axis([-44.4, -42.7, -1250, 50]); plt.axis('off')
 plt.plot([-44.4, -44.4, -42.7, -42.7, -44.4],[-1250, 50, 50, -1250, -1250],'k', linewidth=2)
 plt.plot((-44.4, -42.7),(0,0), 'k--', linewidth=5, alpha=0.1)
-plt.text(-44.3, -1350, '$X$: Cross-stream axis [Longitude]');
-plt.text(-44.7, -860, '$Z$: Vertical axis  [Depth]', rotation=90);
+plt.text(-44.3, -1300, '$X$: Cross-stream axis $\longrightarrow$');
+plt.text(-44.5, -860, '$Z$: Vertical axis  $\longrightarrow$', rotation=90);
 plt.plot(x0,-800, 'wv',markersize=6)
 plt.text(x0-0.1,-850, r'$x = x_c$', {'color' : 'k', 'fontsize' : 16})
 plt.plot(-43,-200, 'w>',markersize=6)
@@ -638,9 +628,7 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = (-44.3,-1150)
 plt.text(ax, ay, "b", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/bc-nbuc_diagram_rho_north.pdf')
-# plt.savefig('/home/rsoutelino/prod/congressos/roms_wksp2012/bc-nbuc_diagram_rho_north.png', dpi=300)
-plt.savefig('/home/rsoutelino/phd/tex/figures/bc-nbuc_diagram_rho_north.pdf')
+plt.savefig('figures/bc-nbuc_diagram_rho_north.pdf')
 
 plt.show()
 ###############################################################################################
@@ -648,16 +636,15 @@ plt.show()
 ###############################################################################################
 plt.figure(figsize=(8,8), facecolor='w')
 ax = plt.axes()
-plt.contourf(Y[:,-1],Z, np.squeeze(RHO[:,:,-1])-1000,np.arange(23.2,27.8,0.2), cmap=plt.cm.Spectral_r, alpha=1)
+plt.contourf(Y[:,-1],Z, np.squeeze(RHO[:,:,-1])-1000,np.arange(23.2,27.8,0.2), cmap=plt.cm.Spectral_r)
 plt.colorbar(shrink=0.9, extend='both')
 plt.contour(Y[:,-1],Z, np.squeeze(RHO[:,:,-1])-1000,np.arange(23.2,27.8,0.2), colors='0.4')
-plt.axis([latr.min(), latr.max(), -1250, 50])
-# plt.axis('off')
+plt.axis([latr.min(), latr.max(), -1250, 50]); plt.axis('off')
 plt.plot([latr.min(), latr.min(), latr.max(), latr.max(), latr.min()],
          [-1250, 50, 50, -1250, -1250],'k', linewidth=2)
 plt.plot((latr.min(), latr.max()),(0,0), 'k--', linewidth=5, alpha=0.1)
-plt.text(latr.min()+.1, -1350, '$Y$: Along-stream axis [Latitude]');
-plt.text(latr.min()-2.3, -700, '$Z$: Vertical axis [Longitude]', rotation=90);
+plt.text(latr.min()+.1, -1300, '$Y$: Along-stream axis $\longrightarrow$');
+plt.text(latr.min()-0.6, -860, '$Z$: Vertical axis  $\longrightarrow$', rotation=90);
 plt.text(latr.max()-1.5,-14, r'$z = 0$', {'color' : 'k', 'fontsize' : 16})
 plt.plot((latr.min(), latr.max()),(-1200,-1200), 'k--', linewidth=5, alpha=0.1)
 plt.plot(-43.2,-1200, 'w>',markersize=6)
@@ -673,8 +660,7 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = (latr.min()+0.6,-1150)
 plt.text(ax, ay, "a", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/sec_rho.pdf')
-plt.savefig('/home/rsoutelino/phd/tex/figures/sec_rho.pdf')
+plt.savefig('figures/sec_rho.pdf')
 plt.show()
 ###############################################################################################
 
@@ -732,14 +718,13 @@ plt.figure(figsize=(8,8), facecolor='w')
 ax = plt.axes()
 plt.contourf(y, -z, usec*100, np.arange(-10, 10+1, 1), cmap=plt.cm.RdBu);
 plt.colorbar(shrink=0.9, extend='both')
-plt.axis([latr.min(), latr.max(), -1250, 50])
-# plt.axis('off')
+plt.axis([latr.min(), latr.max(), -1250, 50]); plt.axis('off')
 plt.title('East')
 plt.plot([latr.min(), latr.min(), latr.max(), latr.max(), latr.min()],
          [-1250, 50, 50, -1250, -1250],'k', linewidth=2)
 plt.plot((latr.min(), latr.max()),(0,0), 'k--', linewidth=5, alpha=0.1)
-plt.text(latr.min()+.1, -1350, '$Y$: Along-stream axis [Latitude]');
-plt.text(latr.min()-2.3, -700, '$Z$: Vertical axis [Depth]', rotation=90);
+plt.text(latr.min()+.1, -1300, '$Y$: Along-stream axis $\longrightarrow$');
+plt.text(latr.min()-0.6, -860, '$Z$: Vertical axis  $\longrightarrow$', rotation=90);
 plt.text(latr.max()-1.5,-14, r'$z = 0$', {'color' : 'k', 'fontsize' : 16})
 plt.plot((latr.min(), latr.max()),(-1200,-1200), 'k--', linewidth=5, alpha=0.1)
 plt.plot(-43.2,-1200, 'w>',markersize=6)
@@ -754,11 +739,9 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = (latr.min()+0.6,-1150)
 plt.text(ax, ay, "b", ha="center", va="center", size=12, bbox=bbox_props)
 
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/sec_vel.pdf')
-plt.savefig('/home/rsoutelino/phd/tex/figures/sec_vel.pdf')
+plt.savefig('figures/sec_vel.pdf')
 
 plt.show()
-stop
 ###############################################################################################
 
 uaux = usec.repeat(rpt, axis=1)
@@ -822,7 +805,7 @@ RHO   = np.concatenate((raux,  RHO), axis=2)
 Xm, Ym = m(X, Y)  
 plt.figure(facecolor='w', figsize=(14,8))
 p1=plt.subplot(1,2,1)
-m.contourf(Xm, Ym, RHO[-1,...]-1000, np.arange(23.5,24,0.03), cmap=plt.cm.Spectral_r, alpha=1)
+m.contourf(Xm, Ym, RHO[-1,...]-1000, np.arange(23.5,24,0.03), cmap=plt.cm.Spectral_r)
 plt.colorbar(shrink=0.8, extend='both')
 m.contour(Xm, Ym, RHO[-1,...]-1000, np.arange(23.5,24,0.03), colors='0.4')
 m.contourf(lonm, latm, zb, colors=('0.9'), alpha=0.5)
@@ -847,7 +830,7 @@ ax,ay = m(-33,-22)
 plt.text(ax, ay, "a", ha="center", va="center", size=12, bbox=bbox_props)
 
 p2=plt.subplot(1,2,2)
-m.contourf(Xm, Ym, RHO[-400/dz,...]-1000, np.arange(26.28,27.06,0.03), cmap=plt.cm.Spectral_r, alpha=1)
+m.contourf(Xm, Ym, RHO[-400/dz,...]-1000, np.arange(26.28,27.06,0.03), cmap=plt.cm.Spectral_r)
 plt.colorbar(shrink=0.8, extend='both')
 m.contour(Xm, Ym, RHO[-400/dz,...]-1000, np.arange(26.28,27.02,0.03), colors='0.4')
 m.contourf(lonm, latm, zb, colors=('0.9'), alpha=0.5)
@@ -870,9 +853,7 @@ plt.text(ax, ay, r'$\frac{\partial \sigma_\Theta}{\partial y} \neq 0$',
 bbox_props = dict(boxstyle="round", fc="w", ec="0.5")
 ax,ay = m(-33,-22)
 plt.text(ax, ay, "b", ha="center", va="center", size=12, bbox=bbox_props)
-# plt.savefig('/home/rsoutelino/rsoutelino/prod/csr_phd/figures/fm_rho_horiz.pdf')
-plt.savefig('/home/rsoutelino/prod/congressos/roms_wksp2012/fm_rho_horiz.png', dpi=300)
-
+plt.savefig('figures/fm_rho_horiz.pdf')
 #############################################################################################
 
 del lastS, lastT, lastx, lasty, firstS, firstT, firstu, firstx, firsty
@@ -943,7 +924,7 @@ tx, ty = m(lonr.min()+0.6, latr.max()-2)
 text = 'Depth-averaged\n zonal velocities\n @ 400 m\n [$cm.s^{-1}$]'
 p2.text(tx,ty,text,color='k',fontsize=11,fontweight='bold')
 plt.show()
-#plt.savefig('/home/rsoutelino/rsoutelino/phd/tex/figures/vbat_zeta_horiz.pdf')
+plt.savefig('figures/vbat_zeta_horiz.pdf')
 
 
 

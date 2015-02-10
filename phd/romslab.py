@@ -348,8 +348,8 @@ not work properly.\n" %var
         """
         x = self.lonr
         y = self.latr
-        t = self.t[l,...]
-        s = self.s[l,...]
+        t = self.temp[l,...]
+        s = self.salt[l,...]
         u = self.u[l,...]
         v = self.v[l,...]
         
@@ -384,9 +384,7 @@ not work properly.\n" %var
         ys = ys.repeat(self.km, axis=1)
         
         # computing cross and along transect velocity components
-        
-        
-        exec "ps = p%s" %field[0]
+        exec "ps = %ss" %field[0]
         
         self.xVslice = xs
         self.yVslice = ys
@@ -396,49 +394,49 @@ not work properly.\n" %var
         self.uVslice = us
         self.vVslice = vs
     
-        titlestr = "%s " %(tr)
-        titlestr += ": %04d/%02d/%02d %02d:%02dh" %(self.dates[l].year,
-                        self.dates[l].month, self.dates[l].day, self.dates[l].hour,
-                        self.dates[l].minute )
+        # titlestr = "%s " %(field)
+        # titlestr += ": %04d/%02d/%02d %02d:%02dh" %(self.dates[l].year,
+        #                 self.dates[l].month, self.dates[l].day, self.dates[l].hour,
+        #                 self.dates[l].minute )
         
-        self.figure = plt.figure(facecolor='w')
-        ax1 = self.figure.add_axes([0.1, 0.1, 0.3, 0.3])
-        self.contourf = plt.contourf(xs, zs, ps, sc, axes=ax1, cmap=cmap)
-        if xs[0,0] > xs[-1,-1]: ax1.set_xlim(ax1.get_xlim()[::-1])
-        if p1[0] == p2[0]:
-            ax1.xaxis.set_ticklabels('')
-            tit = "Longitude = %s" %str(p1[0])
-        else: tit = "Longitude"
-        ax1.set_xlabel(tit)
-        ax1.set_ylim(zlim)
-        ax1.set_ylabel('z [m]')
+        # self.figure = plt.figure(facecolor='w')
+        # ax1 = self.figure.add_axes([0.1, 0.1, 0.3, 0.3])
+        # self.contourf = plt.contourf(xs, zs, ps, sc, axes=ax1, cmap=cmap)
+        # if xs[0,0] > xs[-1,-1]: ax1.set_xlim(ax1.get_xlim()[::-1])
+        # if p1[0] == p2[0]:
+        #     ax1.xaxis.set_ticklabels('')
+        #     tit = "Longitude = %s" %str(p1[0])
+        # else: tit = "Longitude"
+        # ax1.set_xlabel(tit)
+        # ax1.set_ylim(zlim)
+        # ax1.set_ylabel('z [m]')
 
-        ax2 = self.figure.add_axes([0.5, 0.5, 0.3, 0.3])
-        con = plt.contourf(ys, zs, ps, sc, axes=ax2, cmap=cmap)
-        if ys[0,0] > ys[-1,-1]: ax2.set_xlim(ax2.get_xlim()[::-1])
-        if p1[1] == p2[1]:
-            ax2.xaxis.set_ticklabels('')
-            tit = "Latitude = %s" %str(p1[1])
-        else: tit = "Latitude"
-        ax2.set_yticklabels('')
-        ax2.set_ylim(zlim)
-        ax2.xaxis.set_ticks_position('top')
+        # ax2 = self.figure.add_axes([0.5, 0.5, 0.3, 0.3])
+        # con = plt.contourf(ys, zs, ps, sc, axes=ax2, cmap=cmap)
+        # if ys[0,0] > ys[-1,-1]: ax2.set_xlim(ax2.get_xlim()[::-1])
+        # if p1[1] == p2[1]:
+        #     ax2.xaxis.set_ticklabels('')
+        #     tit = "Latitude = %s" %str(p1[1])
+        # else: tit = "Latitude"
+        # ax2.set_yticklabels('')
+        # ax2.set_ylim(zlim)
+        # ax2.xaxis.set_ticks_position('top')
 
-        ax1.set_position( [0.125, 0.1, 0.7, 0.75] )
-        ax2.set_position( [0.125, 0.1, 0.7, 0.75] )
+        # ax1.set_position( [0.125, 0.1, 0.7, 0.75] )
+        # ax2.set_position( [0.125, 0.1, 0.7, 0.75] )
 
-        self.figTitle = ax1.set_title(titlestr, fontsize=10, fontweight='bold')
-        self.figTitle.set_position( (0.5, 1.12) )
+        # self.figTitle = ax1.set_title(titlestr, fontsize=10, fontweight='bold')
+        # self.figTitle.set_position( (0.5, 1.12) )
                 
-        ax3 = self.figure.add_axes([0.85, 0.1, 0.015, 0.75])
-        cbar = plt.colorbar(con, cax=ax3, orientation='vertical')
-        cbar.set_label('$^\circ$ C')   
+        # ax3 = self.figure.add_axes([0.85, 0.1, 0.015, 0.75])
+        # cbar = plt.colorbar(con, cax=ax3, orientation='vertical')
+        # cbar.set_label(r'm s$^{-1}$')   
             
-        ax4 = self.figure.add_axes([0.4, 0.83, 0.2, 0.05]) 
-        ax4.set_title(tit, fontsize=10)
-        ax4.set_axis_off()
+        # ax4 = self.figure.add_axes([0.4, 0.83, 0.2, 0.05]) 
+        # ax4.set_title(tit, fontsize=10)
+        # ax4.set_axis_off()
 
-        plt.show()     
+        # plt.show()     
         
         return
 
