@@ -100,7 +100,7 @@ def near(x,x0):
 
 ### FUNCTION ZLEV ###################################################
 
-def zlev(h,theta_s,theta_b,Tcline,N,kgrid=0,zeta=0):
+def zlev(h, theta_s, theta_b, Tcline, N, kgrid=0, zeta=0):
     """
     Set S-Curves in domain [-1 < sc < 0] 
     at vertical W- or RHO-points.
@@ -141,19 +141,19 @@ def zlev(h,theta_s,theta_b,Tcline,N,kgrid=0,zeta=0):
     Mr, Lr = h.shape;
 
     if   kgrid==0:
-	zeta = np.zeros([Mr, Lr])
-	grid = 'r'
+	   zeta = np.zeros([Mr, Lr])
+	   grid = 'r'
     elif zeta==0:
-	zeta = np.zeros([Mr, Lr])
+	   zeta = np.zeros([Mr, Lr])
 	
     if grid == 'r':
-	Nlev = N
-	lev  = np.arange(1, N+1, 1)
-	sc   = -1 + (lev-0.5) * ds
+	   Nlev = N
+	   lev  = np.arange(1, N+1, 1)
+	   sc   = -1 + (lev-0.5) * ds
     else:
-	Nlev = Np
-	lev  = np.arange(0, N+1, 1)
-	sc   = -1 + lev * ds
+	   Nlev = Np
+	   lev  = np.arange(0, N+1, 1)
+	   sc   = -1 + lev * ds
 
 	
     Ptheta = np.sinh(theta_s * sc) / np.sinh(theta_s)
