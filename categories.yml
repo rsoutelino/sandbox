@@ -11,7 +11,7 @@ groceries:
     food: ['Bin Inn Dinsdale', 'Topcut Butchery', 'Thabun Bakery', 'Raglan Fish Ltd', 'Wainui Food Market']
 
 restaurant:
-    business: ['Raglan Roll Up', 'Strandon Dairy', 'Raglan Bakery & Cafe', 'Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']
+    business: ['Subway', 'Raglan Roll Up', 'Strandon Dairy', 'Raglan Bakery & Cafe', 'Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']
     coffee: ['Raglan Roast', 'Piccolo Morso', 'Paris Plage', 'The Fat Pigeon Cafe', "Tiffany's Cafe & Res", 'River Run Cafe', 'Petit Paris', 'Columbus Mega Np', 'Bosco Cafe', 'Te Uku Roast Office', 'Expresso Garden Cafe', 'Raglan Roast Volcom']
 
 shopping:
@@ -33,7 +33,7 @@ car:
 
 entertainement:
     movies: ['GOOGLE *YouTube   05', 'Quickflix NZ      08', 'Hoyts Te Rapa', 'GOOGLE *YouTube   26', 'GOOGLE *YouTube   21', 'GOOGLE *YouTube   13', 'Lido Cinema', 'GOOGLE *YouTube   11', 'GOOGLE *YouTube   18', 'Raglan Video']
-    travel: ['Nakedbus.Com Trus 07', 'Blue Lake Top 10 Hol', 'Nakedbus.Com Trus 02', 'Airbnb            19', 'McDonalds Mercer', 'Aial Car Park', 'Aial Car Park     31', 'Travelex 1151 Ak Air', 'McDonalds Otorohanga', 'Adreia Veras Leon 06', 'Relay', 'Aial Int Arr BNZ ATM']
+    travel: ['Polynesian Spa','Nakedbus.Com Trus 07', 'Blue Lake Top 10 Hol', 'Nakedbus.Com Trus 02', 'Airbnb            19', 'McDonalds Mercer', 'Aial Car Park', 'Aial Car Park     31', 'Travelex 1151 Ak Air', 'McDonalds Otorohanga', 'Adreia Veras Leon 06', 'Relay', 'Aial Int Arr BNZ ATM']
     gastronomy: ['The Yot Club', 'Rockit Kitchen', 'The Federal Store', 'Valentes Collections', 'Blacksand', 'Flying Burrito Broth', 'Bow Street Depot Ltd', 'Orca Restaurant & Ba', 'Namaste Kitchen', 'The Sugar Bowl Ragla', 'Goodhome Hamilton 28', 'The Shack', 'Harbour View Hotel', 'Raglan Wines & Spiri']
 
 living:
