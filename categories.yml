@@ -1,0 +1,48 @@
+incoming:
+    wage: ['Metocean Solution', 'Whaingaroa Environme']
+
+savings: 
+    shortterm: ['To 1509-0371925-25']
+    longterm: ['To 1509-0371925-26', 'Rafael & Juliana']
+
+groceries:
+    essentials: ['Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa']
+    social: ['']
+    food: ['']
+
+restaurant:
+    business: ['Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']
+    coffee: ['Raglan Roast Volcom']
+
+shopping:
+    gift: ['O Boticario       06', '1090Anna Phillips']
+    clothes: ['Lojas Renner Fl 6 05', 'Farmers Te Rapa']
+    gear: ['The Warehouse Onl 05', 'Stirling Sports The', '8020Paul Solt']
+    maintanance: ['Warehouse Building S', 'Mitre 10 Mega Hmltn', 'Xtreme Zero Waste']
+
+wellness:
+    health: ['Health 2000 The Base', 'Tank Juice Bar    19', 'Tank Juice Bar', 'Tank Juice Bar    11', 'The Herbal Dispensar', 'Raglan Pharmacy', 'Raglan Super Value']
+    fitness: ['Waterworld', '2080masters swim clu']
+
+car:
+    fuel: ['Waitomo Petroleum Te']
+    fees: ['Raglan']
+    parking: ['Aial Car Park']
+    maintanance: ['Raglan Engineering']
+
+entertainement:
+    movies: ['Lido Cinema', 'GOOGLE *YouTube   11', 'GOOGLE *YouTube   18']
+    travel: ['McDonalds Otorohanga', 'Adreia Veras Leon 06']
+    gastronomy: ['The Sugar Bowl Ragla', 'Goodhome Hamilton 28', 'The Shack', 'Harbour View Hotel', 'Raglan Wines & Spiri']
+
+living:
+    fees: ['Transaction charge', 'Clearance Fee']
+    rent: ['']
+    utilities: ['']
+    internet: ['Linode.Com        01']
+    phone: ['6040Vodafone (Mobile']
+    power: ['']
+
+uncategorized:
+    withdraw: ['']
+
