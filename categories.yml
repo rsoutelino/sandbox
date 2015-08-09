@@ -6,18 +6,18 @@ savings:
     longterm: ['To 1509-0371925-26', 'Rafael & Juliana']
 
 groceries:
-    essentials: ['Twl 185 Te Rapa','Twl 141 Hamilton', '7 Buy Supermarket', 'Countdown The Valley', 'Four Square Okato', 'New World New Plymou', 'New World Te Kuiti', 'Lush Hamilton', 'Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa', 'Raglan Foursquare']
+    essentials: ['Countdown Hamilton', 'Twl 185 Te Rapa','Twl 141 Hamilton', '7 Buy Supermarket', 'Countdown The Valley', 'Four Square Okato', 'New World New Plymou', 'New World Te Kuiti', 'Lush Hamilton', 'Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa', 'Raglan Foursquare']
     social: ['']
     food: ['Bin Inn Dinsdale', 'Topcut Butchery', 'Thabun Bakery', 'Raglan Fish Ltd', 'Wainui Food Market']
 
 restaurant:
-    business: ['Strandon Dairy', 'Raglan Bakery & Cafe', 'Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']
+    business: ['Raglan Roll Up', 'Strandon Dairy', 'Raglan Bakery & Cafe', 'Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']
     coffee: ['Raglan Roast', 'Piccolo Morso', 'Paris Plage', 'The Fat Pigeon Cafe', "Tiffany's Cafe & Res", 'River Run Cafe', 'Petit Paris', 'Columbus Mega Np', 'Bosco Cafe', 'Te Uku Roast Office', 'Expresso Garden Cafe', 'Raglan Roast Volcom']
 
 shopping:
     gift: ['Noel Leeming 64', 'O Boticario       06', '1090Anna Phillips']
     clothes: ['North Beach Te Awa', 'Just Jeans 439', 'Glassons The Base', 'Lojas Renner Fl 6 05', 'Farmers Te Rapa']
-    gear: ['Briscoes Hamilton 18', 'Raglan Surf Emporium', 'Raglan Watersports L', 'Amazon Mktplace P 27', 'Raglan Surf Company', 'Kathmandu Te Rapa', 'Kathmandu Hamilton', 'Amazon Mktplace P 26', 'Kathmandu         30', 'Kathmandu         01', 'Spotlight Stores (NZ', 'The Warehouse Onl 05', 'Stirling Sports The', '8020Paul Solt', 'Amazon Mktplace P 28']
+    gear: ['Jb Hi-Fi          21', 'Rebel - Te Rapa', 'Briscoes Hamilton 18', 'Raglan Surf Emporium', 'Raglan Watersports L', 'Amazon Mktplace P 27', 'Raglan Surf Company', 'Kathmandu Te Rapa', 'Kathmandu Hamilton', 'Amazon Mktplace P 26', 'Kathmandu         30', 'Kathmandu         01', 'Spotlight Stores (NZ', 'The Warehouse Onl 05', 'Stirling Sports The', '8020Paul Solt', 'Amazon Mktplace P 28']
     maintanance: ['Mitre 10 Mega N/P', 'Crystal Laundromat L', 'Bunnings - 9474 Hami', 'Warehouse Building S', 'Mitre 10 Mega Hmltn', 'Xtreme Zero Waste']
 
 wellness:
@@ -34,15 +34,15 @@ car:
 entertainement:
     movies: ['GOOGLE *YouTube   05', 'Quickflix NZ      08', 'Hoyts Te Rapa', 'GOOGLE *YouTube   26', 'GOOGLE *YouTube   21', 'GOOGLE *YouTube   13', 'Lido Cinema', 'GOOGLE *YouTube   11', 'GOOGLE *YouTube   18', 'Raglan Video']
     travel: ['Nakedbus.Com Trus 07', 'Blue Lake Top 10 Hol', 'Nakedbus.Com Trus 02', 'Airbnb            19', 'McDonalds Mercer', 'Aial Car Park', 'Aial Car Park     31', 'Travelex 1151 Ak Air', 'McDonalds Otorohanga', 'Adreia Veras Leon 06', 'Relay', 'Aial Int Arr BNZ ATM']
-    gastronomy: ['Rockit Kitchen', 'The Federal Store', 'Valentes Collections', 'Blacksand', 'Flying Burrito Broth', 'Bow Street Depot Ltd', 'Orca Restaurant & Ba', 'Namaste Kitchen', 'The Sugar Bowl Ragla', 'Goodhome Hamilton 28', 'The Shack', 'Harbour View Hotel', 'Raglan Wines & Spiri']
+    gastronomy: ['The Yot Club', 'Rockit Kitchen', 'The Federal Store', 'Valentes Collections', 'Blacksand', 'Flying Burrito Broth', 'Bow Street Depot Ltd', 'Orca Restaurant & Ba', 'Namaste Kitchen', 'The Sugar Bowl Ragla', 'Goodhome Hamilton 28', 'The Shack', 'Harbour View Hotel', 'Raglan Wines & Spiri']
 
 living:
-    fees: ['Transaction charge', 'Clearance Fee']
+    fees: ['Waikato District Cou', 'Transaction charge', 'Clearance Fee']
     rent: ['F Van den Eirden', '3070Francis']
     utilities: ['']
-    internet: ['Linode.Com        07', '5050Vodafone Fixed L', 'Linode.Com        01']
-    phone: ['Skype.Com         10', '6040Vodafone (Mobile']
-    power: ['8020Genesis']
+    internet: ['Vodafone Fxdlne/B 20', 'Linode.Com        07', '5050Vodafone Fixed L', 'Linode.Com        01']
+    phone: ['Vodafone Postpy V 16', 'Skype.Com         10', '6040Vodafone (Mobile']
+    power: ['8020Genesis Energy', '8020Genesis']
 
 uncategorized:
     withdraw: ['']
