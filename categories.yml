@@ -17,18 +17,18 @@ restaurant:
 shopping:
     gift: ['Noel Leeming 64', 'O Boticario       06', '1090Anna Phillips']
     clothes: ['North Beach Te Awa', 'Just Jeans 439', 'Glassons The Base', 'Lojas Renner Fl 6 05', 'Farmers Te Rapa']
-    gear: ['Briscoes Hamilton 18','Raglan Surf Company', 'Kathmandu Te Rapa', 'Kathmandu Hamilton', 'Amazon Mktplace P 26', 'Kathmandu         30', 'Kathmandu         01', 'Spotlight Stores (NZ', 'The Warehouse Onl 05', 'Stirling Sports The', '8020Paul Solt', 'Amazon Mktplace P 28']
+    gear: ['Jb Hi-Fi','Dick Smith Electroni','Stevens Homewares Lt','Briscoes Hamilton 18','Raglan Surf Company', 'Kathmandu Te Rapa', 'Kathmandu Hamilton', 'Amazon Mktplace P 26', 'Kathmandu         30', 'Kathmandu         01', 'Spotlight Stores (NZ', 'The Warehouse Onl 05', 'Stirling Sports The', '8020Paul Solt', 'Amazon Mktplace P 28']
     maintanance: ['Mitre 10 Mega N/P', 'Crystal Laundromat L', 'Bunnings - 9474 Hami', 'Warehouse Building S', 'Mitre 10 Mega Hmltn', 'Xtreme Zero Waste']
 
 wellness:
-    health: ['Tank Juice Bar Ro 15', 'Lenise Young Pharmac', 'Changes Faces Lp', 'Life Pharmacy Pl', 'Tank Juice Bar    29', 'Tank Juice', 'Health 2000 The Base', 'Tank Juice Bar    19', 'Tank Juice Bar', 'Tank Juice Bar    11', 'The Herbal Dispensar', 'Raglan Pharmacy', 'Raglan Super Value']
-    fitness: ['Waterworld', '2080masters swim clu']
+    health: ['Tank Juice Auckland','Tank Juice Bar Ro 15', 'Lenise Young Pharmac', 'Changes Faces Lp', 'Life Pharmacy Pl', 'Tank Juice Bar    29', 'Tank Juice', 'Health 2000 The Base', 'Tank Juice Bar    19', 'Tank Juice Bar', 'Tank Juice Bar    11', 'The Herbal Dispensar', 'Raglan Pharmacy', 'Raglan Super Value']
+    fitness: ['Waterworld', '2080masters swim clu','9010Ani Brunet']
     beauty: ['Raglan Barber', 'Tonic Hairdressing']
 
 car:
     fuel: ['BP 2Go Moturoa', 'Z Waiwhakaiho', 'BP 2Go Raglan', 'Pak N Save Fuel Mill', 'Waitomo Petroleum Te']
     fees: ['Raglan']
-    parking: ['Centre Place Shoppin']
+    parking: ['Civic Car Park','Centre Place Shoppin']
     maintanance: ['Research Motors', 'Raglan Engineering']
 
 entertainement:
