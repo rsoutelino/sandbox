@@ -5,10 +5,10 @@ import numpy as np
 import xray
 
 
-bbox = {'lat_min':-43.8,
-                'lat_max':-38.4,
-                'lon_min':170.8,
-                'lon_max':177.44,}
+bbox = {'lat_min':-48,
+                'lat_max':-33,
+                'lon_min':165,
+                'lon_max':180,}
 
 m = Basemap(projection='cyl', llcrnrlat=bbox['lat_min'], urcrnrlat=bbox['lat_max'], 
             llcrnrlon=bbox['lon_min'], urcrnrlon=bbox['lon_max'], resolution='h')
