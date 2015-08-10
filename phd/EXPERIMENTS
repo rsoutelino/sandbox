@@ -1,0 +1,62 @@
+Proposal Experiment Table
+----------------------------------------------------------------
+		           IC.					      Topo	
+		WOA2009	 BC	  NBUC 	Eddies		Real	No-features
+C	C1	   x					         x	
+	C2	   x						                 x
+									
+BC	BC1	   x	 x				         x	
+	BC2	   x	 x					                 x
+									
+BCN	BCN1   x	 x	   x			     x	
+	BCN2   x	 x	   x				             x
+									
+E	E1	   x			      x		     x 	
+	E2	   x			      x			             x
+----------------------------------------------------------------
+
+Sensibility Semi-idealized Experiment Table
+---------------------------------------------------------------
+                           IC                       Topo
+        WOA2009 SEC-FM NBUC-FM BC-FM Eddies-FM    Real  Flat
+S   S1             x      x                        x  
+    S2             x      x                              x
+    S3             x                               x
+    S4             x                                     x
+    S5                    x                        x
+    S6             x      x      x                 x
+    S7             x      x      x                       x 
+    S8             x             x                 x   
+    S9             x             x                       x    
+    S10            x      x                        x  
+--------------------------------------------------------------
+
+OCCAM-based Experiment Table
+--------------------------------------------------------------
+O1: OCCAM as Initial and fixed boundary conditions
+O2: Flat as initial and OCCAM fixed boundary conditions
+O3: OCCAM as Initial and time-dependant boundary conditions
+--------------------------------------------------------------
+
+###############################################################################################################
+PHD1: exp C1 with phd1.h/phd1.in configuration files (ECMWF March 2005 mean wind field)
+PHD2: exp C1 with phd2.h/phd2.in configuration files (No winds)
+PHD3: exp S1 with phd3.h/phd3.in configuration files with no climatology, only FM's
+PHD4: small grid to test and play with ROMS parameters. it's a permanent run
+PHD5: exp C1 with smaller grid and OCCAM boundary forcing, with ECMWF winds
+PHD6: exp C2 using 2 degree shifting technique to remove native climatological boundary gradients (with winds) 
+PHD7: exp C1, identical to PHD1, using bigger time step to evaluate how far can I save computer time
+PHD8: exp S3, configured as in Peliz et al (2003)
+PHD9: exp C1 using 2 degree shifting technique to remove native climatological boundary gradients (with winds)
+PHD10: same as PHD1, but with nudging and sponge layers
+PHD11: control experiment to evaluate inplementation and dynamical adjustment of NBUC-FM
+PHD12: exp S1
+PHD13: exp S4
+PHD14: exp O1
+PHD15: exp S6 with raw feature model
+PHD16: exp S7 with raw feature model
+PHD17: exp S8 with constant BC flowing through the domain, no SEC
+PHD18: exp S8 with growing BC flowing from 15 S and "surface NBUC" growing northward
+PHD19: exp S10
+###############################################################################################################
+
