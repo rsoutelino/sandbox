@@ -1,5 +1,6 @@
 incoming:
     wage: ['Metocean Solution', 'Whaingaroa Environme']
+    brazil: ['']
 
 savings: 
     shortterm: ['To 1509-0371925-25']
@@ -47,4 +48,5 @@ living:
 uncategorized:
     withdraw: ['']
     goods: ['']
+    rescue: ['From 1509-0371925-25']
 

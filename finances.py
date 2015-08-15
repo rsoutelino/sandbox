@@ -93,13 +93,33 @@ class MonthStatement(object):
 
     def get_total_expenses(self):
         df = self.df
-        total_debit = df.amount[df.amount < 0].sum() * -1 
-        savings     = df.amount[df.category == 'savings'].sum() * -1
+        total_debit = np.abs( df.amount[df.amount < 0].sum() ) 
+        savings     = np.abs( df.amount[df.category == 'savings'].sum() )
         return total_debit - savings
+
+    def get_basic_expenses(self):
+        df = self.df
+        basic = df.amount[df.category == 'groceries'].sum() +\
+                df.amount[df.category == 'restaurant'].sum() +\
+                df.amount[df.category == 'car'].sum() +\
+                df.amount[df.category == 'living'].sum()
+        return np.abs(basic)         
+
+    def get_soft_expenses(self):
+        df = self.df
+        soft = df.amount[df.category == 'shopping'].sum() +\
+                df.amount[df.category == 'wellness'].sum() +\
+                df.amount[df.category == 'entertainement'].sum()
+        return np.abs(soft) 
 
     def get_by_category(self, category):
         df = self.df
         result = df.amount[df.category == category].sum()
+        return np.abs(result)
+
+    def get_by_category2(self, category2):
+        df = self.df
+        result = df.amount[df.category2 == category2].sum()
         return np.abs(result)
 
 
@@ -124,15 +144,22 @@ class Period(object):
 
     def get_summary(self):
         total_expenses = [month.get_total_expenses() for month in self.monthList]
-        summary = pd.DataFrame(index=self.daterange, data=dict(total_exp=total_expenses))
+        basic_expenses = [month.get_basic_expenses() for month in self.monthList]
+        soft_expenses  = [month.get_soft_expenses() for month in self.monthList]
+
+        summary = pd.DataFrame(index=self.daterange, 
+                               data=dict(total_expenses=total_expenses, 
+                                         basic_expenses=basic_expenses,
+                                         soft_expenses=soft_expenses))
 
         for cat in self.monthList[0].categories:
             summary[cat] = [month.get_by_category(cat) for month in self.monthList]
 
-        summary.pop('uncategorized')
+        rescue = [month.get_by_category2('rescue') for month in self.monthList]
+        summary.savings = summary.savings - rescue
         self.summary = summary
 
-    def plot_summary(self):
+    def plot_summary(self, scale=False):
         mpl_style_dicts = ['#e34a33', 
                            '#2ca25f', 
                            '#8856a7', 
@@ -145,10 +172,37 @@ class Period(object):
                            '#dd1c77'] 
 
         self.get_summary()
-        self.summary.plot(subplots=True, sharex=True, layout=(5, 2), 
-                          kind='area', stacked=False, style=mpl_style_dicts,
-                          figsize=(17,12), grid=False)
+        dfplot = self.summary.copy()
+        dfplot.pop('uncategorized')
+        dfplot.pop('savings')
+        dfplot.pop('total_expenses')
+
+        axes = dfplot.plot(subplots=True, sharex=True, layout=(5, 2), legend=False,
+                           kind='bar', stacked=False, style=mpl_style_dicts,
+                           figsize=(17,12), grid=True, width=0.8, alpha=0.5)
+        ax = plt.gca()
+        ticks = [dt.strftime('%b/%Y') for dt in dfplot.index.to_pydatetime()]
+        ax.set_xticklabels(ticks, rotation=30)
+
+        if scale:
+            a, b = axes.shape
+            for i in range(a):
+                for j in range(b):
+                    ax = axes[i,j]
+                    if ax.get_title() != 'incoming':
+                        ax.set_ylim([0, 3500])
+            
         plt.tight_layout()
+
+
+    def plot_budget(self):
+        self.get_summary()
+        self.budget = self.summary.incoming - (self.summary.total_expenses)
+        self.budget.plot(kind='bar', color='#756bb1', stacked=False, 
+                         alpha=0.5, width=0.8, figsize=(17,6))
+        ax = plt.gca()
+        ticks = [dt.strftime('%b/%Y') for dt in self.budget.index.to_pydatetime()]
+        ax.set_xticklabels(ticks, rotation=30)
 
 
 
