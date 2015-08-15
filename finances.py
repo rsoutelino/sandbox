@@ -14,7 +14,7 @@ import datetime as dt
 pd.set_option('display.max_rows', 10)
 pd.set_option('expand_frame_repr', False)
 mpl.rcParams['figure.facecolor'] = 'w'
-mpl.style.use('ggplot')
+# mpl.style.use('ggplot')
 DATADIR = '/data/finances'
 METADATADIR = '/source/sandbox'
 
