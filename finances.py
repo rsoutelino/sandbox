@@ -145,7 +145,7 @@ class Period(object):
     def get_summary(self):
         total_expenses = [month.get_total_expenses() for month in self.monthList]
         basic_expenses = [month.get_basic_expenses() for month in self.monthList]
-        soft_expenses  = [month.get_soft_expenses() for month in self.monthList]
+        soft_expenses  = [month.get_soft_expenses()  for month in self.monthList]
 
         summary = pd.DataFrame(index=self.daterange, 
                                data=dict(total_expenses=total_expenses, 
@@ -158,6 +158,12 @@ class Period(object):
         rescue = [month.get_by_category2('rescue') for month in self.monthList]
         summary.savings = summary.savings - rescue
         self.summary = summary
+
+    def get_by_subcategory(self, cat):
+        data = [month.get_by_category2(cat) for month in self.monthList]
+        df = pd.DataFrame(index=self.daterange, data={cat: data})
+        return df
+        
 
     def plot_summary(self, scale=False):
         mpl_style_dicts = ['#e34a33', 
@@ -189,7 +195,7 @@ class Period(object):
             for i in range(a):
                 for j in range(b):
                     ax = axes[i,j]
-                    if ax.get_title() != 'incoming':
+                    if ax.get_title() != 'income':
                         ax.set_ylim([0, 3500])
             
         plt.tight_layout()
@@ -197,9 +203,18 @@ class Period(object):
 
     def plot_budget(self):
         self.get_summary()
-        self.budget = self.summary.incoming - (self.summary.total_expenses)
+        self.budget = self.summary.income - (self.summary.total_expenses)
         self.budget.plot(kind='bar', color='#756bb1', stacked=False, 
                          alpha=0.5, width=0.8, figsize=(17,6))
+        ax = plt.gca()
+        ticks = [dt.strftime('%b/%Y') for dt in self.budget.index.to_pydatetime()]
+        ax.set_xticklabels(ticks, rotation=30)
+
+    def plot_by_subcategory(self, cat):
+        df = self.get_by_subcategory(cat)
+        self.budget = self.summary.income - (self.summary.total_expenses)
+        df.plot(kind='bar', color='#756bb1', stacked=False, 
+                alpha=0.5, width=0.8, figsize=(17,6))
         ax = plt.gca()
         ticks = [dt.strftime('%b/%Y') for dt in self.budget.index.to_pydatetime()]
         ax.set_xticklabels(ticks, rotation=30)

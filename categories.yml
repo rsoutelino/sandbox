@@ -1,4 +1,4 @@
-incoming:
+income:
     wage: ['Metocean Solution', 'Whaingaroa Environme']
     brazil: ['']
 
@@ -7,9 +7,8 @@ savings:
     longterm: ['To 1509-0371925-26', 'Rafael & Juliana']
 
 groceries:
-    essentials: ['Trade Aid', 'Countdown Hamilton', 'Twl 185 Te Rapa','Twl 141 Hamilton', '7 Buy Supermarket', 'Countdown The Valley', 'Four Square Okato', 'New World New Plymou', 'New World Te Kuiti', 'Lush Hamilton', 'Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa', 'Raglan Foursquare']
-    social: ['']
-    food: ['Bin Inn Hamilton', 'Bin Inn Dinsdale', 'Topcut Butchery', 'Thabun Bakery', 'Raglan Fish Ltd', 'Wainui Food Market']
+    essentials: ['Trade Aid', 'Twl 185 Te Rapa','Twl 141 Hamilton', '7 Buy Supermarket', 'Lush Hamilton']
+    food: ['Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa', 'Raglan Foursquare', 'Countdown The Valley', 'Four Square Okato', 'New World New Plymou', 'New World Te Kuiti', 'Raglan Super Value', 'Countdown Hamilton', 'Bin Inn Hamilton', 'Bin Inn Dinsdale', 'Topcut Butchery', 'Thabun Bakery', 'Raglan Fish Ltd', 'Wainui Food Market']
 
 restaurant:
     business: ['Subway', 'Raglan Roll Up', 'Strandon Dairy', 'Raglan Bakery & Cafe', 'Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']
@@ -22,8 +21,8 @@ shopping:
     maintanance: ['Mitre 10 Mega N/P', 'Crystal Laundromat L', 'Bunnings - 9474 Hami', 'Warehouse Building S', 'Mitre 10 Mega Hmltn', 'Xtreme Zero Waste']
 
 wellness:
-    health: ['West Coast Health Cl', 'Paterson Burn Optome', 'Tank Juice Auckland','Tank Juice Bar Ro 15', 'Lenise Young Pharmac', 'Changes Faces Lp', 'Life Pharmacy Pl', 'Tank Juice Bar    29', 'Tank Juice', 'Health 2000 The Base', 'Tank Juice Bar    19', 'Tank Juice Bar', 'Tank Juice Bar    11', 'The Herbal Dispensar', 'Raglan Pharmacy', 'Raglan Super Value']
-    fitness: ['Raglan Kitesurfing', 'Raglan Gym', 'Waterworld', '2080masters swim clu','9010Ani Brunet']
+    health: ['West Coast Health Cl', 'Paterson Burn Optome', 'Tank Juice Auckland','Tank Juice Bar Ro 15', 'Lenise Young Pharmac', 'Changes Faces Lp', 'Life Pharmacy Pl', 'Tank Juice Bar    29', 'Tank Juice', 'Health 2000 The Base', 'Tank Juice Bar    19', 'Tank Juice Bar', 'Tank Juice Bar    11', 'The Herbal Dispensar', 'Raglan Pharmacy']
+    fitness: ['Raglan Gym', 'Waterworld', '2080masters swim clu','9010Ani Brunet']
     beauty: ['Raglan Barber', 'Tonic Hairdressing']
 
 car:
@@ -40,7 +39,6 @@ entertainement:
 living:
     fees: ['Waikato District Cou', 'Transaction charge', 'Clearance Fee']
     rent: ['F Van Den Eirden', 'F Van den Eirden', '3070Francis']
-    utilities: ['']
     internet: ['Vodafone Fxdlne/B 09', 'Vodafone Fxdlne/B 10', 'Vodafone Fxdlne/B 16', 'Vodafone Fxdlne/B 20', 'Linode.Com        07', '5050Vodafone Fixed L', 'Linode.Com        01']
     phone: ['Vodafone Postpy V 09', 'Vodafone Postpy V 12', 'Vodafone Postpy V 10', 'Vodafone Postpy V 16', 'Skype.Com         10', '6040Vodafone (Mobile']
     power: ['8020Genesis Energy', '8020Genesis']
