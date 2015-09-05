@@ -12,11 +12,44 @@ planning:
     wellness:        280
     entertainement:  720
 
+extra:
+    initial_balance: 10000
+    yearly_trip:     5000
+    dad_deduction:   5000
+    cef_deduction:   9000   
+
 
 sources:
-    rafael_msl:      
+    rafael_msl_phys_ocn:      
         value:     4480
         currency:  NZD
+        starts:    20150701
+        expires:   20150901
+    rafael_msl_ops_mgr:      
+        value:     5841
+        currency:  NZD
+        starts:    20150901
+        # expires:   20160901
+    # rafael_msl_ops_mgr_2016:      
+    #     value:     6739
+    #     currency:  NZD
+    #     starts:    20160901
+    #     expires:   20170901
+    # rafael_msl_ops_mgr_2017:      
+    #     value:     7775
+    #     currency:  NZD
+    #     starts:    20170901
+    #     expires:   20180901
+    # rafael_msl_ops_mgr_2018:      
+    #     value:     8970
+    #     currency:  NZD
+    #     starts:    20180901
+    #     expires:   20190901
+    # rafael_msl_ops_mgr_2019:      
+    #     value:     10349
+    #     currency:  NZD
+    #     starts:    20190901
+    #     expires:   20200901
     juliana_msl:      
         value:     1600
         currency:  NZD
@@ -24,17 +57,38 @@ sources:
         value:     400
         currency:  NZD
         expires:   20151101
-    rent_arraial:
-        value:     1200
+    rent2016:
+        value:     1286
         currency:  BRL
         starts:    20160509
+        expires:   20170509
+    rent2017:
+        value:     1331
+        currency:  BRL
+        starts:    20170509
+        expires:   20180509
+    rent2018:
+        value:     1378
+        currency:  BRL
+        starts:    20180509
+        expires:   20190509
+    rent2019:
+        value:     1426
+        currency:  BRL
+        starts:    20190509
+        expires:   20200509
+    rent2020:
+        value:     1476
+        currency:  BRL
+        starts:    20200509
+        expires:   20210509
 
 sinks:
     house_cef:
         value:     1800
         currency:  BRL
         starts:    20160509
-        expires:   2060
+        expires:   20600101
     expenses:
         value:     3800
         currency:  NZD

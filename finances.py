@@ -10,8 +10,9 @@ import datetime as dt
 # TO-DO list
 #     - put wildcards for things that enumerate: YouTube, Tank
 #     - hook directly to google drive instead of keeping exporting
+#     - create functionality to plot savings time series
 
-pd.set_option('display.max_rows', 10)
+pd.set_option('display.max_rows', 30)
 pd.set_option('expand_frame_repr', False)
 mpl.rcParams['figure.facecolor'] = 'w'
 # mpl.style.use('ggplot')
@@ -23,11 +24,19 @@ METADATADIR = '/source/sandbox'
 def parse1(obstime): 
     return dt.datetime.strptime(obstime, "%d/%m/%Y")
 
-def currency(value, currency_in, currency_out):
+def get_currency(currency_in, currency_out):
     request = 'http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=%s%s=X' %(currency_in, currency_out)
     req = urllib2.Request(request)
     response = urllib2.urlopen(req)
     factor = float( response.read().split(',')[1] )
+    return factor
+
+def convert(value, factor):
+    result = value * factor
+    return result
+
+def convert_online(value, currency_in, currency_out):
+    factor = get_currency(currency_in, currency_out)
     result = value * factor
     return result
 
@@ -239,31 +248,143 @@ class Period(object):
 
 class Projection(object):
     """docstring for Projection"""
-    def __init__(self, months):
+    def __init__(self, start=None, years=5):
         self.goals = yaml.load(open(os.path.join(METADATADIR, 'goals.yml')))
         self.sources = self.goals['sources']
         self.sinks   = self.goals['sinks']
-        self.get_total_source_sink()
-        self.daterange = pd.date_range(self.start, self.end, freq='M')
+
+        today = dt.date.today()
+        start = start or dt.datetime(today.year, today.month, 1)
+        end   = dt.datetime(today.year + years, today.month, 1)
+        self.daterange = pd.date_range(start, end, freq='M')
         self.daterange = [date - dt.timedelta(days=15) for date in self.daterange]
+        self.exchange_factor = get_currency('BRL', 'NZD') 
+
+    def get_source_sink_from_goals(self, yearly_trip=False, dad_deduction=False, cef_deduction=False):
+        source, sink = [], []
+        for month in self.daterange:
+            sources, sinks = 0, 0
+            for key, src in self.sources.items():
+                # if key == 'juliana_wec':
+                    # import pdb; pdb.set_trace()
+                # stablishing the value based on the dates this source is valid
+                if src.has_key('starts') and src.has_key('expires'):
+                    starts = dt.datetime.strptime(str(src['starts']), '%Y%m%d')
+                    ends   = dt.datetime.strptime(str(src['expires']), '%Y%m%d')
+                    if month < starts or month > ends:
+                        value = 0
+                    else:
+                        value = src['value']
+                elif src.has_key('starts'):
+                    starts = dt.datetime.strptime(str(src['starts']), '%Y%m%d')
+                    if month < starts:
+                        value = 0
+                    else:
+                        value = src['value']
+                elif src.has_key('expires'):
+                    ends = dt.datetime.strptime(str(src['expires']), '%Y%m%d')
+                    if month > ends:
+                        value = 0
+                    else:
+                        value = src['value']
+                else:
+                    value = src['value']
+
+                if src['currency'] != 'NZD':
+                    sources += convert(value, self.exchange_factor)
+                else:
+                    sources += value
+                
+                del value
+
+            for key, snk in self.sinks.items():
+                # stablishing the value based on the dates this sink is valid
+                if snk.has_key('starts') and snk.has_key('expires'):
+                    starts = dt.datetime.strptime(str(snk['starts']), '%Y%m%d')
+                    ends   = dt.datetime.strptime(str(snk['expires']), '%Y%m%d')
+                    if month < starts or month > ends:
+                        value = 0
+                    else:
+                        value = snk['value']
+                elif snk.has_key('starts'):
+                    starts = dt.datetime.strptime(str(snk['starts']), '%Y%m%d')
+                    if month < starts:
+                        value = 0
+                    else:
+                        value = snk['value']
+                elif snk.has_key('expires'):
+                    ends = dt.datetime.strptime(str(snk['expires']), '%Y%m%d')
+                    if month > ends:
+                        value = 0
+                    else:
+                        value = snk['value']
+                else:
+                    value = snk['value']
+
+                if snk['currency'] != 'NZD':
+                    sinks += convert(value, self.exchange_factor)
+                else:
+                    sinks += value
+                
+                del value
+
+            if yearly_trip:
+                if month.month == 12:
+                    sinks += self.goals['extra']['yearly_trip']
+
+            if dad_deduction:
+                if month.month == 3 or month.month == 9:
+                    sinks += self.goals['extra']['dad_deduction'] / 2 
+            
+            if cef_deduction:
+                if month.month == 1:
+                    sinks += self.goals['extra']['cef_deduction']
 
 
-    def get_total_source_sink(self):
-        source, sink = 0, 0
-        for key, src in self.sources.items():
-            if src['currency'] != 'NZD':
-                source += currency(src['value'], src['currency'], 'NZD')
-            else:
-                source += src['value']
+            source.append(sources)
+            sink.append(sinks)
 
-        for key, snk in self.sinks.items():
-            if snk['currency'] != 'NZD':
-                sink += currency(snk['value'], snk['currency'], 'NZD')
-            else:
-                sink += snk['value']
+        return np.array(source), np.array(sink)
 
-        self.source = source
-        self.sink   = sink
+
+    def from_goals(self, yearly_trip=False, dad_deduction=False, 
+                         cef_deduction=False, initial_balance=0):
+        mpl_style_dicts = ['#99d8c9', 
+                           '#fa9fb5', 
+                           '#3182bd'] 
+        source, sink = self.get_source_sink_from_goals(yearly_trip=yearly_trip,
+                                                       dad_deduction=dad_deduction,
+                                                       cef_deduction=cef_deduction)
+        self.df = pd.DataFrame(index=self.daterange, data={'source': source})
+        self.df['sink']  = sink
+        self.df['gains'] = source - sink 
+
+        plt.figure(figsize=(15,8))
+        ax1 = plt.subplot(211)
+        ax1.set_title('Projection from stablished goals', fontweight='bold')
+        self.df.plot(ax=ax1, kind='area', stacked=False, style=mpl_style_dicts)
+        
+        self.df['goods'] = np.cumsum(source - sink) + initial_balance
+
+        ax2 = plt.subplot(212)
+        self.df.goods.plot(ax=ax2, kind='area', stacked=False, 
+                           color=mpl_style_dicts[-1], legend=True)
+        plt.show()
+
+        
+        
+
+
+
+
+
+
+                
+
+    def from_averages(self):
+        pass
+
+        
 
 
 
