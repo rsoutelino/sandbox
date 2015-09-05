@@ -7,8 +7,8 @@ savings:
     longterm: ['To 1509-0371925-26', 'Rafael & Juliana']
 
 groceries:
-    essentials: ['Trade Aid', 'Twl 185 Te Rapa','Twl 141 Hamilton', '7 Buy Supermarket', 'Lush Hamilton']
-    food: ['Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa', 'Raglan Foursquare', 'Countdown The Valley', 'Four Square Okato', 'New World New Plymou', 'New World Te Kuiti', 'Raglan Super Value', 'Countdown Hamilton', 'Bin Inn Hamilton', 'Bin Inn Dinsdale', 'Topcut Butchery', 'Thabun Bakery', 'Raglan Fish Ltd', 'Wainui Food Market']
+    essentials: ['New World Te Rapa', 'Trade Aid', 'Twl 185 Te Rapa','Twl 141 Hamilton', '7 Buy Supermarket', 'Lush Hamilton']
+    food: ['Top Cut Butchery', 'Pak N Save Mill St', 'Wok', 'Countdown Dinsdale', 'Countdown Te Rapa', 'Raglan Foursquare', 'Countdown The Valley', 'Four Square Okato', 'New World New Plymou', 'New World Te Kuiti', 'Raglan Super Value', 'Countdown Hamilton', 'Bin Inn Hamilton', 'Bin Inn Dinsdale', 'Topcut Butchery', 'Thabun Bakery', 'Raglan Fish Ltd', 'Wainui Food Market']
 
 restaurant:
     business: ['Subway', 'Raglan Roll Up', 'Strandon Dairy', 'Raglan Bakery & Cafe', 'Aloha Market Place', 'Roll Up Foods Limite', 'Raglan Roast West']

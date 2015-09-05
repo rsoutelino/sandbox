@@ -130,6 +130,7 @@ class Period(object):
         start   ::  YYYYMM   [Ex: 201503]
         end     ::  YYYYMM   [Ex: 201507] 
         """
+        self.goals = yaml.load(open(os.path.join(METADATADIR, 'goals.yml')))
         self.start = dt.datetime.strptime(start, '%Y%m')
         self.end   = dt.datetime.strptime(end, '%Y%m')
         self.daterange = pd.date_range(self.start, self.end, freq='M')
@@ -190,16 +191,24 @@ class Period(object):
         ticks = [dt.strftime('%b/%Y') for dt in dfplot.index.to_pydatetime()]
         ax.set_xticklabels(ticks, rotation=30)
 
-        if scale:
-            a, b = axes.shape
-            for i in range(a):
-                for j in range(b):
-                    ax = axes[i,j]
+        a, b = axes.shape
+        for i in range(a):
+            for j in range(b):
+                ax = axes[i,j]
+                title = ax.get_title()
+                dfplot['value'] = self.goals[title]
+                ax.plot(dfplot.index, dfplot.value) # DON'T KNOW WHY THIS IS NOT WORKING
+
+
+
+                # ax.plot([dfplot.index[0], dfplot.index[-1]], [self.goals[title], self.goals[title]], 
+                        # 'k', linewidth=3, alpha=0.2)
+                if scale:
                     if ax.get_title() != 'income':
                         ax.set_ylim([0, 3500])
             
         plt.tight_layout()
-
+        plt.show()
 
     def plot_budget(self):
         self.get_summary()
@@ -220,7 +229,11 @@ class Period(object):
         ax.set_xticklabels(ticks, rotation=30)
 
 
-
+class Projection(object):
+    """docstring for Projection"""
+    def __init__(self):
+        self.goalss = yaml.load(open(os.path.join(METADATADIR, 'goals.yml')))
+        
 
 
 

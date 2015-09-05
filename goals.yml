@@ -1,0 +1,34 @@
+planning:
+    income:          6000
+
+    basic_expenses:  2400 
+    living:          1170
+    car:             370
+    restaurant:      280
+    groceries:       580
+
+    soft_expenses:   1400
+    shopping:        400
+    wellness:        280
+    entertainement:  720
+
+
+surces:
+    rafael_msl:      
+        value:     4480
+        currency:  NZD
+        expires:   None
+    juliana_msl:      
+        value:     1600
+        currency:  NZD
+        expires:   None
+    juliana_wec:
+        value:     400
+        currency:  NZD
+        expires:   20151101
+    rent_arraial:
+        value:     1200
+        currency:  BRL
+        expires:   None
+
+sinks:
