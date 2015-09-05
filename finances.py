@@ -348,7 +348,7 @@ class Projection(object):
 
 
     def from_goals(self, yearly_trip=False, dad_deduction=False, 
-                         cef_deduction=False, initial_balance=0):
+                         cef_deduction=False):
         mpl_style_dicts = ['#99d8c9', 
                            '#fa9fb5', 
                            '#3182bd'] 
@@ -364,11 +364,13 @@ class Projection(object):
         ax1.set_title('Projection from stablished goals', fontweight='bold')
         self.df.plot(ax=ax1, kind='area', stacked=False, style=mpl_style_dicts)
         
-        self.df['goods'] = np.cumsum(source - sink) + initial_balance
+        self.df['goods'] = np.cumsum(source - sink) 
+        self.df.goods += self.goals['extra']['initial_balance']
 
         ax2 = plt.subplot(212)
         self.df.goods.plot(ax=ax2, kind='area', stacked=False, 
                            color=mpl_style_dicts[-1], legend=True)
+        print self.df.tail()
         plt.show()
 
         
@@ -385,7 +387,21 @@ class Projection(object):
         pass
 
         
+class Savings(object):
+    """docstring for Savings"""
+    def __init__(self):
+        data1  = os.path.join(DATADIR, 'online_saver.csv')
+        data2  = os.path.join(DATADIR, 'online_bonus_saver.csv')
+        df1    = pd.read_csv(data1, index_col=0, date_parser=parse1)
+        df2    = pd.read_csv(data2, index_col=0, date_parser=parse1)
+        goods1 = np.cumsum(df1.Amount) 
+        goods2 = np.cumsum(df2.Amount)
 
+        self.df = pd.DataFrame(index=df1.index, data={'online_saver': goods1})
+        self.df = self.df.resample('M')
+        self.df['bonus_saver'] = goods2.resample('M')
+        
+        
 
 
 
