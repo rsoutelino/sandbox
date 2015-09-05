@@ -1,4 +1,4 @@
-import os, sys,  yaml
+import os, sys,  yaml, urllib2
 from glob import glob
 import numpy as np
 import pandas as pd
@@ -22,6 +22,14 @@ METADATADIR = '/source/sandbox'
 
 def parse1(obstime): 
     return dt.datetime.strptime(obstime, "%d/%m/%Y")
+
+def currency(value, currency_in, currency_out):
+    request = 'http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s=%s%s=X' %(currency_in, currency_out)
+    req = urllib2.Request(request)
+    response = urllib2.urlopen(req)
+    factor = float( response.read().split(',')[1] )
+    result = value * factor
+    return result
 
 
 class MonthStatement(object):
@@ -231,8 +239,35 @@ class Period(object):
 
 class Projection(object):
     """docstring for Projection"""
-    def __init__(self):
-        self.goalss = yaml.load(open(os.path.join(METADATADIR, 'goals.yml')))
+    def __init__(self, months):
+        self.goals = yaml.load(open(os.path.join(METADATADIR, 'goals.yml')))
+        self.sources = self.goals['sources']
+        self.sinks   = self.goals['sinks']
+        self.get_total_source_sink()
+        self.daterange = pd.date_range(self.start, self.end, freq='M')
+        self.daterange = [date - dt.timedelta(days=15) for date in self.daterange]
+
+
+    def get_total_source_sink(self):
+        source, sink = 0, 0
+        for key, src in self.sources.items():
+            if src['currency'] != 'NZD':
+                source += currency(src['value'], src['currency'], 'NZD')
+            else:
+                source += src['value']
+
+        for key, snk in self.sinks.items():
+            if snk['currency'] != 'NZD':
+                sink += currency(snk['value'], snk['currency'], 'NZD')
+            else:
+                sink += snk['value']
+
+        self.source = source
+        self.sink   = sink
+
+
+
+
         
 
 

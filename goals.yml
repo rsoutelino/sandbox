@@ -13,15 +13,13 @@ planning:
     entertainement:  720
 
 
-surces:
+sources:
     rafael_msl:      
         value:     4480
         currency:  NZD
-        expires:   None
     juliana_msl:      
         value:     1600
         currency:  NZD
-        expires:   None
     juliana_wec:
         value:     400
         currency:  NZD
@@ -29,6 +27,14 @@ surces:
     rent_arraial:
         value:     1200
         currency:  BRL
-        expires:   None
+        starts:    20160509
 
 sinks:
+    house_cef:
+        value:     1800
+        currency:  BRL
+        starts:    20160509
+        expires:   2060
+    expenses:
+        value:     3800
+        currency:  NZD
