@@ -1,22 +1,19 @@
 from mpl_toolkits.basemap import Basemap
 import  matplotlib.pylab as plt
-import scipy.io as sp
-import numpy as np
-import xray
 
 
-bbox = {'lat_min':-48,
-                'lat_max':-33,
-                'lon_min':165,
-                'lon_max':180,}
+
+bbox = {'lat_min':-70,
+                'lat_max':30,
+                'lon_min':-107,
+                'lon_max':19,}
 
 m = Basemap(projection='cyl', llcrnrlat=bbox['lat_min'], urcrnrlat=bbox['lat_max'], 
-            llcrnrlon=bbox['lon_min'], urcrnrlon=bbox['lon_max'], resolution='h')
+            llcrnrlon=bbox['lon_min'], urcrnrlon=bbox['lon_max'], resolution='f')
 
 
 coastline = m.drawcoastlines()
 
-lon, lat = [], []
 filename = open('coastline.txt','w')
 filename.write('lon;lat;\n')
 for p in range(len(coastline.axes.collections[0].get_paths())):
@@ -26,13 +23,9 @@ for p in range(len(coastline.axes.collections[0].get_paths())):
         filename.write('\n')
         for j in i:
             filename.write(str(j) + ';')
-            lon.append(i[0])
-            lat.append(i[1])
     filename.write('\n####################################################')
 filename.close()
 
-vdict = dict(lon=lon, lat=lat)
-coastline = xray.Dataset(vdict)
-coastline.to_netcdf('coastline.nc')
+
 
 

@@ -17,6 +17,38 @@
 # (*)
 ###########################################################################################
 
+# User, groups, environments ##############################################################
+
+export USERNAME=rsoutelino
+export MSLGROUPID=2048
+
+useradd --gid 1001 --uid 1001 -m -p 6f00tng -s /bin/bash  metocean
+groupadd -g $MSLGROUPID mslusers
+groupadd -g 1001 metocean
+
+cp /etc/passwd /etc/passwd.bkp
+sed -i -e 's/$USERNAME:x:1000:1000/$USERNAME:x:1000:$MSLGROUPID/' /etc/passwd
+chown -R $USERNAME:mslusers /home/$USERNAME
+cp /etc/group /etc/group.bkp
+sed -i -e 's/metocean:x:1001:/metocean:x:1001:$USERNAME/' /etc/group
+sed -i -e 's/mslusers:x:MSLGROUPID:/mslusers:x:MSLGROUPID:$USERNAME/' /etc/group
+
+mkdir /prod /data /data_exchange /hot /static /scratch /source /data-new /archive /newops
+chown -R metocean:metocean /prod /data /data_exchange /hot /static /scratch /source /data-new /archive /newops
+chmod g+rw /prod /data /data_exchange /hot /static /scratch /source /data-new /archive /newops
+
+# hindcast data folders
+ln -s /net/diskserver1/volume1/data/bathytopo/ /bathytopo
+ln -s /net/diskserver1/volume1/data/ocean/ /ocean
+ln -s /net/diskserver1/volume1/data/meteo/ /meteo
+ln -s /net/diskserver1/volume1/data1/tide/ /tide
+
+# work folders
+ln -s /home/$USERNAME/metocean/ops /ops
+ln -s /home/$USERNAME/metocean /metocean
+
+###########################################################################################
+
 # adding repositories
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -25,6 +57,7 @@ apt-get update
 
 # system utilities and general purpouse software
 
+apt-get -y install autofs
 apt-get -y install clipit
 apt-get -y install inkscape
 apt-get -y install google-chrome-stable
@@ -55,9 +88,11 @@ apt-get -y install libkernlib1-gfortran
 apt-get -y install netcdf-bin
 apt-get -y install hdf5-tools
 apt-get -y install libhdf5-dev
+apt-get -y install libgsl0-dev
 
 cd /source/
 git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
 cd roms/docker/netcdf-fortran-4.2
 ./configure
 make
@@ -76,6 +111,7 @@ apt-get -y install ipython
 apt-get -y install python-pip
 apt-get -y install python-setuptools
 apt-get -y install python-netcdf
+apt-get -y install virtualenvwrapper
 apt-get -y install python-yaml 
 apt-get -y install python-mako
 apt-get -y install ruamel.yaml
@@ -87,7 +123,43 @@ pip install netcdf4
 pip install pyephem 
 pip install xray
 
+# External software
 
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
+
+cd /source/
+git clone git@github.com:metocean/roms.git
+ln -s /source/roms/roms /usr/local/lib/python2.7/site-packages/roms
 
 
 
