@@ -1,0 +1,7 @@
+myroms/phd_run/azores_run/*.nc
+.kde
+.cache
+.thumbnails
+.config/google-chrome
+.gvfs
+Insync
