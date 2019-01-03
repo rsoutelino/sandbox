@@ -1,9 +1,11 @@
 import datetime as dt
+from collections import OrderedDict
 import requests
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from dataIO_tools.read import uds2pandas
-from pymo.core.conversions import uv2spddir, k2c
+from pymo.core.conversions import uv2spddir, spddir2uv, k2c
 
 
 
@@ -16,25 +18,71 @@ def uds_request(query, filename):
     with open(filename, 'wb') as f:
         f.write(req.content)
 
-def format_df(df, varmap):
+def create_df(df, varmap):
 	df = df.rename(columns=varmap)
 	df['wsp'], df['wd'] = uv2spddir(df.ugrd10m, df.vgrd10m)
+	df['uwave'], df['vwave'] = spddir2uv(df.hs.values * 0 + 1, df.dpm.values)
+	df['uwnd'], df['vwnd'] = spddir2uv(df.wsp.values * 0 + 1, df.wd.values)
 	df.wsp = ms2kts(df.wsp)
 	df.gst = ms2kts(df.gst)
 	df.tmpsfc = k2c(df.tmpsfc)
+	df = df.rolling(6, win_type='hamming', center=True, closed='both').mean().dropna()
 	return df
 
+def create_ax(fig, x, y, w, h, params):
+    ax = fig.add_axes([x, y, w, h])
+	ax.set_ylim([params['min'], params['max']])
+	ax.set_xticks([])
+	ax.set_yticks([])
+	return ax
+
+def filled_plot(df, var, ax, params):
+	times = df.index.values
+
+    for idx, time in enumerate(times):
+		values = np.arange(params['min'], df[var][idx] - params['inc'] * 4, params['inc'])
+		ax.scatter([time for v in values], values, s=params['size'], c=values, marker='s', 
+										   cmap=params['cmap'], vmin=params['min'], 
+										   vmax=params['max'], edgecolors=None, alpha=0.5)
+
+def quiver_plot(df, ax, uname, vname, params, qv):
+    times = df.index.values
+	ax.quiver(times[::['d']], df[var][::['d']] - plot['inc'] * 2, 
+	          df[uname][::['d']], df[vname][::['d']], 
+			  scale=qv['qsc'], width=qv['qwd'], headlength=qv['hl'])
+
+def annotations(df, ax, var, params, qv):
+	times = df.index.values
+
+	for idx in np.arange(0, times.size, qv['d']):
+		val = df[var][idx]
+	    ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=8)
+
+def annotated_scatter(df, ax, var, params, qv):
+	times = df.index.values[::qv['d']]
+	values = df[var].values[::qv['d']]
+	ax.scatter(times, values, s=params['size'], c=values,
+	           cmap=params['cmap'], vmin=params['min'], 
+			   vmax=params['max'], edgecolors='k', alpha=0.5)
+
+	for idx in np.arange(0, times.size):
+		val = values[idx]
+	    ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=8)
+
 # SETTINGS ##########################################################################
+
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
 download = False
 horizon = 5
 
-sites = dict(
-	         tauranga     =  dict(lon=176.1850, lat=-37.6202),
-             raglan       =  dict(lon=174.8021, lat=-37.7962),
-             newplymouth  =  dict(lon=173.8092, lat=-39.0960),
-			 gisborne     =  dict(lon=178.0870, lat=-38.6903)
-             )
+OrderedDict([('apple', 4), ('banana', 3), ('orange', 2), ('pear', 1)])
+
+sites = OrderedDict([
+                       ('raglan',       dict(lon=174.8021, lat=-37.7962)),	                   
+	                   ('tauranga',     dict(lon=176.1850, lat=-37.6202)),
+                       ('newplymouth',  dict(lon=173.8092, lat=-39.0960)),
+			           ('gisborne',     dict(lon=178.0870, lat=-38.6903))
+                    ])
 
 varmap = {
 	       'hs[m]'         :  'hs', 
@@ -48,21 +96,34 @@ varmap = {
 		   'sst[]'         :  'sst'
          }	  
 
-plotdict = {
-	        'hs': {'max': 4, 'min': 0, 'inc': 0.01, 'size': 30, 'cmap': plt.cm.Blues},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
-			# 'hs': {'max': 4, 'min': 0, 'inc': 0.05},
+plotparams = {
+	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
+			'wsp':    {'max': 30, 'min': 0,  'inc': 0.1,  'size': 30, 'cmap': plt.cm.jet},
+			'tmpsfc': {'max': 30, 'min': 15, 'inc': 0.05, 'size': 50, 'cmap': plt.cm.jet},
            }
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
 filename_template = '/tmp/{s}_forecast.txt'
+
+# plot settings -------------------
+
+plot_width = 18
+inches_per_site = 5
+plot_cols = 2.
+ax_height = dict(wind=0.2, wave=0.2, weather=0.3)
+ax_height_weather = 0.3
+xpad = 0.05 
+ypad = 0.05 
+ax_width = (1 - ypad * 3) / 2
+
+# quiver - magnitude needs to be always 1!
+qv = dict(
+           d   = 3 # subsampling for quiver
+           qsc = 300 # scale
+           qwd = 0.002 # width
+           hl  = 4.5 # head length
+         )
+# ---------------------------------
 
 #####################################################################################
 
@@ -77,23 +138,67 @@ if download:
 		                         x=site['lon'], y=site['lat'], v=','.join(varmap.values())), 
 								 filename_template.format(s=siteID))
 
-plt.figure(figsize=(11.69, 8.27)) # A4 landscape (fits only 4 sites)
-c = 0 
+# PLOTTING ###########################################################################
+
+nrows = int(ceil(len(sites) / plot_cols))
+figsize = (plot_width, nrows * inches_per_site)
+
+fig = plt.figure(figsize=figsize)
+c = 0
+cur_y_pos = 1 - (ypad + ax_height_wave) # from top to bottom
 
 for site in sites.keys():
 	c += 1 
-	df = format_df(uds2pandas(filename_template.format(s=site)), varmap)
+	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
 	times = df.index.values
-	ax = plt.subplot(2,2,c)
 
-	for idx, time in enumerate(times):
-		plot = plotdict['hs']
-		hs = np.arange(0, df.hs[idx] - plot['inc'] * 4, plot['inc'])
-		df.hs.plot(ax=ax, color='k', linewidth=1)
-		plt.scatter([time for v in hs], hs, s=plot['size'], c=hs, marker='s', 
-		                                    cmap=plot['cmap'], vmin=plot['min'], 
-											vmax=plot['max'], edgecolors=None, alpha=0.5)
-		ax.set_ylim([plot['min'], plot['max']])
+	if c % 2 == 0:
+		x = xpad * 2 + ax_width
+	else:
+		x = xpad.copy()
+
+	# WIND ----------------------------------------------------
+	var = 'wsp'
+	params = plotparams[var]
+	ax = create_ax(fig, x, y, ax_width, ax_height['wind'], params)
+	filled_plot(df, var, ax, params)
+    df[var].plot(ax=ax, color='k', linewidth=1)
+	quiver_plot(df, ax, 'uwnd', 'vwnd', params, qv)
+    annotations(df, ax, params, qv)
+	y -= ax_height['wave']
+
+	# WAVE ----------------------------------------------------
+    var = 'hs'
+	params = plotparams[var]
+	ax = create_ax(fig, x, y, ax_width, ax_height['wave'], params)
+	filled_plot(df, var, ax, params)
+    df[var].plot(ax=ax, color='k', linewidth=1)
+	quiver_plot(df, ax, 'uwave', 'vwave', params, qv)
+    annotations(df, ax, params, qv)
+	y += ax_height['weather']
+
+	# WEATHER -------------------------------------------------
+    var = 'tmpsfc'
+	params = plotparams[var]
+	ax = create_ax(fig, x, y, ax_width, ax_height['weather'], params)
+	annotated_scatter(df, var, ax, params)
+    df[var].plot(ax=ax, color='k', linewidth=1)
+	quiver_plot(df, ax, 'uwave', 'vwave', params, qv)
+    annotations(df, ax, params, qv)
+	
+	y += ax_height['weather']
+    
+
+
+
+
+
+
+
+
+
+
+
     
 plt.show()
 
