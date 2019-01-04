@@ -23,6 +23,7 @@ def create_df(df, varmap):
 	df = df.rename(columns=varmap)
 	df['wsp'], df['wd'] = uv2spddir(df.ugrd10m, df.vgrd10m)
 	df['uwave'], df['vwave'] = spddir2uv(df.hs.values * 0 + 1, df.dpm.values)
+	df['uwave'], df['vwave'] = df.uwave * -1, df.vwave *- 1
 	df['uwnd'], df['vwnd'] = spddir2uv(df.wsp.values * 0 + 1, df.wd.values)
 	df.wsp = ms2kts(df.wsp)
 	df.gst = ms2kts(df.gst)
@@ -57,16 +58,17 @@ def quiver_plot(df, var, ax, uname, vname, params, qv):
 	y = df[var][::qv['d']]
 	u = df[uname][::qv['d']]
 	v = df[vname][::qv['d']]
-	ax.quiver(times, y - params['inc'] * 2, u, v, 
-			  scale=qv['qsc'], width=qv['qwd'], headlength=qv['hl'])
+	ax.quiver(times, y - params['inc'] * 10, u, v, 
+			  scale=qv['qsc'], width=qv['qwd'], 
+              headlength=qv['hl'], pivot='middle')
 
 
-def annotations(df, var, ax, params, qv):
+def annotations(df, var, ax, params, qv, fmt):
 	times = df.index.values
 
 	for idx in np.arange(0, times.size, qv['d']):
 		val = df[var][idx]
-		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=8)
+		ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=8)
 
 
 def annotated_scatter(df, var, ax, params, qv):
@@ -78,7 +80,8 @@ def annotated_scatter(df, var, ax, params, qv):
 
 	for idx in np.arange(0, times.size):
 		val = values[idx]
-		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=7)
+		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), 
+                fontsize=6, horizontalalignment='center', verticalalignment='center')
 
 
 # SETTINGS ##########################################################################
@@ -110,8 +113,8 @@ varmap = {
 
 plotparams = {
 	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
-			'wsp':    {'max': 30, 'min': 0,  'inc': 0.1,  'size': 30, 'cmap': plt.cm.jet},
-			'tmpsfc': {'max': 30, 'min': 15, 'inc': 0.05, 'size': 50, 'cmap': plt.cm.jet},
+			'wsp':    {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
+			'tmpsfc': {'max': 30, 'min': 15, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
            }
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
@@ -130,8 +133,8 @@ ax_width = (1 - ypad * 3) / 2
 
 # quiver - magnitude needs to be always 1!
 qv = dict(
-           d   = 3, # subsampling for quiver
-           qsc = 300, # scale
+           d   = 6, # subsampling for quiver
+           qsc = 60, # scale
            qwd = 0.002, # width
            hl  = 4.5, # head length
          )
@@ -159,7 +162,7 @@ fig = plt.figure(figsize=figsize)
 c = 0
 cur_y_pos = 1 - (ypad + ax_height['wave']) # from top to bottom
 
-import pdb; pdb.set_trace()
+# import pdb; pdb.set_trace()
 for site in sites.keys():
 	c += 1 
 	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
@@ -177,7 +180,7 @@ for site in sites.keys():
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
-	annotations(df, var, ax, params, qv)
+	annotations(df, var, ax, params, qv, '{:0.0f}')
 	cur_y_pos -= ax_height['wave']
 
 	# WAVE ----------------------------------------------------
@@ -187,7 +190,7 @@ for site in sites.keys():
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwave', 'vwave', params, qv)
-	annotations(df, var, ax, params, qv)
+	annotations(df, var, ax, params, qv, '{:0.1f}')
 	cur_y_pos -= ax_height['weather']
 
 	# WEATHER -------------------------------------------------
