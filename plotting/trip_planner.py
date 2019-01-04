@@ -8,15 +8,16 @@ from dataIO_tools.read import uds2pandas
 from pymo.core.conversions import uv2spddir, spddir2uv, k2c
 
 
-
 def ms2kts(spd):
     return spd * 1.94384
+
 
 def uds_request(query, filename):
     # print 'Doing UDS query for {f}: {q}'.format(f=filename, q=query)
     req = requests.get(query)
     with open(filename, 'wb') as f:
         f.write(req.content)
+
 
 def create_df(df, varmap):
 	df = df.rename(columns=varmap)
@@ -26,48 +27,59 @@ def create_df(df, varmap):
 	df.wsp = ms2kts(df.wsp)
 	df.gst = ms2kts(df.gst)
 	df.tmpsfc = k2c(df.tmpsfc)
-	df = df.rolling(6, win_type='hamming', center=True, closed='both').mean().dropna()
+	df = df.rolling(6, win_type='hamming', center=True,
+	                closed='both').mean().dropna()
 	return df
+
 
 def create_ax(fig, x, y, w, h, params):
     ax = fig.add_axes([x, y, w, h])
-	ax.set_ylim([params['min'], params['max']])
-	ax.set_xticks([])
-	ax.set_yticks([])
-	return ax
+    ax.set_ylim([params['min'], params['max']])
+    ax.set_xticks([])
+    ax.set_yticks([])
+    return ax
+
 
 def filled_plot(df, var, ax, params):
-	times = df.index.values
+	# import pdb; pdb.set_trace()
+	times = df.index
 
-    for idx, time in enumerate(times):
+	for idx, time in enumerate(times):
 		values = np.arange(params['min'], df[var][idx] - params['inc'] * 4, params['inc'])
-		ax.scatter([time for v in values], values, s=params['size'], c=values, marker='s', 
-										   cmap=params['cmap'], vmin=params['min'], 
-										   vmax=params['max'], edgecolors=None, alpha=0.5)
+        ax.scatter([time for v in values], values, s=params['size'], c=values,
+		           marker='s', cmap=params['cmap'], 
+				   vmin=params['min'], vmax=params['max'], 
+				   edgecolors=None, alpha=0.5)
 
-def quiver_plot(df, ax, uname, vname, params, qv):
-    times = df.index.values
-	ax.quiver(times[::['d']], df[var][::['d']] - plot['inc'] * 2, 
-	          df[uname][::['d']], df[vname][::['d']], 
+
+def quiver_plot(df, var, ax, uname, vname, params, qv):
+	times = df.index.values[::qv['d']]
+	y = df[var][::qv['d']]
+	u = df[uname][::qv['d']]
+	v = df[vname][::qv['d']]
+	ax.quiver(times, y - params['inc'] * 2, u, v, 
 			  scale=qv['qsc'], width=qv['qwd'], headlength=qv['hl'])
 
-def annotations(df, ax, var, params, qv):
+
+def annotations(df, var, ax, params, qv):
 	times = df.index.values
 
 	for idx in np.arange(0, times.size, qv['d']):
 		val = df[var][idx]
-	    ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=8)
+		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=8)
 
-def annotated_scatter(df, ax, var, params, qv):
+
+def annotated_scatter(df, var, ax, params, qv):
 	times = df.index.values[::qv['d']]
 	values = df[var].values[::qv['d']]
 	ax.scatter(times, values, s=params['size'], c=values,
-	           cmap=params['cmap'], vmin=params['min'], 
+	           cmap=params['cmap'], vmin=params['min'],
 			   vmax=params['max'], edgecolors='k', alpha=0.5)
 
 	for idx in np.arange(0, times.size):
 		val = values[idx]
-	    ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=8)
+		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), fontsize=7)
+
 
 # SETTINGS ##########################################################################
 
@@ -110,18 +122,18 @@ filename_template = '/tmp/{s}_forecast.txt'
 plot_width = 18
 inches_per_site = 5
 plot_cols = 2.
-ax_height = dict(wind=0.2, wave=0.2, weather=0.3)
-ax_height_weather = 0.3
-xpad = 0.05 
-ypad = 0.05 
+ax_height = dict(wind=0.1, wave=0.1, weather=0.1)
+ax_height_total = ax_height['wind'] + ax_height['wave'] + ax_height['weather']
+xpad = 0.02 
+ypad = 0.02 
 ax_width = (1 - ypad * 3) / 2
 
 # quiver - magnitude needs to be always 1!
 qv = dict(
-           d   = 3 # subsampling for quiver
-           qsc = 300 # scale
-           qwd = 0.002 # width
-           hl  = 4.5 # head length
+           d   = 3, # subsampling for quiver
+           qsc = 300, # scale
+           qwd = 0.002, # width
+           hl  = 4.5, # head length
          )
 # ---------------------------------
 
@@ -140,13 +152,14 @@ if download:
 
 # PLOTTING ###########################################################################
 
-nrows = int(ceil(len(sites) / plot_cols))
+nrows = int(np.ceil(len(sites) / plot_cols))
 figsize = (plot_width, nrows * inches_per_site)
 
 fig = plt.figure(figsize=figsize)
 c = 0
-cur_y_pos = 1 - (ypad + ax_height_wave) # from top to bottom
+cur_y_pos = 1 - (ypad + ax_height['wave']) # from top to bottom
 
+import pdb; pdb.set_trace()
 for site in sites.keys():
 	c += 1 
 	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
@@ -155,149 +168,39 @@ for site in sites.keys():
 	if c % 2 == 0:
 		x = xpad * 2 + ax_width
 	else:
-		x = xpad.copy()
+		x = xpad
 
 	# WIND ----------------------------------------------------
 	var = 'wsp'
 	params = plotparams[var]
-	ax = create_ax(fig, x, y, ax_width, ax_height['wind'], params)
-	filled_plot(df, var, ax, params)
-    df[var].plot(ax=ax, color='k', linewidth=1)
-	quiver_plot(df, ax, 'uwnd', 'vwnd', params, qv)
-    annotations(df, ax, params, qv)
-	y -= ax_height['wave']
+	ax = create_ax(fig, x, cur_y_pos, ax_width, ax_height['wind'], params)
+	# filled_plot(df, var, ax, params)
+	df[var].plot(ax=ax, color='k')
+	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
+	annotations(df, var, ax, params, qv)
+	cur_y_pos -= ax_height['wave']
 
 	# WAVE ----------------------------------------------------
-    var = 'hs'
+	var = 'hs'
 	params = plotparams[var]
-	ax = create_ax(fig, x, y, ax_width, ax_height['wave'], params)
-	filled_plot(df, var, ax, params)
-    df[var].plot(ax=ax, color='k', linewidth=1)
-	quiver_plot(df, ax, 'uwave', 'vwave', params, qv)
-    annotations(df, ax, params, qv)
-	y += ax_height['weather']
+	ax = create_ax(fig, x, cur_y_pos, ax_width, ax_height['wave'], params)
+	# filled_plot(df, var, ax, params)
+	df[var].plot(ax=ax, color='k')
+	quiver_plot(df, var, ax, 'uwave', 'vwave', params, qv)
+	annotations(df, var, ax, params, qv)
+	cur_y_pos -= ax_height['weather']
 
 	# WEATHER -------------------------------------------------
-    var = 'tmpsfc'
+	var = 'tmpsfc'
 	params = plotparams[var]
-	ax = create_ax(fig, x, y, ax_width, ax_height['weather'], params)
-	annotated_scatter(df, var, ax, params)
-    df[var].plot(ax=ax, color='k', linewidth=1)
-	quiver_plot(df, ax, 'uwave', 'vwave', params, qv)
-    annotations(df, ax, params, qv)
-	
-	y += ax_height['weather']
-    
+	ax = create_ax(fig, x, cur_y_pos, ax_width, ax_height['weather'], params)
+	annotated_scatter(df, var, ax, params, qv)
+
+    # spotting the ycoord of the next site
+	if c % 2 == 0:
+		cur_y_pos += ax_height_total
+	else:
+		cur_y_pos -= ypad
 
 
-
-
-
-
-
-
-
-
-
-    
 plt.show()
-
-
-
-# OLD SIODOC PLOT ####################################################################################
-
-# t = np.arange(0, 24, 0.1)
-# m = (np.random.randn(t.size) * 5) + 10
-# mraj = m + np.random.rand(t.size)*5 + 1
-# m = smooth(m, window_len=15)[:-14]
-# mraj = smooth(mraj, window_len=10)[:-9]
-# yg = np.arange(0, 25, 0.1)
-# xg, yg = np.meshgrid(t, yg)
-# direc = ((45*np.pi) / 180) + m*0
-# u, v = -1*(m*0+4) , -1*(m*0+4)
-
-
-# tfill  = np.concatenate( ( np.array([0]), t, np.array([t[-1]]) ) )
-# mfill  = np.concatenate( ( np.array([yg.max()]), mraj, np.array([yg.max()]) ) )
-# mfill2 = np.concatenate( ( np.array([yg.max()]), m, np.array([yg.max()]) ) )
-
-
-# fig = plt.figure(facecolor='w', figsize=(14, 10))
-
-# # WIND
-# p1 = fig.add_subplot(4,1,1)
-# p1.contourf(xg, yg, yg, np.arange(5, 20, 0.1), cmap=plt.cm.hot_r)
-# p1.plot(t, m, 'k', linewidth=2)
-# p1.fill(tfill, mfill, 'w', edgecolor='w')
-# p1.fill(tfill, mfill2, 'w', edgecolor='w', alpha=0.5)
-# d = 3
-# p1.quiver(t[::d], m[::d]-2, u[::d], v[::d], scale=300, width=0.002, headlength=4.5)
-# for k in np.arange(0, t.size, d):
-# 	p1.text(t[k], m[k]-1.5, "%0.0f" %m[k], fontsize=8)
-
-# for k in np.arange(0, t.size, d):
-# 	p1.text(t[k], mraj[k]+1, "%0.0f" %m[k], color='0.5', fontsize=8)
-
-# p1.axis([0, 10, 0, 25])
-# p1.set_axis_off()
-
-
-
-# # WAVE
-# per = smooth(m, window_len=15)[:-14]
-
-# p2 = fig.add_subplot(4,1,2)
-# p2.contourf(xg, yg, yg, np.arange(5, 25, 0.1), cmap=plt.cm.Blues, alpha=0.4)
-# p2.plot(t, per, 'r--', linewidth=2)
-# p2.plot(t, m*2, 'k', linewidth=2)
-# p2.fill(tfill, mfill2*2, 'w', edgecolor='w')
-
-# d = 3
-# p2.quiver(t[::d], m[::d]*2-2.3, u[::d]*0, v[::d]*-1, scale=300, width=0.002, headlength=4.5)
-# for k in np.arange(0, t.size, d):
-# 	p2.text(t[k], m[k]*2+1, "%0.0f" %(m[k]/3), fontsize=8)
-
-# for k in np.arange(0, t.size, d):
-# 	p2.text(t[k], per[k]+1, "%0.0f" %per[k], fontsize=8, color='r')
-
-# p2.axis([0, 10, 0, 25])
-# p2.set_axis_off()
-
-
-# # SST
-# temp = (np.random.randn(t.size) * 4) + 23
-# temp = smooth(temp, window_len=15)[:-14]
-# yg = np.arange(12, 28, 0.1)
-# xg, yg = np.meshgrid(t, yg)
-# tempfill  = np.concatenate( ( np.array([yg.max()]), temp, np.array([yg.max()]) ) )
-
-# p3 = fig.add_subplot(4,1,3)
-# p3.contourf(xg, yg, yg, np.arange(12, 28, 0.1), cmap=plt.cm.RdBu_r, alpha=0.8)
-# p3.plot(t, temp, 'k', linewidth=2)
-# p3.fill(tfill, tempfill, 'w', edgecolor='w')
-
-# d = 3
-# for k in np.arange(0, t.size, d):
-# 	p3.text(t[k], temp[k]+1, "%0.0f" %temp[k], fontsize=8)
-
-# p3.axis([0, 10, 0, 25])
-# p3.set_axis_off()
-
-
-# # CURRENTS
-# p4 = fig.add_subplot(4,1,4)
-# p4.contourf(xg, yg, yg, np.arange(12, 28, 0.1), cmap=plt.cm.Greens, alpha=0.8)
-# p4.plot(t, temp, 'k', linewidth=2)
-# p4.fill(tfill, tempfill, 'w', edgecolor='w')
-
-# d = 3
-# for k in np.arange(0, t.size, d):
-# 	p4.text(t[k], temp[k]+1, "%0.0f" %temp[k], fontsize=8)
-
-# p4.axis([0, 10, 0, 25])
-# p4.set_axis_off()
-
-
-
-# plt.show()
-
