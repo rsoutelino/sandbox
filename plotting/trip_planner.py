@@ -44,7 +44,7 @@ def create_ax(fig, x, y, w, h, params):
 def filled_plot(df, var, ax, params):
 	# import pdb; pdb.set_trace()
 	times = df.index
-
+	ax.set_xlim([df.index[0], df.index[-1]])
 	for idx, time in enumerate(times):
 		values = np.arange(params['min'], df[var][idx] - params['inc'] * 4, params['inc'])
         ax.scatter([time for v in values], values, s=params['size'], c=values,
@@ -58,6 +58,7 @@ def quiver_plot(df, var, ax, uname, vname, params, qv):
 	y = df[var][::qv['d']]
 	u = df[uname][::qv['d']]
 	v = df[vname][::qv['d']]
+	ax.set_xlim([df.index[0], df.index[-1]])
 	ax.quiver(times, y - params['inc'] * 10, u, v, 
 			  scale=qv['qsc'], width=qv['qwd'], 
               headlength=qv['hl'], pivot='middle')
@@ -78,6 +79,8 @@ def annotated_scatter(df, var, ax, params, qv):
 	           cmap=params['cmap'], vmin=params['min'],
 			   vmax=params['max'], edgecolors='k', alpha=0.5)
 
+	ax.set_xlim([df.index[0], df.index[-1]])
+
 	for idx in np.arange(0, times.size):
 		val = values[idx]
 		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), 
@@ -96,7 +99,9 @@ sites = OrderedDict([
                        ('raglan',       dict(lon=174.8021, lat=-37.7962)),	                   
 	                   ('tauranga',     dict(lon=176.1850, lat=-37.6202)),
                        ('newplymouth',  dict(lon=173.8092, lat=-39.0960)),
-			           ('gisborne',     dict(lon=178.0870, lat=-38.6903))
+			           ('gisborne',     dict(lon=178.0870, lat=-38.6903)),
+					   ('ahipara',      dict(lon=173.1088, lat=-35.1289)),
+					   ('northland',    dict(lon=174.0976, lat=-35.2232)),
                     ])
 
 varmap = {
@@ -160,7 +165,7 @@ figsize = (plot_width, nrows * inches_per_site)
 
 fig = plt.figure(figsize=figsize)
 c = 0
-cur_y_pos = 1 - (ypad + ax_height['wave']) # from top to bottom
+ypos = 1 - (ypad + ax_height['wind']) # from top to bottom
 
 # import pdb; pdb.set_trace()
 for site in sites.keys():
@@ -169,41 +174,41 @@ for site in sites.keys():
 	times = df.index.values
 
 	if c % 2 == 0:
-		x = xpad * 2 + ax_width
+		xpos = xpad * 2 + ax_width
 	else:
-		x = xpad
+		xpos = xpad
 
 	# WIND ----------------------------------------------------
 	var = 'wsp'
 	params = plotparams[var]
-	ax = create_ax(fig, x, cur_y_pos, ax_width, ax_height['wind'], params)
+	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wind'], params)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
 	annotations(df, var, ax, params, qv, '{:0.0f}')
-	cur_y_pos -= ax_height['wave']
+	ypos -= ax_height['wave']
 
 	# WAVE ----------------------------------------------------
 	var = 'hs'
 	params = plotparams[var]
-	ax = create_ax(fig, x, cur_y_pos, ax_width, ax_height['wave'], params)
+	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwave', 'vwave', params, qv)
 	annotations(df, var, ax, params, qv, '{:0.1f}')
-	cur_y_pos -= ax_height['weather']
+	ypos -= ax_height['weather']
 
 	# WEATHER -------------------------------------------------
 	var = 'tmpsfc'
 	params = plotparams[var]
-	ax = create_ax(fig, x, cur_y_pos, ax_width, ax_height['weather'], params)
+	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['weather'], params)
 	annotated_scatter(df, var, ax, params, qv)
 
     # spotting the ycoord of the next site
 	if c % 2 == 0:
-		cur_y_pos += ax_height_total
+		ypos -= (ypad + ax_height['wind'])
 	else:
-		cur_y_pos -= ypad
+		ypos += (ax_height_total - ax_height['wind'])
 
 
 plt.show()
