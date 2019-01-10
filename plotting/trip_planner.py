@@ -64,12 +64,12 @@ def quiver_plot(df, var, ax, uname, vname, params, qv):
               headlength=qv['hl'], pivot='middle')
 
 
-def annotations(df, var, ax, params, qv, fmt):
+def annotations(df, var, ax, params, qv, fmt, **kwargs):
 	times = df.index.values
 
 	for idx in np.arange(0, times.size, qv['d']):
 		val = df[var][idx]
-		ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=8)
+		ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=8, **kwargs)
 
 
 def annotated_scatter(df, var, ax, params, qv):
@@ -89,6 +89,7 @@ def annotated_scatter(df, var, ax, params, qv):
 
 # SETTINGS ##########################################################################
 
+toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
 download = False
 horizon = 5
@@ -120,6 +121,7 @@ plotparams = {
 	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
 			'wsp':    {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
 			'tmpsfc': {'max': 30, 'min': 15, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
+			'tp':     {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
            }
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
@@ -171,6 +173,7 @@ ypos = 1 - (ypad + ax_height['wind']) # from top to bottom
 for site in sites.keys():
 	c += 1 
 	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
+	df.index += pd.to_timedelta(toff) # timezone
 	times = df.index.values
 
 	if c % 2 == 0:
@@ -182,6 +185,7 @@ for site in sites.keys():
 	var = 'wsp'
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wind'], params)
+	ax.set_title(site.capitalize(), fontweight='bold', fontsize=8)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
@@ -191,11 +195,18 @@ for site in sites.keys():
 	# WAVE ----------------------------------------------------
 	var = 'hs'
 	params = plotparams[var]
-	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	ax1 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
 	# filled_plot(df, var, ax, params)
-	df[var].plot(ax=ax, color='k')
-	quiver_plot(df, var, ax, 'uwave', 'vwave', params, qv)
-	annotations(df, var, ax, params, qv, '{:0.1f}')
+	df[var].plot(ax=ax1, color='k')
+	quiver_plot(df, var, ax1, 'uwave', 'vwave', params, qv)
+	annotations(df, var, ax1, params, qv, '{:0.1f}')
+    # ---------------------------------------------------------
+	var = 'tp'
+	params = plotparams[var]
+	ax2 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	df[var].plot(ax=ax2, color='r', dashes=[3, 3])
+	annotations(df, var, ax2, params, qv, '{:0.0f}', color='r')
+
 	ypos -= ax_height['weather']
 
 	# WEATHER -------------------------------------------------
