@@ -30,6 +30,7 @@ def create_df(df, varmap):
 	df.tmpsfc = k2c(df.tmpsfc)
 	df = df.rolling(6, win_type='hamming', center=True,
 	                closed='both').mean().dropna()
+	df.index += pd.to_timedelta(toff) # timezone
 	return df
 
 
@@ -47,7 +48,7 @@ def plot_nightshade(df, ax):
 	ymin, ymax = ax.get_ylim()
 	
 	for day in pd.date_range(df.index[0].date(), df.index[-1].date()):
-		sun1 = city.sun(date=day - dt.timedelta(days=1), local=True)
+		sun1 = city.sun(date=day - dt.timedelta(days=1))
 		sun2 = city.sun(date=day, local=True)
 		night = pd.DataFrame(index=[sun1['sunset'], sun2['sunrise']], 
 		                     data=dict(shade=[ymax, ymax]))
@@ -90,14 +91,15 @@ def annotated_scatter(df, var, ax, params, qv):
 	values = df[var].values[::qv['d']]
 	ax.scatter(times, values, s=params['size'], c=values,
 	           cmap=params['cmap'], vmin=params['min'],
-			   vmax=params['max'], edgecolors='k', alpha=0.5)
+			   vmax=params['max'], edgecolors='k', zorder=5)
 
 	ax.set_xlim([df.index[0], df.index[-1]])
 
 	for idx in np.arange(0, times.size):
 		val = values[idx]
 		ax.text(times[idx], val + params['inc'] * 2, '{:0.0f}'.format(val), 
-                fontsize=6, horizontalalignment='center', verticalalignment='center')
+                fontsize=6, horizontalalignment='center', 
+				verticalalignment='center', zorder=6)
 
 
 # SETTINGS ##########################################################################
@@ -133,7 +135,7 @@ varmap = {
 plotparams = {
 	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
 			'wsp':    {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
-			'tmpsfc': {'max': 30, 'min': 15, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
+			'tmpsfc': {'max': 30, 'min': 12, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
 			'tp':     {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
            }
 
@@ -153,7 +155,7 @@ ax_width = (1 - ypad * 3) / 2
 
 # quiver - magnitude needs to be always 1!
 qv = dict(
-           d   = 6, # subsampling for quiver
+           d   = 5, # subsampling for quiver
            qsc = 60, # scale
            qwd = 0.002, # width
            hl  = 4.5, # head length
@@ -186,7 +188,6 @@ ypos = 1 - (ypad + ax_height['wind']) # from top to bottom
 for site in sites.keys():
 	c += 1 
 	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
-	df.index += pd.to_timedelta(toff) # timezone
 	times = df.index.values
 
 	if c % 2 == 0:
@@ -198,7 +199,8 @@ for site in sites.keys():
 	var = 'wsp'
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wind'], params)
-	ax.set_title(site.capitalize(), fontweight='bold', fontsize=8)
+	tit = ax.set_title(site.capitalize(), fontweight='bold', fontsize=10)
+	tit.set_position([0.08, 0.85])
 	plot_nightshade(df, ax)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
@@ -210,7 +212,7 @@ for site in sites.keys():
 	var = 'hs'
 	params = plotparams[var]
 	ax1 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
-	plot_nightshade(df, ax)
+	plot_nightshade(df, ax1)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax1, color='k')
 	quiver_plot(df, var, ax1, 'uwave', 'vwave', params, qv)
@@ -219,6 +221,7 @@ for site in sites.keys():
 	var = 'tp'
 	params = plotparams[var]
 	ax2 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	plot_nightshade(df, ax1)	
 	df[var].plot(ax=ax2, color='r', dashes=[3, 3])
 	annotations(df, var, ax2, params, qv, '{:0.0f}', color='r')
 
@@ -229,6 +232,7 @@ for site in sites.keys():
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['weather'], params)
 	plot_nightshade(df, ax)
+	df[var].plot(ax=ax, color='k', zorder=1)
 	annotated_scatter(df, var, ax, params, qv)
 
     # spotting the ycoord of the next site
