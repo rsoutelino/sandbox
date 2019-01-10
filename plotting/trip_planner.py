@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from dataIO_tools.read import uds2pandas
 from pymo.core.conversions import uv2spddir, spddir2uv, k2c
-
+from astral import Astral
 
 def ms2kts(spd):
     return spd * 1.94384
@@ -34,11 +34,24 @@ def create_df(df, varmap):
 
 
 def create_ax(fig, x, y, w, h, params):
-    ax = fig.add_axes([x, y, w, h])
-    ax.set_ylim([params['min'], params['max']])
-    ax.set_xticks([])
-    ax.set_yticks([])
-    return ax
+	ax = fig.add_axes([x, y, w, h])
+	ax.set_ylim([params['min'], params['max']])
+	ax.axis('off')
+	return ax
+
+
+def plot_nightshade(df, ax):
+	a = Astral()
+	a.solar_depression = 'civil'
+	city = a['wellington']
+	ymin, ymax = ax.get_ylim()
+	
+	for day in pd.date_range(df.index[0].date(), df.index[-1].date()):
+		sun1 = city.sun(date=day - dt.timedelta(days=1), local=True)
+		sun2 = city.sun(date=day, local=True)
+		night = pd.DataFrame(index=[sun1['sunset'], sun2['sunrise']], 
+		                     data=dict(shade=[ymax, ymax]))
+		night.shade.plot(kind='area', ax=ax, color='0.95', alpha=0.5, zorder=1)
 
 
 def filled_plot(df, var, ax, params):
@@ -61,15 +74,15 @@ def quiver_plot(df, var, ax, uname, vname, params, qv):
 	ax.set_xlim([df.index[0], df.index[-1]])
 	ax.quiver(times, y - params['inc'] * 10, u, v, 
 			  scale=qv['qsc'], width=qv['qwd'], 
-              headlength=qv['hl'], pivot='middle')
+              headlength=qv['hl'], pivot='middle', zorder=2)
 
 
-def annotations(df, var, ax, params, qv, fmt):
+def annotations(df, var, ax, params, qv, fmt, **kwargs):
 	times = df.index.values
 
 	for idx in np.arange(0, times.size, qv['d']):
 		val = df[var][idx]
-		ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=8)
+		ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=8, **kwargs)
 
 
 def annotated_scatter(df, var, ax, params, qv):
@@ -89,6 +102,7 @@ def annotated_scatter(df, var, ax, params, qv):
 
 # SETTINGS ##########################################################################
 
+toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
 download = False
 horizon = 5
@@ -120,6 +134,7 @@ plotparams = {
 	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
 			'wsp':    {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
 			'tmpsfc': {'max': 30, 'min': 15, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
+			'tp':     {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
            }
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
@@ -171,6 +186,7 @@ ypos = 1 - (ypad + ax_height['wind']) # from top to bottom
 for site in sites.keys():
 	c += 1 
 	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
+	df.index += pd.to_timedelta(toff) # timezone
 	times = df.index.values
 
 	if c % 2 == 0:
@@ -182,6 +198,8 @@ for site in sites.keys():
 	var = 'wsp'
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wind'], params)
+	ax.set_title(site.capitalize(), fontweight='bold', fontsize=8)
+	plot_nightshade(df, ax)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
@@ -191,17 +209,26 @@ for site in sites.keys():
 	# WAVE ----------------------------------------------------
 	var = 'hs'
 	params = plotparams[var]
-	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	ax1 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	plot_nightshade(df, ax)
 	# filled_plot(df, var, ax, params)
-	df[var].plot(ax=ax, color='k')
-	quiver_plot(df, var, ax, 'uwave', 'vwave', params, qv)
-	annotations(df, var, ax, params, qv, '{:0.1f}')
+	df[var].plot(ax=ax1, color='k')
+	quiver_plot(df, var, ax1, 'uwave', 'vwave', params, qv)
+	annotations(df, var, ax1, params, qv, '{:0.1f}')
+    # ---------------------------------------------------------
+	var = 'tp'
+	params = plotparams[var]
+	ax2 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	df[var].plot(ax=ax2, color='r', dashes=[3, 3])
+	annotations(df, var, ax2, params, qv, '{:0.0f}', color='r')
+
 	ypos -= ax_height['weather']
 
 	# WEATHER -------------------------------------------------
 	var = 'tmpsfc'
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['weather'], params)
+	plot_nightshade(df, ax)
 	annotated_scatter(df, var, ax, params, qv)
 
     # spotting the ycoord of the next site
