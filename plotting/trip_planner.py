@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from dataIO_tools.read import uds2pandas
 from pymo.core.conversions import uv2spddir, spddir2uv, k2c
-
+from astral import Astral
 
 def ms2kts(spd):
     return spd * 1.94384
@@ -34,11 +34,24 @@ def create_df(df, varmap):
 
 
 def create_ax(fig, x, y, w, h, params):
-    ax = fig.add_axes([x, y, w, h])
-    ax.set_ylim([params['min'], params['max']])
-    ax.set_xticks([])
-    ax.set_yticks([])
-    return ax
+	ax = fig.add_axes([x, y, w, h])
+	ax.set_ylim([params['min'], params['max']])
+	ax.axis('off')
+	return ax
+
+
+def plot_nightshade(df, ax):
+	a = Astral()
+	a.solar_depression = 'civil'
+	city = a['wellington']
+	ymin, ymax = ax.get_ylim()
+	
+	for day in pd.date_range(df.index[0].date(), df.index[-1].date()):
+		sun1 = city.sun(date=day - dt.timedelta(days=1), local=True)
+		sun2 = city.sun(date=day, local=True)
+		night = pd.DataFrame(index=[sun1['sunset'], sun2['sunrise']], 
+		                     data=dict(shade=[ymax, ymax]))
+		night.shade.plot(kind='area', ax=ax, color='0.95', alpha=0.5, zorder=1)
 
 
 def filled_plot(df, var, ax, params):
@@ -61,7 +74,7 @@ def quiver_plot(df, var, ax, uname, vname, params, qv):
 	ax.set_xlim([df.index[0], df.index[-1]])
 	ax.quiver(times, y - params['inc'] * 10, u, v, 
 			  scale=qv['qsc'], width=qv['qwd'], 
-              headlength=qv['hl'], pivot='middle')
+              headlength=qv['hl'], pivot='middle', zorder=2)
 
 
 def annotations(df, var, ax, params, qv, fmt, **kwargs):
@@ -186,6 +199,7 @@ for site in sites.keys():
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['wind'], params)
 	ax.set_title(site.capitalize(), fontweight='bold', fontsize=8)
+	plot_nightshade(df, ax)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
@@ -196,6 +210,7 @@ for site in sites.keys():
 	var = 'hs'
 	params = plotparams[var]
 	ax1 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	plot_nightshade(df, ax)
 	# filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax1, color='k')
 	quiver_plot(df, var, ax1, 'uwave', 'vwave', params, qv)
@@ -213,6 +228,7 @@ for site in sites.keys():
 	var = 'tmpsfc'
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['weather'], params)
+	plot_nightshade(df, ax)
 	annotated_scatter(df, var, ax, params, qv)
 
     # spotting the ycoord of the next site
