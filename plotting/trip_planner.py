@@ -121,15 +121,17 @@ sites = OrderedDict([
                     ])
 
 varmap = {
-	       'hs[m]'         :  'hs', 
-           'tp[s]'         :  'tp',
-		   'dpm[deg]'      :  'dpm',
-		   'ugrd10m[m/s]'  :  'ugrd10m',
-		   'vgrd10m[m/s]'  :  'vgrd10m',
-		   'gst[m/s]'      :  'gst',
-		   'tmpsfc[K]'     :  'tmpsfc',
-		   'sst[C]'        :  'sst',
-		   'sst[]'         :  'sst'
+	       'hs[m]'                :  'hs', 
+           'tp[s]'                :  'tp',
+		   'dpm[deg]'             :  'dpm',
+		   'ugrd10m[m/s]'         :  'ugrd10m',
+		   'vgrd10m[m/s]'         :  'vgrd10m',
+		   'gst[m/s]'             :  'gst',
+		   'tmpsfc[K]'            :  'tmpsfc',
+		   'sst[C]'               :  'sst',
+		   'sst[]'                :  'sst',
+		   'apratesfc[kg/m^2/s]'  :  'apratesfc',
+		   'tcdcclm[%]'           :  'tcdcclm'
          }	  
 
 plotparams = {
