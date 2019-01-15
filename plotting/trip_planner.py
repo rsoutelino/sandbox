@@ -112,12 +112,13 @@ horizon = 5
 OrderedDict([('apple', 4), ('banana', 3), ('orange', 2), ('pear', 1)])
 
 sites = OrderedDict([
-                       ('raglan',       dict(lon=174.8021, lat=-37.7962)),	                   
-	                   ('tauranga',     dict(lon=176.1850, lat=-37.6202)),
-                       ('newplymouth',  dict(lon=173.8092, lat=-39.0960)),
-			           ('gisborne',     dict(lon=178.0870, lat=-38.6903)),
-					   ('ahipara',      dict(lon=173.1088, lat=-35.1289)),
-					   ('northland',    dict(lon=174.0976, lat=-35.2232)),
+                       ('raglan',       dict(lon=174.8021, lat=-37.7962, lon2=174.9015, lat2=-37.8035)),	                   
+	                   ('tauranga',     dict(lon=176.1850, lat=-37.6202, lon2=176.1944, lat2=-37.6969)),
+                    #    ('newplymouth',  dict(lon=173.8092, lat=-39.0960, lon2=174.1173, lat2=-39.0669)),
+                       ('whangamata',  dict(lon=175.9072, lat=-37.2060, lon2=175.8636, lat2=-37.2149)),
+			           ('gisborne',     dict(lon=178.0870, lat=-38.6903, lon2=178.0149, lat2=-38.6394)),
+					#    ('ahipara',      dict(lon=173.1088, lat=-35.1289, lon2=173.2132, lat2=-35.1137)),
+					#    ('keri-keri',    dict(lon=174.0976, lat=-35.2232, lon2=174.0543, lat2=-35.2724)),
                     ])
 
 varmap = {
@@ -137,7 +138,7 @@ varmap = {
 plotparams = {
 	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
 			'wsp':    {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
-			'tmpsfc': {'max': 30, 'min': 12, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
+			'tmpsfc': {'max': 32, 'min': 10, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},
 			'tp':     {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
            }
 
@@ -149,10 +150,10 @@ filename_template = '/tmp/{s}_forecast.txt'
 plot_width = 18
 inches_per_site = 5
 plot_cols = 2.
-ax_height = dict(wind=0.1, wave=0.1, weather=0.1)
+ax_height = dict(wind=0.15, wave=0.15, weather=0.15)
 ax_height_total = ax_height['wind'] + ax_height['wave'] + ax_height['weather']
-xpad = 0.02 
-ypad = 0.02 
+xpad = 0.04 
+ypad = 0.04 
 ax_width = (1 - ypad * 3) / 2
 
 # quiver - magnitude needs to be always 1!
@@ -176,6 +177,9 @@ if download:
 		uds_request(query.format(s=UDS, t1=t1.strftime('%Y%m%d.%H%M%S'), t2=t2.strftime('%Y%m%d.%H%M%S'), 
 		                         x=site['lon'], y=site['lat'], v=','.join(varmap.values())), 
 								 filename_template.format(s=siteID))
+		uds_request(query.format(s=UDS, t1=t1.strftime('%Y%m%d.%H%M%S'), t2=t2.strftime('%Y%m%d.%H%M%S'), 
+		                         x=site['lon2'], y=site['lat2'], v=','.join(varmap.values())), 
+								 filename_template.format(s=siteID + '_land_'))
 
 # PLOTTING ###########################################################################
 
@@ -190,6 +194,7 @@ ypos = 1 - (ypad + ax_height['wind']) # from top to bottom
 for site in sites.keys():
 	c += 1 
 	df = create_df(uds2pandas(filename_template.format(s=site)), varmap)
+	df2 = create_df(uds2pandas(filename_template.format(s=site + '_land_')), varmap)
 	times = df.index.values
 
 	if c % 2 == 0:
@@ -204,7 +209,7 @@ for site in sites.keys():
 	tit = ax.set_title(site.capitalize(), fontweight='bold', fontsize=10)
 	tit.set_position([0.08, 0.85])
 	plot_nightshade(df, ax)
-	# filled_plot(df, var, ax, params)
+	filled_plot(df, var, ax, params)
 	df[var].plot(ax=ax, color='k')
 	quiver_plot(df, var, ax, 'uwnd', 'vwnd', params, qv)
 	annotations(df, var, ax, params, qv, '{:0.0f}')
@@ -220,12 +225,12 @@ for site in sites.keys():
 	quiver_plot(df, var, ax1, 'uwave', 'vwave', params, qv)
 	annotations(df, var, ax1, params, qv, '{:0.1f}')
     # ---------------------------------------------------------
-	var = 'tp'
-	params = plotparams[var]
-	ax2 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
-	plot_nightshade(df, ax1)	
-	df[var].plot(ax=ax2, color='r', dashes=[3, 3])
-	annotations(df, var, ax2, params, qv, '{:0.0f}', color='r')
+	# var = 'tp'
+	# params = plotparams[var]
+	# ax2 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
+	# plot_nightshade(df, ax1)	
+	# df[var].plot(ax=ax2, color='r', dashes=[3, 3])
+	# annotations(df, var, ax2, params, qv, '{:0.0f}', color='r')
 
 	ypos -= ax_height['weather']
 
@@ -233,9 +238,9 @@ for site in sites.keys():
 	var = 'tmpsfc'
 	params = plotparams[var]
 	ax = create_ax(fig, xpos, ypos, ax_width, ax_height['weather'], params)
-	plot_nightshade(df, ax)
-	df[var].plot(ax=ax, color='k', zorder=1)
-	annotated_scatter(df, var, ax, params, qv)
+	plot_nightshade(df2, ax)
+	df2[var].plot(ax=ax, color='k', zorder=1)
+	annotated_scatter(df2, var, ax, params, qv)
 
     # spotting the ycoord of the next site
 	if c % 2 == 0:
