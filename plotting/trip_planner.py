@@ -158,7 +158,7 @@ ax_width = (1 - ypad * 3) / 2
 
 # quiver - magnitude needs to be always 1!
 qv = dict(
-           d   = 5, # subsampling for quiver
+           d   = 4, # subsampling for quiver
            qsc = 60, # scale
            qwd = 0.002, # width
            hl  = 4.5, # head length
@@ -220,7 +220,7 @@ for site in sites.keys():
 	params = plotparams[var]
 	ax1 = create_ax(fig, xpos, ypos, ax_width, ax_height['wave'], params)
 	plot_nightshade(df, ax1)
-	# filled_plot(df, var, ax, params)
+	filled_plot(df, var, ax1, params)
 	df[var].plot(ax=ax1, color='k')
 	quiver_plot(df, var, ax1, 'uwave', 'vwave', params, qv)
 	annotations(df, var, ax1, params, qv, '{:0.1f}')
