@@ -50,7 +50,6 @@ def plot_nightshade(df, ax, **kwargs):
     ymin, ymax = ax.get_ylim()
     
     for day in pd.date_range(df.index[0].date(), df.index[-1].date()):
-        # import pdb; pdb.set_trace()
         sun1 = city.sun(date=day - dt.timedelta(days=1))
         sun2 = city.sun(date=day, local=True)
         sunset = sun1['sunset'].replace(tzinfo=None)
@@ -128,7 +127,7 @@ def plot_time(df, ax, now, horizon):
     
     for time in times:
         txt = "{w} {d}.{m}".format(w=time.strftime('%a'), d=time.day, m=time.month)
-        ax.text(time, y - 1.2, txt, fontsize=8, color='0.5',
+        ax.text(time, y - 1.2, txt, fontsize=8, color='k',
                 horizontalalignment='center', 
                 verticalalignment='center')
 
@@ -181,7 +180,7 @@ plotparams = {
 			'tp':        {'max': 23,  'min': 0,  'inc': 0.1, 'size': None, 'cmap': None},
 			'apratesfc': {'max': 10,  'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
 			'tcdcclm':   {'max': 120, 'min': 0,  'inc': None, 'size': None, 'cmap': None},			
-			'et':        {'max': 8,   'min': 0,  'inc': None, 'size': None, 'cmap': None},			
+			'et':        {'max': 5,   'min': 0,  'inc': None, 'size': None, 'cmap': None},			
 			'sst':       {'max': 25,  'min': 0, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},			
            }
 
@@ -302,7 +301,7 @@ for site in sites.keys():
     var = 'et'
     params = plotparams[var]
     ax = create_ax(tide, fig, xpos, ypos, ax_width, ax_height['weather'], params)
-    tide.et.plot(ax=ax, kind='area', color='g', alpha=0.3, zorder=3)
+    tide.et.plot(ax=ax, kind='area', color='g', alpha=0.2, zorder=3)
     ax.set_xlim([df.index[0], df.index[-1]])
     # ---------------------------------------------------------
     var = 'tmpsfc'
