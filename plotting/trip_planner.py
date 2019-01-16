@@ -89,7 +89,7 @@ def annotations(df, var, ax, params, qv, fmt, skip=None, **kwargs):
 
     for idx in np.arange(0, times.size, skip):
         val = df[var][idx]
-        ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=8, **kwargs)
+        ax.text(times[idx], val + params['inc'] * 5, fmt.format(val), fontsize=6, **kwargs)
     
     ax.set_xlim([df.index[0], df.index[-1]])
 
@@ -146,7 +146,7 @@ def plot_time(df, ax, now, horizon):
 
 toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
-download = False
+download = True
 horizon = 7
 
 sites = OrderedDict([
@@ -174,7 +174,7 @@ varmap = {
          }	  
 
 plotparams = {
-	        'hs':        {'max': 4,   'min': 0.2,  'inc': 0.04, 'size': 30, 'cmap': plt.cm.Blues},
+	        'hs':        {'max': 4,   'min': 0.2,  'inc': 0.03, 'size': 30, 'cmap': plt.cm.Blues},
 			'wsp':       {'max': 30,  'min': 5,  'inc': 0.3,  'size': 30, 'cmap': plt.cm.YlOrBr},
 			'tmpsfc':    {'max': 35,  'min': 5, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},
 			'tp':        {'max': 23,  'min': 0,  'inc': 0.1, 'size': None, 'cmap': None},
