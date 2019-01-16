@@ -56,7 +56,7 @@ def plot_nightshade(df, ax, **kwargs):
         sunrise = sun2['sunrise'].replace(tzinfo=None)
         night = pd.DataFrame(index=[sunset, sunrise], 
 		             data=dict(shade=[ymax, ymax]))
-        night.shade.plot(kind='area', ax=ax, color='0.95', alpha=0.5, **kwargs)
+        night.shade.plot(kind='area', ax=ax, color='0.9', alpha=0.5, **kwargs)
 
 
 def filled_plot(df, var, ax, params, **kwargs):
@@ -179,7 +179,7 @@ plotparams = {
 			'tmpsfc':    {'max': 35,  'min': 5, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},
 			'tp':        {'max': 23,  'min': 0,  'inc': 0.1, 'size': None, 'cmap': None},
 			'apratesfc': {'max': 10,  'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
-			'tcdcclm':   {'max': 120, 'min': 0,  'inc': None, 'size': None, 'cmap': None},			
+			'tcdcclm':   {'max': 100, 'min': 0,  'inc': None, 'size': None, 'cmap': None},			
 			'et':        {'max': 5,   'min': 0,  'inc': None, 'size': None, 'cmap': None},			
 			'sst':       {'max': 25,  'min': 0, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},			
            }
@@ -296,7 +296,7 @@ for site in sites.keys():
     params = plotparams[var]
     ax = create_ax(df2, fig, xpos, ypos, ax_width, ax_height['weather'], params)
     plot_nightshade(df2, ax, zorder=1)
-    df2[var].plot(ax=ax, kind='area', color='0.8', alpha=0.3, zorder=2)
+    df2[var].plot(ax=ax, kind='area', color='0.7', alpha=0.5, zorder=2)
     # ---------------------------------------------------------
     var = 'et'
     params = plotparams[var]
