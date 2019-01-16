@@ -146,7 +146,7 @@ def plot_time(df, ax, now, horizon):
 
 toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
-download = True
+download = False
 horizon = 7
 
 sites = OrderedDict([
