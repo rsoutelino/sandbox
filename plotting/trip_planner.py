@@ -178,9 +178,9 @@ plotparams = {
 			'wsp':       {'max': 30,  'min': 5,  'inc': 0.3,  'size': 30, 'cmap': plt.cm.YlOrBr},
 			'tmpsfc':    {'max': 35,  'min': 5, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},
 			'tp':        {'max': 23,  'min': 0,  'inc': 0.1, 'size': None, 'cmap': None},
-			'apratesfc': {'max': 10,  'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
+			'apratesfc': {'max': 5,   'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
 			'tcdcclm':   {'max': 100, 'min': 0,  'inc': None, 'size': None, 'cmap': None},			
-			'et':        {'max': 5,   'min': 0,  'inc': None, 'size': None, 'cmap': None},			
+			'et':        {'max': 10,  'min': 0,  'inc': None, 'size': None, 'cmap': None},			
 			'sst':       {'max': 25,  'min': 0, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},			
            }
 
