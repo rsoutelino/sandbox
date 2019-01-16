@@ -136,10 +136,11 @@ varmap = {
          }	  
 
 plotparams = {
-	        'hs':     {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
-			'wsp':    {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
-			'tmpsfc': {'max': 32, 'min': 10, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},
-			'tp':     {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
+	        'hs':        {'max': 4,  'min': 0,  'inc': 0.05, 'size': 30, 'cmap': plt.cm.Purples},
+			'wsp':       {'max': 30, 'min': 0,  'inc': 0.4,  'size': 30, 'cmap': plt.cm.jet},
+			'tmpsfc':    {'max': 30, 'min': 12, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.jet},
+			'tp':        {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
+			'apratesfc': {'max': 20, 'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
            }
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
