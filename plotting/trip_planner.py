@@ -50,9 +50,12 @@ def plot_nightshade(df, ax, **kwargs):
     ymin, ymax = ax.get_ylim()
     
     for day in pd.date_range(df.index[0].date(), df.index[-1].date()):
+        # import pdb; pdb.set_trace()
         sun1 = city.sun(date=day - dt.timedelta(days=1))
         sun2 = city.sun(date=day, local=True)
-        night = pd.DataFrame(index=[sun1['sunset'], sun2['sunrise']], 
+        sunset = sun1['sunset'].replace(tzinfo=None)
+        sunrise = sun2['sunrise'].replace(tzinfo=None)
+        night = pd.DataFrame(index=[sunset, sunrise], 
 		             data=dict(shade=[ymax, ymax]))
         night.shade.plot(kind='area', ax=ax, color='0.95', alpha=0.5, **kwargs)
 
@@ -120,7 +123,7 @@ def plot_prate(df, var, ax, params, **kwargs):
 def plot_time(df, ax, now, horizon):
     y = ax.get_ylim()[-1]
     t1 = dt.datetime(now.year, now.month, now.day, 12)
-    t2 = t1 + dt.timedelta(days=horizon)
+    t2 = t1 + dt.timedelta(days=horizon - 1)
     times = pd.date_range(t1, t2)
     
     for time in times:
@@ -144,7 +147,7 @@ def plot_time(df, ax, now, horizon):
 
 toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
-download = True
+download = False
 horizon = 7
 
 sites = OrderedDict([
@@ -178,7 +181,7 @@ plotparams = {
 			'tp':        {'max': 23,  'min': 0,  'inc': 0.1, 'size': None, 'cmap': None},
 			'apratesfc': {'max': 10,  'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
 			'tcdcclm':   {'max': 120, 'min': 0,  'inc': None, 'size': None, 'cmap': None},			
-			'et':        {'max': 10,  'min': 0,  'inc': None, 'size': None, 'cmap': None},			
+			'et':        {'max': 8,   'min': 0,  'inc': None, 'size': None, 'cmap': None},			
 			'sst':       {'max': 25,  'min': 0, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},			
            }
 
@@ -212,7 +215,7 @@ now = dt.datetime.now()
 t1 = dt.datetime(now.year, now.month, now.day)
 t2 = t1 + dt.timedelta(days=horizon)
 t1 -= pd.to_timedelta('16H') # because we loose 3H in the rolling mean
-t2 -= pd.to_timedelta('16H')
+t2 -= pd.to_timedelta('10H')
 
 if download:
     for siteID, site in sites.items():
