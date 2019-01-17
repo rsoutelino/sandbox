@@ -147,6 +147,7 @@ def plot_time(df, ax, now, horizon):
 toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
 download = False
+maps = False
 horizon = 7
 
 sites = OrderedDict([
@@ -175,7 +176,7 @@ varmap = {
 
 plotparams = {
 	        'hs':        {'max': 4,   'min': 0.2,  'inc': 0.03, 'size': 30, 'cmap': plt.cm.Blues},
-			'wsp':       {'max': 30,  'min': 5,  'inc': 0.3,  'size': 30, 'cmap': plt.cm.YlOrBr},
+			'wsp':       {'max': 40,  'min': 5,  'inc': 0.3,  'size': 30, 'cmap': plt.cm.YlOrBr},
 			'tmpsfc':    {'max': 35,  'min': 5, 'inc': 0.05, 'size': 120, 'cmap': plt.cm.Spectral_r},
 			'tp':        {'max': 23,  'min': 0,  'inc': 0.1, 'size': None, 'cmap': None},
 			'apratesfc': {'max': 5,   'min': 0,  'inc': 0.05, 'size': None, 'cmap': None},
@@ -186,6 +187,7 @@ plotparams = {
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
 tide_query = "{s}?fmt=txt&var=et&time={t1},{t2}&xy={x},{y}&type=tide&datum=LAT&dt=0.1"
+map_query = "{s}fmt=nc&var={v}&bnd=171.0132,179.5386,-40.2628,-33.2479&dx=0.05&dy=0.05&time={t1},{t2}" 
 filename_template = '/tmp/{s}_forecast.txt'
 
 # plot settings -------------------
@@ -229,7 +231,7 @@ if download:
                                  x=site['lon'], y=site['lat'], v=','.join(varmap.values())),
                                  filename_template.format(s=siteID + '_tide'))
 
-# PLOTTING ###########################################################################
+# TIMESERIES ###########################################################################
 
 nrows = int(np.ceil(len(sites) / plot_cols))
 figsize = (plot_width, nrows * inches_per_site)
@@ -322,4 +324,20 @@ for site in sites.keys():
         ypos += (ax_height_total - ax_height['wind'])
 
 plt.savefig('/tmp/trip_planner.png')
+
+
+# MAPS ################################################################################
+
+if maps and download:
+        print "Fetching forecast data for maps"
+        uds_request(query.format(s=UDS, t1=t1.strftime('%Y%m%d.%H%M%S'), t2=t2.strftime('%Y%m%d.%H%M%S'), 
+                                 v=','.join(varmap.values())), 
+								 filename_template.format(s=siteID + '_maps'))
+
+if maps:
+    ds = xr.open_dataset(filename_template.format(s=siteID + '_maps'))
+
+    fig = plt.figure(figsize=(20,10))
+    ds.sst.mean(axis=0).plot(cmap=plt.cm.jet)
+
 plt.show()
