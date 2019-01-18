@@ -8,6 +8,8 @@ from dataIO_tools.read import uds2pandas
 from pymo.core.conversions import uv2spddir, spddir2uv, k2c
 from astral import Astral
 import uuid
+from msl_actions.misc.mailer import MandrillMailer
+
 
 def ms2kts(spd):
     return spd * 1.94384
@@ -18,6 +20,19 @@ def uds_request(query, filename):
     req = requests.get(query)
     with open(filename, 'wb') as f:
         f.write(req.content)
+
+
+def send_email(mailer, to, cycle, graphs, cc=[], bcc=[]):
+    subject = 'Dashboard - {c}'.format(c=cycle)
+    text = subject    
+    mailer.send_email(to=to, cc=cc, bcc=bcc, subject=subject,
+                                html=text, 
+                                text=text, 
+                                from_email='ops@metocean.co.nz',
+                                from_name='MetOcean Solutions',
+                                reply_to='ops@metocean.co.nz',
+                                attachments=graphs,
+                                important=True)
 
 
 def create_df(df, varmap, toff):
@@ -146,7 +161,7 @@ def plot_time(df, ax, now, horizon):
 
 toff = '13H'
 UDS = 'http://metocean:qEwkuwAyyv4iXUEA@uds.metoceanapi.com/uds'
-download = False
+download = True
 maps = False
 horizon = 7
 
@@ -341,3 +356,11 @@ if maps:
     ds.sst.mean(axis=0).plot(cmap=plt.cm.jet)
 
 plt.show()
+
+attachments = ['/tmp/trip_planner.png']
+recipients = ['r.soutelino@metocean.co.nz']
+cc = ['julianaalbertoni@gmail.com']
+print "Sending e-mail"
+mailer = MandrillMailer()
+cycle = now.strftime('%Y%m%d_%Hz')
+send_email(mailer, recipients, cycle, attachments, cc=cc)
