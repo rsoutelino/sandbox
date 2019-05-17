@@ -167,12 +167,15 @@ horizon = 7
 
 sites = OrderedDict([
                       ('raglan',       dict(lon=174.8021, lat=-37.7962, lon2=174.9015, lat2=-37.8035)),	                   
-	                  ('tauranga',     dict(lon=176.1850, lat=-37.6202, lon2=176.1944, lat2=-37.6969)),
+	                #   ('tauranga',     dict(lon=176.1850, lat=-37.6202, lon2=176.1944, lat2=-37.6969)),
                     #    ('newplymouth',  dict(lon=173.8092, lat=-39.0960, lon2=174.1173, lat2=-39.0669)),
                       ('whangamata',  dict(lon=175.9072, lat=-37.2060, lon2=175.8636, lat2=-37.2149)),
+                    #   ('whangapoa',  dict(lon=175.6343, lat=-36.6951, lon2=175.6017, lat2=-36.7210)),
 		              ('gisborne',     dict(lon=178.0870, lat=-38.6903, lon2=178.0149, lat2=-38.6394)),
 					#    ('ahipara',      dict(lon=173.1088, lat=-35.1289, lon2=173.2132, lat2=-35.1137)),
-					#    ('keri-keri',    dict(lon=174.0976, lat=-35.2232, lon2=174.0543, lat2=-35.2724)),
+					#    ('kerikeri',    dict(lon=174.0976, lat=-35.2232, lon2=174.0543, lat2=-35.2724)),
+					#    ('whakatane',    dict(lon=177.0085, lat=-37.9254, lon2=176.9928, lat2=-37.9650)),
+					   ('mangawhai',    dict(lon=174.6217, lat=-36.0860, lon2=174.5800, lat2=-36.0885)),
                     ])
 
 varmap = {
