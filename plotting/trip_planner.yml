@@ -1,0 +1,12 @@
+data:
+  meteo:
+    id: 'http://nomads.ncep.noaa.gov:80/dods/gfs_0p25_1hr/gfs{cycle.split("_")[0]}/gfs_0p25_1hr_{cycle.split("_")[1]}z'
+    variables: [ugrd10m, vgrd10m, gustsfc, tmpsfc, thetao, prateavesfc, tcdcclm]
+  wave:
+    server: GLOBAL_ANALYSIS_FORECAST_WAV_001_027-TDS
+    id: global-analysis-forecast-wav-001-027
+    variables: [ugrd10m, vgrd10m, gustsfc, tmpsfc, thetao, prateavesfc, tcdcclm]
+  hydro:
+    server: GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
+    id: global-analysis-forecast-phy-001-024
+    variables: thetao
