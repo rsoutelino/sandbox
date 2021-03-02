@@ -15,6 +15,6 @@ chmod g+rw $DEFAULT_DIRS
 echo 'deb http://archive.canonical.com/ubuntu groovy partner' >> /etc/apt/sources.list
 apt update
 
-apt -y install tilix ntp rsync wget curl python3-pip python3-ipython git screen vim htop unzip zsh docker.io build-essential gfortran m4 zsh nco ncview vim-gtk subversion libnetcdf-dev libhdf5-serial-dev libkernlib1-gfortran netcdf-bin hdf5-tools libgsl0-dev libgeos-dev libproj-dev python-dev
-pip install seawater pandas pydap netcdf4 pyephem xarray matplotlib ruamel.yaml dask zarr seaborn docker-compose
+apt -y install mlocate tilix ntp rsync wget curl python3-pip ipython3 python3-virtualenv python3-virtualenvwrapper git screen vim htop unzip zsh docker.io build-essential gfortran m4 zsh nco ncview vim-gtk subversion libnetcdf-dev libhdf5-serial-dev libkernlib1-gfortran netcdf-bin hdf5-tools libgsl0-dev libgeos-dev libproj-dev python-dev
+pip3 install seawater pandas pydap netcdf4 pyephem xarray matplotlib ruamel.yaml dask zarr seaborn docker-compose
 chmod 777 /var/run/docker.sock
