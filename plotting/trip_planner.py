@@ -102,7 +102,10 @@ def plot_nightshade(df, ax, **kwargs):
         sunset = sun1["sunset"].replace(tzinfo=None)
         sunrise = sun2["sunrise"].replace(tzinfo=None)
         night = pd.DataFrame(index=[sunset, sunrise], data=dict(shade=[ymax, ymax]))
-        night.shade.plot(kind="area", ax=ax, color="0.9", alpha=0.5, **kwargs)
+        try:
+            night.shade.plot(kind="area", ax=ax, color="0.9", alpha=0.5, **kwargs)
+        except:
+            import pdb; pdb.set_trace()
 
 
 def filled_plot(df, var, ax, params, **kwargs):
@@ -284,7 +287,7 @@ varmap = {
 }
 
 plotparams = {
-    "VHM0": {"max": 4, "min": 0.2, "inc": 0.03, "size": 30, "cmap": plt.cm.Blues},
+    "hs": {"max": 4, "min": 0.2, "inc": 0.03, "size": 30, "cmap": plt.cm.Blues},
     "wsp": {"max": 40, "min": 5, "inc": 0.3, "size": 30, "cmap": plt.cm.YlOrBr},
     "tmpsfc": {
         "max": 35,
@@ -293,11 +296,11 @@ plotparams = {
         "size": 120,
         "cmap": plt.cm.Spectral_r,
     },
-    "VTPK": {"max": 23, "min": 0, "inc": 0.1, "size": None, "cmap": None},
-    "prateavesfc": {"max": 5, "min": 0, "inc": 0.05, "size": None, "cmap": None},
+    "tp": {"max": 23, "min": 0, "inc": 0.1, "size": None, "cmap": None},
+    "prate": {"max": 5, "min": 0, "inc": 0.05, "size": None, "cmap": None},
     "tcdcclm": {"max": 100, "min": 0, "inc": None, "size": None, "cmap": None},
     "et": {"max": 10, "min": 0, "inc": None, "size": None, "cmap": None},
-    "thetao": {
+    "sst": {
         "max": 25,
         "min": 0,
         "inc": 0.05,
