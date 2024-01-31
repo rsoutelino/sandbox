@@ -5,7 +5,7 @@ data:
   wave:
     server: GLOBAL_ANALYSIS_FORECAST_WAV_001_027-TDS
     id: global-analysis-forecast-wav-001-027
-    variables: [ugrd10m, vgrd10m, gustsfc, tmpsfc, thetao, prateavesfc, tcdcclm]
+    variables: [hs, tp, dpm]
   hydro:
     server: GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS
     id: global-analysis-forecast-phy-001-024

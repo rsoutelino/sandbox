@@ -6,18 +6,52 @@ import xarray as xr
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from pymo.core.conversions import uv2spddir, spddir2uv, k2c
-from astral import Astral
+from dataIO_tools.read import uds2pandas
+from astral import LocationInfo
+from astral.sun import sun
 import uuid
+
+
+UDS = "http://uds-ops.service.consul:9191/uds"
+
+
+def spddir2uv(spd, direc, decl_mag=0, ang_rot=0):
+    # converts (spd, dir) to (u, v)
+    direc = direc + decl_mag
+    direc = np.mod(direc, 360)
+    direc = direc * np.pi / 180
+    ang_rot = (ang_rot)*np.pi/180
+    u = spd*np.sin(direc)
+    v = spd*np.cos(direc)
+    u = u*np.cos(ang_rot) - v*np.sin(ang_rot)
+    v = u*np.sin(ang_rot) + v*np.cos(ang_rot)
+    return u, v
+
+
+def uv2spddir(u, v, decl_mag=0, ang_rot=0):
+    # converts (u, v) to (spd, dir)
+    vetor = u + v*1j
+    mag = np.abs(vetor)
+    direc = np.angle(vetor)
+    direc = direc * 180/np.pi
+    direc = direc - decl_mag + ang_rot
+    direc = np.mod(90 - direc, 360)
+    return mag, direc
 
 
 def ms2kts(spd):
     return spd * 1.94384
 
 
+def uds_request(query, filename):
+    req = requests.get(query)
+    with open(filename, 'wb') as f:
+        f.write(req.content) 
+
+
 def motu_request(server, dataset, variables, lon, lat, t1, t2, filename):
     query = f"""
-             motuclient -u 'rsoutelino5' -p  'OceanumRam$ter4000' -m http://nrt.cmems-du.eu/motu-web/Motu -s {server} -d {dataset} -x {lon} -X {lon} -y {lat} -Y {lat} -t "{t1:%Y-%m-%d %H:%M:%S}" -T "{t2:%Y-%m-%d %H:%M:%S}" -o /tmp -f {filename}
+             motuclient -u 'cmems_operationalforecasting' -p  '6f00tng40knots' -m http://nrt.cmems-du.eu/motu-web/Motu -s {server} -d {dataset} -x {lon} -X {lon} -y {lat} -Y {lat} -t "{t1:%Y-%m-%d %H:%M:%S}" -T "{t2:%Y-%m-%d %H:%M:%S}" -o /tmp -f {filename}
              """
     for var in variables:
         query += f"-v {var}"
@@ -44,7 +78,7 @@ def create_df(df, varmap, toff):
     df["uwnd"], df["vwnd"] = spddir2uv(df.wsp.values * 0 + 1, df.wd.values)
     df.wsp = ms2kts(df.wsp)
     df.gst = ms2kts(df.gst)
-    df.tmpsfc = k2c(df.tmpsfc)
+    df.tmpsfc = df.tmpsfc - 273.15 
     df = df.rolling(6, win_type="hamming", center=True, closed="both").mean().dropna()
     df.index += pd.to_timedelta(toff)  # timezone
     return df
@@ -59,14 +93,12 @@ def create_ax(df, fig, x, y, w, h, params):
 
 
 def plot_nightshade(df, ax, **kwargs):
-    a = Astral()
-    a.solar_depression = "civil"
-    city = a["wellington"]
+    city = LocationInfo("wellington", region="New Zealand", timezone="Pacific/Auckland")
     ymin, ymax = ax.get_ylim()
 
     for day in pd.date_range(df.index[0].date(), df.index[-1].date()):
-        sun1 = city.sun(date=day - dt.timedelta(days=1))
-        sun2 = city.sun(date=day, local=True)
+        sun1 = sun(city.observer, date=day - dt.timedelta(days=1))
+        sun2 = sun(city.observer, date=day)
         sunset = sun1["sunset"].replace(tzinfo=None)
         sunrise = sun2["sunrise"].replace(tzinfo=None)
         night = pd.DataFrame(index=[sunset, sunrise], data=dict(shade=[ymax, ymax]))
@@ -209,7 +241,7 @@ def plot_time(df, ax, now, horizon):
 # motuclient -u 'rsoutelino5' -p  'OceanumRam$ter4000' -m http://nrt.cmems-du.eu/motu-web/Motu -s GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS -d global-analysis-forecast-phy-001-024 -x 170 -X 180 -y -33 -Y -43.5 -t "2020-11-01 12:00:00" -T "2020-11-22 00:00:00" -z 0.0 -Z 0.5  -v thetao  -o /tmp -f ocean.nc
 
 toff = "13H"
-download = True
+download = False
 maps = False
 horizon = 7
 
@@ -233,15 +265,21 @@ sites = OrderedDict(
 )
 
 varmap = {
-    "hs[m]": "VHM0",
-    "tp[s]": "VTPK",
-    "dpm[deg]": "VMDR",
+    # "hs[m]": "VHM0",
+    "hs[m]": "hs",
+    "tp[s]": "tp",
+    # "tp[s]": "VTPK",
+    "dpm[deg]": "dpm",
+    # "dpm[deg]": "VMDR",
     "ugrd10m[m/s]": "ugrd10m",
     "vgrd10m[m/s]": "vgrd10m",
-    "gst[m/s]": "gustsfc",
-    "tmpsfc[K]": "tmpsfc",
-    "sst[C]": "thetao",
-    "apratesfc[kg/m^2/s]": "prateavesfc",
+    "gst[m/s]": "gst",
+    # "gst[m/s]": "gustsfc",
+    "tmpsfc[k]": "tmpsfc",
+    "sst[]": "sst",
+    # "sst[C]": "thetao",
+    # "apratesfc[kg/m^2/s]": "prateavesfc",
+    "apratesfc[kg/m^2/s]": "prate",
     "tcdcclm[%]": "tcdcclm",
 }
 
@@ -270,7 +308,7 @@ plotparams = {
 
 query = "{s}?fmt=txt&var={v}&time={t1},{t2}&xy={x},{y}"
 tide_query = "{s}?fmt=txt&var=et&time={t1},{t2}&xy={x},{y}&type=tide&datum=LAT&dt=0.1"
-map_query = "{s}fmt=nc&var={v}&bnd=171.0132,179.5386,-40.2628,-33.2479&dx=0.05&dy=0.05&time={t1},{t2}"
+map_query = "{s}?fmt=nc&var={v}&bnd=171.0132,179.5386,-40.2628,-33.2479&dx=0.05&dy=0.05&time={t1},{t2}"
 filename_template = "/tmp/{s}_forecast.txt"
 
 # plot settings -------------------
@@ -303,7 +341,7 @@ t2 -= pd.to_timedelta("10H")
 
 if download:
     for siteID, site in sites.items():
-        print "Fetching forecast for {s}".format(s=siteID.upper())
+        print("Fetching forecast for {s}".format(s=siteID.upper()))
         uds_request(
             query.format(
                 s=UDS,
@@ -347,7 +385,6 @@ fig = plt.figure(figsize=figsize)
 c = 0
 ypos = 1 - (ypad + ax_height["wind"])  # from top to bottom
 
-# import pdb; pdb.set_trace()
 for site in sites.keys():
     c += 1
     df = create_df(uds2pandas(filename_template.format(s=site)), varmap, toff)
@@ -438,7 +475,7 @@ plt.savefig("/tmp/trip_planner.png")
 # MAPS ################################################################################
 
 if maps and download:
-    print "Fetching forecast data for maps"
+    print("Fetching forecast data for maps")
     uds_request(
         query.format(
             s=UDS,
