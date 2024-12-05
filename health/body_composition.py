@@ -9,7 +9,7 @@ sns.set_context("notebook", font_scale=0.8)
 colors = ["#a84432", "#ebe698"]
 
 # Read the Excel file
-file_path = "/home/rsoutelino/body_composition.xlsx"
+file_path = "./body_composition.xlsx"
 df = pd.read_excel(file_path)
 df = df.transpose()
 df.columns = df.iloc[0, :]
@@ -55,24 +55,42 @@ plt.tight_layout()
 ########################################################################
 ########################################################################
 
-# fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(18, 8), sharex=True, sharey=True)
+fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(14, 6))
 
 # # # Flatten the axes array for easy iteration
-# axes = axes.flatten()
-plt.figure()
+axes = axes.flatten()
+
 # Plot each body part in a subplot
 parameters = ["Visceral fat area (cm2)", "Subcutaneous fat area (cm2)"]
 df[parameters].plot(
     kind="area",
     stacked=True,
     alpha=0.5,
+    ax=axes[0],
     color=[
         "#3f52b0",
         "#98c4eb",
     ],
 )
 
-plt.tight_layout()
+df["Weight (kg)"].plot(
+    kind="area", alpha=0.5, ax=axes[1], color=["#3f52b0"], legend="lower left"
+)
 
+df["% Fat"].plot(
+    kind="area", alpha=0.5, ax=axes[2], color=["#f7d67c"], legend="lower left"
+)
+df["FMI (kg/m2)"].plot(
+    kind="area", alpha=0.5, ax=axes[3], color=["#f7d67c"], legend="lower left"
+)
+df["Waist/Hip ratio"].plot(
+    kind="area", alpha=0.5, ax=axes[4], color=["#4da39c"], legend="lower left"
+)
+axes[4].plot([df.index.values[0], df.index.values[-1]], [1, 1], "k--")
+df["Lean mass (kg)"].plot(
+    kind="area", alpha=0.5, ax=axes[5], color=["#a84432"], legend="lower left"
+)
+
+plt.tight_layout()
 
 plt.show()
